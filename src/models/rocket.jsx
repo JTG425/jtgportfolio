@@ -29,19 +29,13 @@ export default function Rocket(props) {
     }
   }, [props.home, props.about, props.contact, props.projects, props.resume]);
 
-  const animateRocketToPosition = (x, y, z, p) => {
-    const path = [mx, my, mz];
-    if(p === "home") {
-      path = [0, 0, 0];
-    } else if (p === "about") {
-      path = [50, 35.5, -25];
-
+  const animateRocketToPosition = (x, y, z) => {
     gsap.to(rocketRef.current.position, {
       duration: 2,
       ease: "power2.inOut",
       motionPath: {
         path: [
-          { x: 0, y: y, z: 0 },
+          { x: 10, y: 10, z: 10 },
           { x, y, z },
         ],
         alignOrigin: [0, 0],
@@ -56,7 +50,7 @@ export default function Rocket(props) {
     state.camera.lookAt(rocketPosition);
     state.camera.updateProjectionMatrix();
   });
-  
+
   return (
     <group {...props} dispose={null} ref={rocketRef}>
       <group>

@@ -38,12 +38,15 @@
 .navigation {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   padding-top: 15px;
   position: relative;
-  width: 50vw;
+  width: 80vw;
 }
+
+
 
 .homeButton {
   z-index: 5;
@@ -56,7 +59,6 @@
 }
 
 .aboutButton {
-  left: 15vw;
   z-index: 5;
   background-color: var(--primary-content);
   padding: 10px;
@@ -67,7 +69,6 @@
 }
 
 .contactButton {
-  left: 75vw;
   z-index: 5;
   border: none;
   background-color: var(--primary-content);
@@ -89,7 +90,6 @@
 }
 
 .resumeButton {
-  left: 60vw;
   z-index: 5;
   background-color: var(--primary-content);
   padding: 10px;
@@ -106,7 +106,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 0.5rem;
-  background-color: rgba(230,231,248,0.25);
+  background-color: rgba(230, 231, 248, 0.25);
   height: auto;
   max-height: 60vh;
   width: 90vw;

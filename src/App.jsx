@@ -25,6 +25,7 @@ import Resume from './pages/resume'
 function App() {
   //eslint-disable-next-line
   const [launch, setLaunch] = useState(false)
+  //eslint-disable-next-line
   const [pageLoad, setPageLoad] = useState(false)
   const [transition, setTransition] = useState(true)
   const [home, setHome] = useState(true)
@@ -39,6 +40,7 @@ function App() {
   //eslint-disable-next-line
   const homePosition = new THREE.Vector3(0, -10.35, 0);
   const rocketRef = useRef();
+  //eslint-disable-next-line
   const [currentPage, setCurrentPage] = useState("home"); // Track the current page
 
   const pageVariants = {
@@ -163,10 +165,10 @@ function App() {
         </motion.div>
 
         {home && <Home key="home" />}
-          {about && <About key="about" />}
-          {contact && <Contact key="contact" />}
-          {projects && <Projects key="projects" />}
-          {resume && <Resume key="resume" />}
+        {about && <About key="about" />}
+        {contact && <Contact key="contact" />}
+        {projects && <Projects key="projects" />}
+        {resume && <Resume key="resume" />}
       </motion.div>
       <Canvas className='canvas'>
         {/* <axesHelper args={[100]} /> */}
