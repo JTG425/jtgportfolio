@@ -1,12 +1,34 @@
 import React from 'react'
+import { TypeAnimation } from 'react-type-animation';
 
 
 function Home() {
 
   return (
     <div className="Home">
-        <h1>Hello, My Name Is Joshua</h1>
-        <h2>I am a Full Stack Web Developer</h2>
+      <TypeAnimation
+        className='type-animation'
+        sequence={[
+          3000,
+          'Hello, My Name Is Joshua',
+        ]}
+        wrapper='h1'
+        cursor={false}
+        speed={50}
+        repeat={1}
+      />
+
+      <TypeAnimation
+        className='type-animation'
+        sequence={[
+          5000,
+          'I am a Full Stack Web Developer',
+        ]}
+        wrapper='h2'
+        cursor={false}
+        speed={50}
+        repeat={1}
+      />
     </div>
 
   )

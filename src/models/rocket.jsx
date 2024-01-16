@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as THREE from 'three'
 import { useGLTF, PerspectiveCamera } from "@react-three/drei";
 import { useFrame } from '@react-three/fiber';
@@ -9,6 +9,7 @@ gsap.registerPlugin(MotionPathPlugin);
 
 export default function Rocket(props) {
   const { nodes, materials } = useGLTF("models/rocket.glb");
+  const [currentPlanet, setCurrentPlanet] = useState("home");
 
   const rocketRef = useRef();
   const camRef = useRef();
@@ -16,18 +17,23 @@ export default function Rocket(props) {
   const rocketPosition = new THREE.Vector3(0, 0, 0);
 
   useEffect(() => {
-    if (props.home) {
+    if (props.home && currentPlanet !== "home") {
       animateRocketToPosition(0, 0, 0, "home");
-    } else if (props.about) {
+      setCurrentPlanet("home");
+    } else if (props.about && currentPlanet !== "about") {
       animateRocketToPosition(50, 35.5, -25, "about");
-    } else if (props.contact) {
+      setCurrentPlanet("about");
+    } else if (props.contact && currentPlanet !== "contact") {
       animateRocketToPosition(-50, 0, 40, "contact");
-    } else if (props.projects) {
+      setCurrentPlanet("contact");
+    } else if (props.projects && currentPlanet !== "projects") {
       animateRocketToPosition(50, -15, 40, "projects");
-    } else if (props.resume) {
+      setCurrentPlanet("projects");
+    } else if (props.resume && currentPlanet !== "resume") {
       animateRocketToPosition(-65, -17, -50, "resume");
+      setCurrentPlanet("resume");
     }
-  }, [props.home, props.about, props.contact, props.projects, props.resume]);
+  }, [props.home, props.about, props.contact, props.projects, props.resume, currentPlanet]);
 
   const animateRocketToPosition = (x, y, z) => {
     gsap.to(rocketRef.current.position, {
@@ -35,21 +41,21 @@ export default function Rocket(props) {
       ease: "power2.inOut",
       motionPath: {
         path: [
-          { x: 10, y: 10, z: 10 },
           { x, y, z },
         ],
-        alignOrigin: [0, 0],
+        alignOrigin: [0.5, 0.5],
         curviness: 5,
         autoRotate: true,
       },
     });
   };
-
-  useFrame((state) => {
+  useFrame((state, delta) => {
     rocketPosition.setFromMatrixPosition(rocketRef.current.matrixWorld);
     state.camera.lookAt(rocketPosition);
     state.camera.updateProjectionMatrix();
   });
+
+
 
   return (
     <group {...props} dispose={null} ref={rocketRef}>

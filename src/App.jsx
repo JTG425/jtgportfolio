@@ -2,7 +2,7 @@ import React, { Suspense, useState, useRef, useEffect } from 'react'
 //eslint-disable-next-line
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, OrbitControls } from '@react-three/drei'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 //eslint-disable-next-line
 import { motion as m } from 'framer-motion-3d' //3d Motion
 import * as THREE from 'three'
@@ -26,8 +26,7 @@ function App() {
   //eslint-disable-next-line
   const [launch, setLaunch] = useState(false)
   //eslint-disable-next-line
-  const [pageLoad, setPageLoad] = useState(false)
-  const [transition, setTransition] = useState(true)
+  const [transition, setTransition] = useState(false)
   const [home, setHome] = useState(true)
   const [about, setAbout] = useState(false)
   const [contact, setContact] = useState(false)
@@ -43,10 +42,28 @@ function App() {
   //eslint-disable-next-line
   const [currentPage, setCurrentPage] = useState("home"); // Track the current page
 
-  const pageVariants = {
+  const loadVariants = {
     fadein: { opacity: 1 },
-    fadeout: { opacity: 0 }
+    fadeout: {
+      opacity: 0,
+      zIndex: -1,
+    }
   }
+
+  const draw = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: (i) => {
+      const delay = 1;
+      return {
+        pathLength: 1,
+        opacity: 1,
+        transition: {
+          pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
+          opacity: { delay, duration: 0.01 }
+        }
+      };
+    }
+  };
 
 
   const numStars = 200;
@@ -56,25 +73,51 @@ function App() {
     setCY(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
     setCZ(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
     setR(Array.from({ length: numStars }, () => Math.random() * 0.05));
-  }, []);
-
-  const handleButtonClick = (page) => {
-    // Update current page and trigger fade-out animation
-    setCurrentPage(page);
-    setTransition(false);
     setTimeout(() => {
-      // After 3 seconds, trigger fade-in animation with the proper page content
       setTransition(true);
     }, 3000);
+    //eslint-disable-next-line
+  }, []);
+
+  const handleButtonClick = (page, currentPage) => {
+    if (page !== currentPage) {
+      setCurrentPage(page);
+    }
   };
 
   return (
     <div className="App">
       <motion.div
+        className='loading'
+        initial={{ opacity: 1 }}
+        animate={transition ? "fadeout" : "fadein"}
+        variants={loadVariants}
+        transition={{ duration: 3 }}
+      >
+        <motion.svg
+          width="100"
+          height="100"
+          viewBox="0 0 200 200"
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.circle
+            cx="100"
+            cy="100"
+            r="80"
+            variants={draw}
+            custom={1}
+          >
+          </motion.circle>
+        </motion.svg>
+        <p className='loading-text'>Loading</p>
+      </motion.div>
+
+      <motion.div
         className='page'
         initial={{ opacity: 0 }}
         animate={transition ? "fadein" : "fadeout"}
-        variants={pageVariants}
+        variants={loadVariants}
         transition={{ duration: 1 }}
       >
         <motion.div
@@ -86,7 +129,7 @@ function App() {
             whileTap={{ scale: 0.9 }}
             className='homeButton'
             onClick={() => {
-              handleButtonClick("home");
+              handleButtonClick("home", currentPage);
               setHome(true)
               setAbout(false)
               setContact(false)
@@ -102,7 +145,7 @@ function App() {
             whileTap={{ scale: 0.9 }}
             className='aboutButton'
             onClick={() => {
-              handleButtonClick("about");
+              handleButtonClick("about", currentPage);
               setLaunch(true)
               setAbout(true)
               setContact(false)
@@ -119,7 +162,7 @@ function App() {
             whileTap={{ scale: 0.9 }}
             className='contactButton'
             onClick={() => {
-              handleButtonClick("contact");
+              handleButtonClick("contact", currentPage);
               setAbout(false)
               setContact(true)
               setProjects(false)
@@ -135,7 +178,7 @@ function App() {
             whileTap={{ scale: 0.9 }}
             className='projectsButton'
             onClick={() => {
-              handleButtonClick("projects");
+              handleButtonClick("projects", currentPage);
               setAbout(false)
               setContact(false)
               setProjects(true)
@@ -151,7 +194,7 @@ function App() {
             whileTap={{ scale: 0.9 }}
             className='resumeButton'
             onClick={() => {
-              handleButtonClick("resume");
+              handleButtonClick("resume", currentPage);
               setAbout(false)
               setContact(false)
               setProjects(false)
@@ -161,14 +204,82 @@ function App() {
           >
             <span className='button-text'>Resume</span>
           </motion.button>
-
         </motion.div>
-
-        {home && <Home key="home" />}
-        {about && <About key="about" />}
-        {contact && <Contact key="contact" />}
-        {projects && <Projects key="projects" />}
-        {resume && <Resume key="resume" />}
+        <AnimatePresence
+          mode="wait"
+          initial={false}
+        >
+          {home && (
+            <motion.div
+              key="home"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 1.5,
+                ...(about || contact || projects || resume ? { delay: 1.5 } : {}),
+              }}
+              exit={{ opacity: 0 }}
+            >
+              <Home />
+            </motion.div>
+          )}
+          {about && (
+            <motion.div
+              key="about"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 1.5,
+                ...(home || resume || contact || projects ? { delay: 1.5 } : {}),
+              }}
+              exit={{ opacity: 0 }}
+            >
+              <About />
+            </motion.div>
+          )}
+          {contact && (
+            <motion.div
+              key="contact"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 1.5,
+                ...(home || resume || about || projects ? { delay: 1.5 } : {}),
+              }}
+              exit={{ opacity: 0 }}
+            >
+              <Contact />
+            </motion.div>
+          )}
+          {projects && (
+            <motion.div
+              key="projects"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 1.5,
+                ...(home || resume || about || contact ? { delay: 1.5 } : {}),
+              }}
+              exit={{ opacity: 0 }}
+            >
+              <Projects />
+            </motion.div>
+          )}
+          {resume && (
+            <motion.div
+              key="resume"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{
+                duration: 1.5,
+                ...(home || projects || about || contact ? { delay: 1.5 } : {}),
+              }}
+              exit={{ opacity: 0 }}
+            >
+              <Resume />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
       <Canvas className='canvas'>
         {/* <axesHelper args={[100]} /> */}
@@ -202,7 +313,7 @@ function App() {
           <Environment preset="sunset" />
         </Suspense>
       </Canvas>
-    </div>
+    </div >
   )
 }
 
