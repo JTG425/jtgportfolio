@@ -66,11 +66,11 @@ function App() {
   };
 
 
-  const numStars = 200;
+  const numStars = 2000;
 
   useEffect(() => {
-    setCX(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
-    setCY(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
+    setCX(Array.from({ length: numStars }, () => Math.floor(Math.random() * 1001) - 500));
+    setCY(Array.from({ length: numStars }, () => Math.floor(Math.random() * 1001) - 500));
     setCZ(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
     setR(Array.from({ length: numStars }, () => Math.random() * 0.05));
     setTimeout(() => {
@@ -78,6 +78,7 @@ function App() {
     }, 3000);
     //eslint-disable-next-line
   }, []);
+
 
   const handleButtonClick = (page, currentPage) => {
     if (page !== currentPage) {
@@ -301,11 +302,13 @@ function App() {
             maxDistance={200}
             minPolarAngle={Math.PI / 6}
             maxPolarAngle={Math.PI - Math.PI / 2}
+            maxAzimuthAngle={Math.PI / 8}
+            minAzimuthAngle={-Math.PI / 8}
           />
-          <AboutModel position={[50, 25, -25]} />
-          <ContactModel position={[-50, -10, 40]} />
-          <ProjectsModel position={[50, -25, 40]} />
-          <ResumeModel position={[-65, -25, -50]} />
+          <AboutModel position={[200, -10.35, 0]} />
+          <ContactModel position={[-200, -10.35, 0]} />
+          <ProjectsModel position={[400, -10.35, 0]} />
+          <ResumeModel position={[-400, -10.35, 0]} />
           {Array.from({ length: numStars }, (_, index) => (
             <Stars r={r} position={[cx[index], cz[index], cy[index]]} scale={0.1} />
           ))}
