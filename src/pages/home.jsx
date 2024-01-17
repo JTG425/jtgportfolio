@@ -22,7 +22,7 @@ function Home() {
         className='type-animation'
         sequence={[
           5000,
-          'I am a Full Stack Web Developer',
+          'An Aspiring Web Developer',
         ]}
         wrapper='h2'
         cursor={false}

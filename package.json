@@ -1,6 +1,7 @@
 {
   "name": "3d",
   "version": "0.1.0",
+  "!homepage": "https://jtg425.github.io/jtgportfolio/",
   "private": false,
   "dependencies": {
     "@react-three/drei": "^9.93.0",
@@ -11,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "framer-motion-3d": "^10.18.0",
     "gsap": "^3.12.4",
+    "gsap-trial": "^3.12.4",
     "leva": "^0.9.35",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

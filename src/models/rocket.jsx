@@ -38,14 +38,13 @@ export default function Rocket(props) {
   const animateRocketToPosition = (x, y, z) => {
     gsap.to(rocketRef.current.position, {
       duration: 2,
-      ease: "power2.inOut",
+      ease: "none",
       motionPath: {
         path: [
+          { x: x - 1, y: y + 1, z: z },
           { x, y, z },
         ],
-        alignOrigin: [0.5, 0.5],
         curviness: 5,
-        autoRotate: true,
       },
     });
   };

@@ -38,7 +38,7 @@
 .navigation {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   padding-top: 15px;
@@ -169,4 +169,25 @@ circle {
   font-size: 2rem;
   position: absolute;
   top: 60%;
+}
+
+@media screen and (max-width: 600px) {
+  .navigation {
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+  }
+
+  .navigation button {
+    width: 100%;
+    height: 60px;
+    margin: 1px;
+    scale: 0.75;
+  }
+
+  .page {
+    width: 95vw;
+    left: 2.5vw;
+  }
+
 }
