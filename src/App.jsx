@@ -128,6 +128,38 @@ function App() {
             initial={{ opacity: 1 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            className='resumeButton'
+            onClick={() => {
+              handleButtonClick("resume", currentPage);
+              setAbout(false)
+              setContact(false)
+              setProjects(false)
+              setResume(true)
+              setHome(false)
+            }}
+          >
+            <span className='button-text'>Resume</span>
+          </motion.button>
+          <motion.button
+            initial={{ opacity: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className='contactButton'
+            onClick={() => {
+              handleButtonClick("contact", currentPage);
+              setAbout(false)
+              setContact(true)
+              setProjects(false)
+              setResume(false)
+              setHome(false)
+            }}
+          >
+            <span className='button-text'>Contact Me</span>
+          </motion.button>
+          <motion.button
+            initial={{ opacity: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             className='homeButton'
             onClick={() => {
               handleButtonClick("home", currentPage);
@@ -161,22 +193,6 @@ function App() {
             initial={{ opacity: 1 }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className='contactButton'
-            onClick={() => {
-              handleButtonClick("contact", currentPage);
-              setAbout(false)
-              setContact(true)
-              setProjects(false)
-              setResume(false)
-              setHome(false)
-            }}
-          >
-            <span className='button-text'>Contact Me</span>
-          </motion.button>
-          <motion.button
-            initial={{ opacity: 1 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
             className='projectsButton'
             onClick={() => {
               handleButtonClick("projects", currentPage);
@@ -188,22 +204,6 @@ function App() {
             }}
           >
             <span className='button-text'>My Projects</span>
-          </motion.button>
-          <motion.button
-            initial={{ opacity: 1 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className='resumeButton'
-            onClick={() => {
-              handleButtonClick("resume", currentPage);
-              setAbout(false)
-              setContact(false)
-              setProjects(false)
-              setResume(true)
-              setHome(false)
-            }}
-          >
-            <span className='button-text'>Resume</span>
           </motion.button>
         </motion.div>
         <AnimatePresence
@@ -308,7 +308,7 @@ function App() {
           <AboutModel position={[200, -10.35, 0]} />
           <ContactModel position={[-200, -10.35, 0]} />
           <ProjectsModel position={[400, -10.35, 0]} />
-          <ResumeModel position={[-400, -10.35, 0]} />
+          <ResumeModel position={[-400, -8, 0]} />
           {Array.from({ length: numStars }, (_, index) => (
             <Stars r={r} position={[cx[index], cz[index], cy[index]]} scale={0.1} />
           ))}

@@ -4,6 +4,7 @@ import { useGLTF, PerspectiveCamera } from "@react-three/drei";
 import { useFrame } from '@react-three/fiber';
 import { gsap } from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import { Timeline } from "gsap/gsap-core";
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -70,73 +71,73 @@ export default function Rocket(props) {
     } else if (currentPlanet === "about") {
       if (props.home) {
         setDestination("home");
-        animateRocketToPosition(aboutPosition[0], aboutPosition[1], homePosition[0], homePosition[1], degree, true);
+        animateRocketToPosition(aboutPosition[0], aboutPosition[1], homePosition[0], homePosition[1], degree, true, "left");
         setCurrentPlanet("home");
       } else if (props.contact) {
         setDestination("contact");
-        animateRocketToPosition(aboutPosition[0], aboutPosition[1], contactPosition[0], contactPosition[1], degree, true);
+        animateRocketToPosition(aboutPosition[0], aboutPosition[1], contactPosition[0], contactPosition[1], degree, true, "left");
         setCurrentPlanet("contact");
       } else if (props.projects) {
         setDestination("projects");
-        animateRocketToPosition(aboutPosition[0], aboutPosition[1], projectsPosition[0], projectsPosition[1], degree, true);
+        animateRocketToPosition(aboutPosition[0], aboutPosition[1], projectsPosition[0], projectsPosition[1], degree, true, "right");
         setCurrentPlanet("projects");
       } else if (props.resume) {
         setDestination("resume");
-        animateRocketToPosition(aboutPosition[0], aboutPosition[1], resumePosition[0], resumePosition[1], degree, true);
+        animateRocketToPosition(aboutPosition[0], aboutPosition[1], resumePosition[0], resumePosition[1], degree, true, "left");
         setCurrentPlanet("resume");
       }
     } else if (currentPlanet === "contact") {
       if (props.home) {
         setDestination("home");
-        animateRocketToPosition(contactPosition[0], contactPosition[1], homePosition[0], homePosition[1], degree, true);
+        animateRocketToPosition(contactPosition[0], contactPosition[1], homePosition[0], homePosition[1], degree, true, "right");
         setCurrentPlanet("home");
       } else if (props.about) {
         setDestination("about");
-        animateRocketToPosition(contactPosition[0], contactPosition[1], aboutPosition[0], aboutPosition[1], degree, true);
+        animateRocketToPosition(contactPosition[0], contactPosition[1], aboutPosition[0], aboutPosition[1], degree, true, "right");
         setCurrentPlanet("about");
       } else if (props.projects) {
         setDestination("projects");
-        animateRocketToPosition(contactPosition[0], contactPosition[1], projectsPosition[0], projectsPosition[1], degree, true);
+        animateRocketToPosition(contactPosition[0], contactPosition[1], projectsPosition[0], projectsPosition[1], degree, true, "right");
         setCurrentPlanet("projects");
       } else if (props.resume) {
         setDestination("resume");
-        animateRocketToPosition(contactPosition[0], contactPosition[1], resumePosition[0], resumePosition[1], degree, true);
+        animateRocketToPosition(contactPosition[0], contactPosition[1], resumePosition[0], resumePosition[1], degree, true, "left");
         setCurrentPlanet("resume");
       }
     } else if (currentPlanet === "projects") {
       if (props.home) {
         setDestination("home");
-        animateRocketToPosition(projectsPosition[0], projectsPosition[1], homePosition[0], homePosition[1], degree, true);
+        animateRocketToPosition(projectsPosition[0], projectsPosition[1], homePosition[0], homePosition[1], degree, true, "left");
         setCurrentPlanet("home");
       } else if (props.about) {
         setDestination("about");
-        animateRocketToPosition(projectsPosition[0], projectsPosition[1], aboutPosition[0], aboutPosition[1], degree, true);
+        animateRocketToPosition(projectsPosition[0], projectsPosition[1], aboutPosition[0], aboutPosition[1], degree, true, "left");
         setCurrentPlanet("about");
       } else if (props.contact) {
         setDestination("contact");
-        animateRocketToPosition(projectsPosition[0], projectsPosition[1], contactPosition[0], contactPosition[1], degree, true);
+        animateRocketToPosition(projectsPosition[0], projectsPosition[1], contactPosition[0], contactPosition[1], degree, true, "left");
         setCurrentPlanet("contact");
       } else if (props.resume) {
         setDestination("resume");
-        animateRocketToPosition(projectsPosition[0], projectsPosition[1], resumePosition[0], resumePosition[1], degree, true);
+        animateRocketToPosition(projectsPosition[0], projectsPosition[1], resumePosition[0], resumePosition[1], degree, true, "left");
         setCurrentPlanet("resume");
       }
     } else if (currentPlanet === "resume") {
       if (props.home) {
         setDestination("home");
-        animateRocketToPosition(resumePosition[0], resumePosition[1], homePosition[0], homePosition[1], degree, true);
+        animateRocketToPosition(resumePosition[0], resumePosition[1], homePosition[0], homePosition[1], degree, true, "right");
         setCurrentPlanet("home");
       } else if (props.about) {
         setDestination("about");
-        animateRocketToPosition(resumePosition[0], resumePosition[1], aboutPosition[0], aboutPosition[1], degree, true);
+        animateRocketToPosition(resumePosition[0], resumePosition[1], aboutPosition[0], aboutPosition[1], degree, true, "right");
         setCurrentPlanet("about");
       } else if (props.contact) {
         setDestination("contact");
-        animateRocketToPosition(resumePosition[0], resumePosition[1], contactPosition[0], contactPosition[1], degree, true);
+        animateRocketToPosition(resumePosition[0], resumePosition[1], contactPosition[0], contactPosition[1], degree, true, "right");
         setCurrentPlanet("contact");
       } else if (props.projects) {
         setDestination("projects");
-        animateRocketToPosition(resumePosition[0], resumePosition[1], projectsPosition[0], projectsPosition[1], degree, true);
+        animateRocketToPosition(resumePosition[0], resumePosition[1], projectsPosition[0], projectsPosition[1], degree, true, "right");
         setCurrentPlanet("projects");
       }
     }
@@ -144,30 +145,42 @@ export default function Rocket(props) {
 
   const animateRocketToPosition = (x1, y1, x2, y2, radius, clockwise, direction) => {
     const adjustedY1 = y1 + 5;
-  
-    gsap.to(rocketRef.current.position, {
+    const adjustedX1 = direction === "left" ? x1 - 5 : x1 + 5;
+    var tl = gsap.timeline({ repeat: 0, repeatDelay: 0 });
+    const path = createArcPath(adjustedX1, adjustedY1, x2, y2, radius, clockwise);
+    var rotation = direction === "left" ? 1.57 : -1.57;
+
+    // Launch Off Planet
+    tl.to(rocketRef.current.position, {
       duration: 2,
       ease: "expo.in",
       y: `+=5`,
-      onComplete: () => {
-        const path = createArcPath(x1, adjustedY1, x2, y2, radius, clockwise);
-        const rotation = clockwise ? 1.57 : -1.57;
-        gsap.to(rocketRef.current.rotation, {
-          duration: 2,
-          ease: "expo.inOut",
-          z: 0,
-        });
-
-        gsap.to(rocketRef.current.position, {
-          duration: 5,
-          ease: "expo.inOut",
-          motionPath: {
-            path: path,
-            curviness: 1,
-          },
-        });
-      },
+      x: `+=${direction === "left" ? -5 : 5}`
     });
+
+    // Rotate Toward Destination
+    tl.to(rocketRef.current.rotation, {
+      duration: 4,
+      ease: "ease.inOut",
+      z: rotation,
+    }, 1);
+
+    // Travel To Destination
+    tl.to(rocketRef.current.position, {
+      duration: 5,
+      ease: "expoScale(0.5,7,none)",
+      motionPath: {
+        path: path,
+        curviness: 1,
+      },
+    }, 2);
+
+    // Rotate Away From Destination (For Landing)
+    tl.to(rocketRef.current.rotation, {
+      duration: 3,
+      ease: "ease.out",
+      z: 0,
+    }, 3);
   };
 
 
