@@ -10,7 +10,7 @@ function Home() {
         className='type-animation'
         sequence={[
           3000,
-          'Hello, My Name Is Joshua',
+          'Hello, My Name is Joshua',
         ]}
         wrapper='h1'
         cursor={false}

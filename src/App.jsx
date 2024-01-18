@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { motion as m } from 'framer-motion-3d' //3d Motion
 import * as THREE from 'three'
 import "./App.css"
+import Dropdown from './components/dropdown'
 import Rocket from './models/rocket'
 import AboutModel from './models/aboutmePlanet'
 import ContactModel from './models/contactPlanet'
@@ -81,10 +82,50 @@ function App() {
 
 
   const handleButtonClick = (page, currentPage) => {
-    if (page !== currentPage) {
-      setCurrentPage(page);
+    setCurrentPage(page);
+    switch (page) {
+      case "home":
+        setHome(true)
+        setAbout(false)
+        setContact(false)
+        setProjects(false)
+        setResume(false)
+        break;
+      case "about":
+        setHome(false)
+        setAbout(true)
+        setContact(false)
+        setProjects(false)
+        setResume(false)
+        break;
+      case "contact":
+        setHome(false)
+        setAbout(false)
+        setContact(true)
+        setProjects(false)
+        setResume(false)
+        break;
+      case "projects":
+        setHome(false)
+        setAbout(false)
+        setContact(false)
+        setProjects(true)
+        setResume(false)
+        break;
+      case "resume":
+        setHome(false)
+        setAbout(false)
+        setContact(false)
+        setProjects(false)
+        setResume(true)
+        break;
+      default:
+        break;
     }
+    console.log(page)
   };
+
+
 
   return (
     <div className="App">
@@ -113,7 +154,20 @@ function App() {
         </motion.svg>
         <p className='loading-text'>Loading</p>
       </motion.div>
-
+      <Dropdown
+        home={home}
+        about={about}
+        contact={contact}
+        projects={projects}
+        resume={resume}
+        setHome={setHome}
+        setAbout={setAbout}
+        setContact={setContact}
+        setProjects={setProjects}
+        setResume={setResume}
+        currentPage={currentPage}
+        handleButtonClick={handleButtonClick}
+      />
       <motion.div
         className='page'
         initial={{ opacity: 0 }}
@@ -124,6 +178,7 @@ function App() {
         <motion.div
           className='navigation'
         >
+
           <motion.button
             initial={{ opacity: 1 }}
             whileHover={{ scale: 1.1 }}
