@@ -40,6 +40,14 @@ function App() {
   //eslint-disable-next-line
   const homePosition = new THREE.Vector3(0, -10.35, 0);
   const rocketRef = useRef();
+  const resumeRef = useRef();
+  const aboutRef = useRef();
+  const contactRef = useRef();
+  const projectsRef = useRef();
+  const homeRef = useRef();
+  const [mousePosition, setMousePosition] = useState({});
+  const [i, setI] = useState(0);
+
   //eslint-disable-next-line
   const [currentPage, setCurrentPage] = useState("home"); // Track the current page
 
@@ -65,6 +73,43 @@ function App() {
       };
     }
   };
+
+  //https://codesandbox.io/p/sandbox/framer-motion-mouse-position-2b4sd?file=%2Fsrc%2FApp.js%3A40%2C1-69%2C2
+  function getRelativeCoordinates(event, referenceElement) {
+    const position = {
+      x: event.pageX,
+      y: event.pageY
+    };
+
+    const offset = {
+      left: referenceElement.offsetLeft,
+      top: referenceElement.offsetTop,
+      width: referenceElement.clientWidth,
+      height: referenceElement.clientHeight
+    };
+
+    let reference = referenceElement.offsetParent;
+
+    while (reference) {
+      offset.left += reference.offsetLeft;
+      offset.top += reference.offsetTop;
+      reference = reference.offsetParent;
+    }
+
+    const startX = (position.x - offset.left) / offset.width;
+    const startY = (position.y - offset.top) / offset.height;
+
+    return {
+      x: position.x - offset.left,
+      y: position.y - offset.top,
+      width: offset.width,
+      height: offset.height,
+      centerX: (position.x - offset.left - offset.width / 2) / (offset.width / 2) - 0.5,
+      centerY: (position.y - offset.top - offset.height / 2) / (offset.height / 2) - 0.5,
+      startX: startX,
+      startY: startY,
+    };
+  }
 
 
   const numStars = 2000;
@@ -126,6 +171,20 @@ function App() {
   };
 
 
+  const handleMouseMove = e => {
+    if (i === 0) {
+      setMousePosition(getRelativeCoordinates(e, resumeRef.current));
+    } else if (i === 1) {
+      setMousePosition(getRelativeCoordinates(e, contactRef.current));
+    } else if (i === 2) {
+      setMousePosition(getRelativeCoordinates(e, homeRef.current));
+    } else if (i === 3) {
+      setMousePosition(getRelativeCoordinates(e, aboutRef.current));
+    } else if (i === 4) {
+      setMousePosition(getRelativeCoordinates(e, projectsRef.current));
+    }
+  };
+
 
   return (
     <div className="App">
@@ -178,12 +237,17 @@ function App() {
         <motion.div
           className='navigation'
         >
-
           <motion.button
             initial={{ opacity: 1 }}
-            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className='resumeButton'
+            ref={resumeRef}
+            onHoverStart={() => setI(0)}
+            onMouseMove={e => handleMouseMove(e)}
+            whileHover={{
+              scale: 1.1,
+              background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+            }}
             onClick={() => {
               handleButtonClick("resume", currentPage);
               setAbout(false)
@@ -197,9 +261,15 @@ function App() {
           </motion.button>
           <motion.button
             initial={{ opacity: 1 }}
-            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className='contactButton'
+            ref={contactRef}
+            onHoverStart={() => setI(1)}
+            onMouseMove={e => handleMouseMove(e)}
+            whileHover={{
+              scale: 1.1,
+              background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+            }}
             onClick={() => {
               handleButtonClick("contact", currentPage);
               setAbout(false)
@@ -213,9 +283,15 @@ function App() {
           </motion.button>
           <motion.button
             initial={{ opacity: 1 }}
-            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className='homeButton'
+            ref={homeRef}
+            onHoverStart={() => setI(2)}
+            onMouseMove={e => handleMouseMove(e)}
+            whileHover={{
+              scale: 1.1,
+              background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+            }}
             onClick={() => {
               handleButtonClick("home", currentPage);
               setHome(true)
@@ -229,9 +305,15 @@ function App() {
           </motion.button>
           <motion.button
             initial={{ opacity: 1 }}
-            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className='aboutButton'
+            ref={aboutRef}
+            onHoverStart={() => setI(3)}
+            onMouseMove={e => handleMouseMove(e)}
+            whileHover={{
+              scale: 1.1,
+              background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+            }}
             onClick={() => {
               handleButtonClick("about", currentPage);
               setLaunch(true)
@@ -246,9 +328,15 @@ function App() {
           </motion.button>
           <motion.button
             initial={{ opacity: 1 }}
-            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className='projectsButton'
+            ref={projectsRef}
+            onHoverStart={() => setI(4)}
+            onMouseMove={e => handleMouseMove(e)}
+            whileHover={{
+              scale: 1.1,
+              background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+            }}
             onClick={() => {
               handleButtonClick("projects", currentPage);
               setAbout(false)
@@ -352,7 +440,7 @@ function App() {
           />
           <HomeModel position={[0, -10.35, 0]} />
           <OrbitControls
-            enableZoom={true}
+            enableZoom={false}
             minDistance={20}
             maxDistance={200}
             minPolarAngle={Math.PI / 6}

@@ -38,6 +38,24 @@ const backgroundVariants = {
 
 }
 
+const arrowVariants = {
+    rotateUp: {
+        rotate: -180,
+        y: -3,
+        x: 6,
+        transition: {
+            duration: 0.25,
+        }
+    },
+    rotateDown: {
+        rotate: 0,
+        transition: {
+            duration: 0.25,
+        }
+    },
+
+}
+
 //https://codesandbox.io/p/sandbox/framer-motion-mouse-position-2b4sd?file=%2Fsrc%2FApp.js%3A40%2C1-69%2C2
 function getRelativeCoordinates(event, referenceElement) {
     const position = {
@@ -60,13 +78,18 @@ function getRelativeCoordinates(event, referenceElement) {
         reference = reference.offsetParent;
     }
 
+    const startX = (position.x - offset.left) / offset.width;
+    const startY = (position.y - offset.top) / offset.height;
+
     return {
         x: position.x - offset.left,
         y: position.y - offset.top,
         width: offset.width,
         height: offset.height,
-        centerX: (position.x - offset.left - offset.width / 2) / (offset.width / 2),
-        centerY: (position.y - offset.top - offset.height / 2) / (offset.height / 2)
+        centerX: (position.x - offset.left - offset.width / 2) / (offset.width / 2) - 0.5,
+        centerY: (position.y - offset.top - offset.height / 2) / (offset.height / 2) - 0.5,
+        startX: startX,
+        startY: startY,
     };
 }
 
@@ -139,6 +162,17 @@ export default function Dropdown({ home, about, contact, projects, resume, setHo
                     }}
                 >
                     {page}
+                    <motion.div
+                        className="arrow"
+                        style={{ transformOrigin: "50% 55%" }}
+                        initial={{ rotate: 0 }}
+                        animate={toggle ? "rotateUp" : "rotateDown"}
+                        variants={arrowVariants}
+                    >
+                        <svg className="arrowsvg" width="15" height="15" viewBox="0 0 20 20">
+                            <path d="M0 7 L 20 7 L 10 16" />
+                        </svg>
+                    </motion.div>
                 </motion.button>
                 <motion.div
                     className="dropdown-menu"
@@ -158,7 +192,7 @@ export default function Dropdown({ home, about, contact, projects, resume, setHo
                                     onMouseMove={e => handleMouseMove(e)}
                                     whileHover={{
                                         scale: 0.95,
-                                        background: `radial-gradient(circle at ${mousePosition.centerX * 100}% ${mousePosition.centerY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+                                        background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
                                     }}
                                     whileTap={{ scale: 0.9 }}
                                     onClick={handleDropdownClick(option, index)}
