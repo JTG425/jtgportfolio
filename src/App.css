@@ -25,6 +25,7 @@
   --error-content: #f8e6e6;
 }
 
+
 body {}
 
 .App {
@@ -133,6 +134,8 @@ body {}
   left: 5vw;
   justify-content: flex-start;
   overflow-y: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
   overflow-x: hidden;
   border-radius: 0.5rem;
   background: rgb(43, 43, 43);
@@ -141,6 +144,10 @@ body {}
   width: 90vw;
   max-height: 60vh;
   z-index: 4;
+}
+
+.page::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
 }
 
 .page h1 {
@@ -159,6 +166,11 @@ body {}
   font-size: 0.75rem;
   color: var(--primary-content);
   background: --primary;
+
+}
+
+.Home {
+  width: 80vw;
 
 }
 

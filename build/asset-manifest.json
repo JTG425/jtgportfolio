@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/jtgportfolio/static/css/main.32ba0c3a.css",
-    "main.js": "/jtgportfolio/static/js/main.227ee935.js",
+    "main.css": "/jtgportfolio/static/css/main.b46c867a.css",
+    "main.js": "/jtgportfolio/static/js/main.34153185.js",
     "static/js/27.214afeed.chunk.js": "/jtgportfolio/static/js/27.214afeed.chunk.js",
     "index.html": "/jtgportfolio/index.html"
   },
   "entrypoints": [
-    "static/css/main.32ba0c3a.css",
-    "static/js/main.227ee935.js"
+    "static/css/main.b46c867a.css",
+    "static/js/main.34153185.js"
   ]
 }
