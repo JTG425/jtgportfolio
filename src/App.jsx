@@ -258,11 +258,6 @@ function App() {
             }}
             onClick={() => {
               handleButtonClick("resume", currentPage);
-              setAbout(false)
-              setContact(false)
-              setProjects(false)
-              setResume(true)
-              setHome(false)
             }}
           >
             <span className='button-text'>Resume</span>
@@ -280,11 +275,6 @@ function App() {
             }}
             onClick={() => {
               handleButtonClick("contact", currentPage);
-              setAbout(false)
-              setContact(true)
-              setProjects(false)
-              setResume(false)
-              setHome(false)
             }}
           >
             <span className='button-text'>Contact Me</span>
@@ -302,11 +292,6 @@ function App() {
             }}
             onClick={() => {
               handleButtonClick("home", currentPage);
-              setHome(true)
-              setAbout(false)
-              setContact(false)
-              setProjects(false)
-              setResume(false)
             }}
           >
             <span className='button-text'>Home</span>
@@ -324,12 +309,6 @@ function App() {
             }}
             onClick={() => {
               handleButtonClick("about", currentPage);
-              setLaunch(true)
-              setAbout(true)
-              setContact(false)
-              setProjects(false)
-              setResume(false)
-              setHome(false)
             }}
           >
             <span className='button-text'>About Me</span>
@@ -347,11 +326,6 @@ function App() {
             }}
             onClick={() => {
               handleButtonClick("projects", currentPage);
-              setAbout(false)
-              setContact(false)
-              setProjects(true)
-              setResume(false)
-              setHome(false)
             }}
           >
             <span className='button-text'>My Projects</span>
@@ -434,7 +408,6 @@ function App() {
         </AnimatePresence>
       </motion.div>
       <Canvas className='canvas'>
-        {/* <axesHelper args={[100]} /> */}
         <Suspense fallback={null}>
           <Rocket
             position={[0, 0, 0]}
@@ -448,13 +421,13 @@ function App() {
           />
           <HomeModel position={[0, -10.35, 0]} />
           <OrbitControls
-            enableZoom={false}
+            enableZoom={true}
             minDistance={20}
             maxDistance={200}
-            minPolarAngle={Math.PI / 6}
+            minPolarAngle={Math.PI / 2}
             maxPolarAngle={Math.PI - Math.PI / 2}
-            maxAzimuthAngle={Math.PI / 1}
-            minAzimuthAngle={-Math.PI / 1}
+            maxAzimuthAngle={0}
+            minAzimuthAngle={0}
           />
           <AboutModel position={[200, -10.35, 0]} />
           <ContactModel position={[-200, -10.35, 0]} />

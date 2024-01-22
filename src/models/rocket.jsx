@@ -36,6 +36,8 @@ export default function Rocket(props) {
   const [currentPlanet, setCurrentPlanet] = useState("home");
   const [destination, setDestination] = useState("home");
   const [launch, setLaunch] = useState(false);
+  const { home, about, contact, projects, resume} = props;
+  console.log(home, about, contact, projects, resume)
 
   const rocketRef = useRef();
   const camRef = useRef();
@@ -46,111 +48,70 @@ export default function Rocket(props) {
   const contactPosition = [-200, 0];
   const projectsPosition = [400, 0];
   const resumePosition = [-400, 0];
-  const degree = 90;
+  const degree1 = 90;
+  const degree2 = 180;
+  const degree3 = 180;
+  const degree4 = 180;
+  //x1, y1, x2, y2, radius, clockwise, direction
+
+  const navigateTo = (destination, startPosition, endPosition, degree, direction, d) => {
+    setDestination(destination);
+    animateRocketToPosition(startPosition[0], startPosition[1], endPosition[0], endPosition[1], degree, true, direction, d);
+    setCurrentPlanet(destination);
+    console.log(home, about, contact, projects, resume)
+  };
 
 
   useEffect(() => {
-    if (currentPlanet === "home") {
-      if (props.about) {
-        setDestination("about");
-        animateRocketToPosition(homePosition[0], homePosition[1], aboutPosition[0], aboutPosition[1], degree, true, "right");
-        setCurrentPlanet("about");
-      } else if (props.contact) {
-        setDestination("contact");
-        animateRocketToPosition(homePosition[0], homePosition[1], contactPosition[0], contactPosition[1], degree, true, "left");
-        setCurrentPlanet("contact");
-      } else if (props.projects) {
-        setDestination("projects");
-        animateRocketToPosition(homePosition[0], homePosition[1], projectsPosition[0], projectsPosition[1], degree, true, "right");
-        setCurrentPlanet("projects");
-      } else if (props.resume) {
-        setDestination("resume");
-        animateRocketToPosition(homePosition[0], homePosition[1], resumePosition[0], resumePosition[1], degree, true, "left");
-        setCurrentPlanet("resume");
-      }
-    } else if (currentPlanet === "about") {
-      if (props.home) {
-        setDestination("home");
-        animateRocketToPosition(aboutPosition[0], aboutPosition[1], homePosition[0], homePosition[1], degree, true, "left");
-        setCurrentPlanet("home");
-      } else if (props.contact) {
-        setDestination("contact");
-        animateRocketToPosition(aboutPosition[0], aboutPosition[1], contactPosition[0], contactPosition[1], degree, true, "left");
-        setCurrentPlanet("contact");
-      } else if (props.projects) {
-        setDestination("projects");
-        animateRocketToPosition(aboutPosition[0], aboutPosition[1], projectsPosition[0], projectsPosition[1], degree, true, "right");
-        setCurrentPlanet("projects");
-      } else if (props.resume) {
-        setDestination("resume");
-        animateRocketToPosition(aboutPosition[0], aboutPosition[1], resumePosition[0], resumePosition[1], degree, true, "left");
-        setCurrentPlanet("resume");
-      }
-    } else if (currentPlanet === "contact") {
-      if (props.home) {
-        setDestination("home");
-        animateRocketToPosition(contactPosition[0], contactPosition[1], homePosition[0], homePosition[1], degree, true, "right");
-        setCurrentPlanet("home");
-      } else if (props.about) {
-        setDestination("about");
-        animateRocketToPosition(contactPosition[0], contactPosition[1], aboutPosition[0], aboutPosition[1], degree, true, "right");
-        setCurrentPlanet("about");
-      } else if (props.projects) {
-        setDestination("projects");
-        animateRocketToPosition(contactPosition[0], contactPosition[1], projectsPosition[0], projectsPosition[1], degree, true, "right");
-        setCurrentPlanet("projects");
-      } else if (props.resume) {
-        setDestination("resume");
-        animateRocketToPosition(contactPosition[0], contactPosition[1], resumePosition[0], resumePosition[1], degree, true, "left");
-        setCurrentPlanet("resume");
-      }
-    } else if (currentPlanet === "projects") {
-      if (props.home) {
-        setDestination("home");
-        animateRocketToPosition(projectsPosition[0], projectsPosition[1], homePosition[0], homePosition[1], degree, true, "left");
-        setCurrentPlanet("home");
-      } else if (props.about) {
-        setDestination("about");
-        animateRocketToPosition(projectsPosition[0], projectsPosition[1], aboutPosition[0], aboutPosition[1], degree, true, "left");
-        setCurrentPlanet("about");
-      } else if (props.contact) {
-        setDestination("contact");
-        animateRocketToPosition(projectsPosition[0], projectsPosition[1], contactPosition[0], contactPosition[1], degree, true, "left");
-        setCurrentPlanet("contact");
-      } else if (props.resume) {
-        setDestination("resume");
-        animateRocketToPosition(projectsPosition[0], projectsPosition[1], resumePosition[0], resumePosition[1], degree, true, "left");
-        setCurrentPlanet("resume");
-      }
-    } else if (currentPlanet === "resume") {
-      if (props.home) {
-        setDestination("home");
-        animateRocketToPosition(resumePosition[0], resumePosition[1], homePosition[0], homePosition[1], degree, true, "right");
-        setCurrentPlanet("home");
-      } else if (props.about) {
-        setDestination("about");
-        animateRocketToPosition(resumePosition[0], resumePosition[1], aboutPosition[0], aboutPosition[1], degree, true, "right");
-        setCurrentPlanet("about");
-      } else if (props.contact) {
-        setDestination("contact");
-        animateRocketToPosition(resumePosition[0], resumePosition[1], contactPosition[0], contactPosition[1], degree, true, "right");
-        setCurrentPlanet("contact");
-      } else if (props.projects) {
-        setDestination("projects");
-        animateRocketToPosition(resumePosition[0], resumePosition[1], projectsPosition[0], projectsPosition[1], degree, true, "right");
-        setCurrentPlanet("projects");
-      }
+    try {
+    switch (currentPlanet) {
+      case "home":
+        if (about) navigateTo("about", homePosition, aboutPosition, degree1, "right", 1);
+        else if (contact) navigateTo("contact", homePosition, contactPosition, degree1, "left", 1);
+        else if (projects) navigateTo("projects", homePosition, projectsPosition, degree2, "right", 2);
+        else if (resume) navigateTo("resume", homePosition, resumePosition, degree2, "left", 2);
+        break;
+      case "about":
+        if (home) navigateTo("home", aboutPosition, homePosition, degree1, "left", 1);
+        else if (contact) navigateTo("contact", aboutPosition, contactPosition, degree2, "left", 2);
+        else if (projects) navigateTo("projects", aboutPosition, projectsPosition, degree1, "right", 1);
+        else if (resume) navigateTo("resume", aboutPosition, resumePosition, degree3, "left", 3);
+        break;
+      case "contact":
+        if (home) navigateTo("home", contactPosition, homePosition, degree1, "right", 1);
+        else if (about) navigateTo("about", contactPosition, aboutPosition, degree2, "right", 2);
+        else if (projects) navigateTo("projects", contactPosition, projectsPosition, degree3, "right", 3);
+        else if (resume) navigateTo("resume", contactPosition, resumePosition, degree1, "left", 1);
+        break;
+      case "projects":
+        if (home) navigateTo("home", projectsPosition, homePosition, degree2, "left", 2);
+        else if (about) navigateTo("about", projectsPosition, aboutPosition, degree1,"left", 1);
+        else if (contact) navigateTo("contact", projectsPosition, contactPosition, degree3, "left", 3);
+        else if (resume) navigateTo("resume", projectsPosition, resumePosition, degree4, "left", 4);
+        break;
+      case "resume":
+        if (home) navigateTo("home", resumePosition, homePosition, degree2, "right", 2);
+        else if (about) navigateTo("about", resumePosition, aboutPosition, degree3, "right", 3);
+        else if (contact) navigateTo("contact", resumePosition, contactPosition, degree1, "right", 1);
+        else if (projects) navigateTo("projects", resumePosition, projectsPosition, degree4, "right", 4);
+        break;
+      default:
+        break;
     }
-  }, [props.home, props.about, props.contact, props.projects, props.resume, currentPlanet]);
+    } catch (error) {
+      console.log(error)
+    }
+  }, [home, about, contact, projects, resume, currentPlanet]);
 
-  const animateRocketToPosition = (x1, y1, x2, y2, radius, clockwise, direction) => {
+  const animateRocketToPosition = (x1, y1, x2, y2, radius, clockwise, direction, distance) => {
     const adjustedY1 = y1 + 5;
     const adjustedX1 = direction === "left" ? x1 - 5 : x1 + 5;
     var tl = gsap.timeline({ repeat: 0, repeatDelay: 0 });
     const path = createArcPath(adjustedX1, adjustedY1, x2, y2, radius, clockwise);
     var rotation = direction === "left" ? 1.57 : -1.57;
 
-    // Launch Off Planet
+
+
     tl.to(rocketRef.current.position, {
       duration: 2,
       ease: "expo.in",
@@ -160,8 +121,8 @@ export default function Rocket(props) {
 
     // Rotate Toward Destination
     tl.to(rocketRef.current.rotation, {
-      duration: 4,
-      ease: "ease.inOut",
+      duration: 3,
+      ease: "ease.in",
       z: rotation,
     }, 1);
 
@@ -178,7 +139,7 @@ export default function Rocket(props) {
     // Rotate Away From Destination (For Landing)
     tl.to(rocketRef.current.rotation, {
       duration: 3,
-      ease: "ease.out",
+      ease: "ease.inOut",
       z: 0,
     }, 3);
   };
