@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 function Home() {
   const [show, setShow] = useState(true);
 
-  const stackVariants = {
+  const contentVariants = {
     hidden: {
       opacity: 0,
     },
@@ -16,18 +16,7 @@ function Home() {
       opacity: 1,
       transition: {
         duration: 1,
-        staggerChildren: 0.25,
-        when: "beforeChildren",
       }
-    }
-  }
-
-  const stackItems = {
-    hidden: {
-      opacity: 0,
-    },
-    shown: {
-      opacity: 1,
     }
   }
 
@@ -61,51 +50,7 @@ function Home() {
         onComplete={() => setShow(true)}
       >
       </TypeAnimation>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-
+      <p>Tech Stack</p>
     </div>
 
   )

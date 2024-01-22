@@ -213,20 +213,28 @@ function App() {
         </motion.svg>
         <p className='loading-text'>Loading</p>
       </motion.div>
-      <Dropdown
-        home={home}
-        about={about}
-        contact={contact}
-        projects={projects}
-        resume={resume}
-        setHome={setHome}
-        setAbout={setAbout}
-        setContact={setContact}
-        setProjects={setProjects}
-        setResume={setResume}
-        currentPage={currentPage}
-        handleButtonClick={handleButtonClick}
-      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        key="dropdown"
+        animate={transition ? "fadein" : "fadeout"}
+        variants={loadVariants}
+        transition={{ duration: 1 }}
+      >
+        <Dropdown
+          home={home}
+          about={about}
+          contact={contact}
+          projects={projects}
+          resume={resume}
+          setHome={setHome}
+          setAbout={setAbout}
+          setContact={setContact}
+          setProjects={setProjects}
+          setResume={setResume}
+          currentPage={currentPage}
+          handleButtonClick={handleButtonClick}
+        />
+      </motion.div>
       <motion.div
         className='page'
         initial={{ opacity: 0 }}
@@ -242,7 +250,7 @@ function App() {
             whileTap={{ scale: 0.9 }}
             className='resumeButton'
             ref={resumeRef}
-            onHoverStart={() => setI(0)}
+            onHoverEnd={() => setI(0)}
             onMouseMove={e => handleMouseMove(e)}
             whileHover={{
               scale: 1.1,
@@ -445,8 +453,8 @@ function App() {
             maxDistance={200}
             minPolarAngle={Math.PI / 6}
             maxPolarAngle={Math.PI - Math.PI / 2}
-            maxAzimuthAngle={Math.PI / 8}
-            minAzimuthAngle={-Math.PI / 8}
+            maxAzimuthAngle={Math.PI / 1}
+            minAzimuthAngle={-Math.PI / 1}
           />
           <AboutModel position={[200, -10.35, 0]} />
           <ContactModel position={[-200, -10.35, 0]} />
