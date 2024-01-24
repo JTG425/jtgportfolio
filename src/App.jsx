@@ -250,7 +250,8 @@ function App() {
             whileTap={{ scale: 0.9 }}
             className='resumeButton'
             ref={resumeRef}
-            onHoverEnd={() => setI(0)}
+            onHoverStart={() => setI(0)}
+            onMouseEnter={e => handleMouseMove(e)}
             onMouseMove={e => handleMouseMove(e)}
             whileHover={{
               scale: 1.1,
@@ -268,6 +269,7 @@ function App() {
             className='contactButton'
             ref={contactRef}
             onHoverStart={() => setI(1)}
+            onMouseEnter={e => handleMouseMove(e)}
             onMouseMove={e => handleMouseMove(e)}
             whileHover={{
               scale: 1.1,
@@ -285,6 +287,7 @@ function App() {
             className='homeButton'
             ref={homeRef}
             onHoverStart={() => setI(2)}
+            onMouseEnter={e => handleMouseMove(e)}
             onMouseMove={e => handleMouseMove(e)}
             whileHover={{
               scale: 1.1,
@@ -302,6 +305,7 @@ function App() {
             className='aboutButton'
             ref={aboutRef}
             onHoverStart={() => setI(3)}
+            onMouseEnter={e => handleMouseMove(e)}
             onMouseMove={e => handleMouseMove(e)}
             whileHover={{
               scale: 1.1,
@@ -319,6 +323,7 @@ function App() {
             className='projectsButton'
             ref={projectsRef}
             onHoverStart={() => setI(4)}
+            onMouseEnter={e => handleMouseMove(e)}
             onMouseMove={e => handleMouseMove(e)}
             whileHover={{
               scale: 1.1,
