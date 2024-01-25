@@ -1,14 +1,15 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
-import { button } from "leva";
+import '../styles/dropdown.css'
 
 const containerVariants = {
     hidden: {
         opacity: 0,
-        zIndex: -2,
+        display: "none",
+        zIndex: 1,
         transition: {
             duration: 2,
-            when: "afterChildren"
+            when: "afterChildren",
         }
     },
     shown: {
@@ -24,7 +25,6 @@ const containerVariants = {
 const backgroundVariants = {
     hidden: {
         opacity: 0,
-        zIndex: -2,
         transition: {
             duration: 5,
         }
@@ -55,6 +55,24 @@ const arrowVariants = {
     },
 
 }
+
+const menuItem = {
+    hidden: {
+        opacity: 0,
+        zIndex: 2,
+        
+    },
+    shown: {
+        opacity: 1,
+        scale: 1.1,
+        transition: {
+            type: "spring",
+            duration: 2,
+        },
+    },
+}
+
+
 
 //https://codesandbox.io/p/sandbox/framer-motion-mouse-position-2b4sd?file=%2Fsrc%2FApp.js%3A40%2C1-69%2C2
 function getRelativeCoordinates(event, referenceElement) {
@@ -94,19 +112,7 @@ function getRelativeCoordinates(event, referenceElement) {
 }
 
 
-const menuItem = {
-    hidden: {
-        opacity: 0,
-    },
-    shown: {
-        opacity: 1,
-        scale: 1.1,
-        transition: {
-            type: "spring",
-            duration: 2,
-        },
-    },
-}
+
 
 
 
