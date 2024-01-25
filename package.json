@@ -1,9 +1,10 @@
 {
   "name": "3d",
   "version": "0.1.0",
-  "!homepage": "https://jtg425.github.io/jtgportfolio/",
+  "homepage": "https://jtg425.github.io/jtgportfolio/",
   "private": false,
   "dependencies": {
+    "@formspree/react": "^2.5.1",
     "@react-three/drei": "^9.93.0",
     "@react-three/fiber": "^8.15.13",
     "@react-three/postprocessing": "^2.15.11",
