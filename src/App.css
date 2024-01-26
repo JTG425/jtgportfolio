@@ -148,12 +148,11 @@ body {}
   background: linear-gradient(180deg, rgba(43, 43, 43, 0.9) 0%, rgba(43, 43, 43, 0.45) 75%, rgba(0, 0, 0, 0) 100%);
   height: auto;
   width: 90vw;
-  max-height: 60vh;
   z-index: 1;
 }
 
 
-.page::-webkit-scrollbar {
+.pagebackground::-webkit-scrollbar {
   display: none;
   /* Safari and Chrome */
 }

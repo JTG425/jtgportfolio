@@ -117,7 +117,7 @@ function getRelativeCoordinates(event, referenceElement) {
 
 
 
-export default function Dropdown({ home, about, contact, projects, resume, setHome, setAbout, setContact, setProjects, setResume, handleButtonClick }) {
+export default function Dropdown({ home, about, contact, projects, resume, setHome, setAbout, setContact, setProjects, setResume, handleButtonClick, expanded, setExpanded }) {
     const [toggle, setToggle] = useState(false);
     const [page, setPage] = useState("Home");
     const [i, setI] = useState(0);
@@ -149,6 +149,7 @@ export default function Dropdown({ home, about, contact, projects, resume, setHo
             handleButtonClick(page);
             setPage(displayed[i]);
             setToggle(false);
+            setExpanded(false);
         };
     };
 

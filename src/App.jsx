@@ -50,7 +50,7 @@ function App() {
 
   //eslint-disable-next-line
   const [currentPage, setCurrentPage] = useState("home"); // Track the current page
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   const loadVariants = {
     fadein: { opacity: 1 },
@@ -69,7 +69,7 @@ function App() {
       }
     },
     expand: {
-      height: "60vh",
+      height: "80vh",
       transition: {
         duration: 5,
         ease: "easeInOut",
@@ -199,21 +199,6 @@ function App() {
   };
 
 
-  const handleMouseMove = e => {
-    if (i === 0) {
-      setMousePosition(getRelativeCoordinates(e, resumeRef.current));
-    } else if (i === 1) {
-      setMousePosition(getRelativeCoordinates(e, contactRef.current));
-    } else if (i === 2) {
-      setMousePosition(getRelativeCoordinates(e, homeRef.current));
-    } else if (i === 3) {
-      setMousePosition(getRelativeCoordinates(e, aboutRef.current));
-    } else if (i === 4) {
-      setMousePosition(getRelativeCoordinates(e, projectsRef.current));
-    }
-  };
-
-
   return (
     <div className="App">
       <motion.div
@@ -260,6 +245,8 @@ function App() {
           setProjects={setProjects}
           setResume={setResume}
           currentPage={currentPage}
+          expanded={expanded}
+          setExpanded={setExpanded}
           handleButtonClick={handleButtonClick}
         />
       </motion.div>
@@ -284,12 +271,8 @@ function App() {
               whileTap={{ scale: 0.9 }}
               className='resumeButton'
               ref={resumeRef}
-              onHoverStart={() => setI(0)}
-              onMouseEnter={e => handleMouseMove(e)}
-              onMouseMove={e => handleMouseMove(e)}
               whileHover={{
                 scale: 1.1,
-                background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
               }}
               onClick={() => {
                 handleButtonClick("resume", currentPage);
@@ -303,12 +286,8 @@ function App() {
               whileTap={{ scale: 0.9 }}
               className='contactButton'
               ref={contactRef}
-              onHoverStart={() => setI(1)}
-              onMouseEnter={e => handleMouseMove(e)}
-              onMouseMove={e => handleMouseMove(e)}
               whileHover={{
                 scale: 1.1,
-                background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
               }}
               onClick={() => {
                 handleButtonClick("contact", currentPage);
@@ -322,12 +301,8 @@ function App() {
               whileTap={{ scale: 0.9 }}
               className='homeButton'
               ref={homeRef}
-              onHoverStart={() => setI(2)}
-              onMouseEnter={e => handleMouseMove(e)}
-              onMouseMove={e => handleMouseMove(e)}
               whileHover={{
                 scale: 1.1,
-                background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
               }}
               onClick={() => {
                 handleButtonClick("home", currentPage);
@@ -341,12 +316,8 @@ function App() {
               whileTap={{ scale: 0.9 }}
               className='aboutButton'
               ref={aboutRef}
-              onHoverStart={() => setI(3)}
-              onMouseEnter={e => handleMouseMove(e)}
-              onMouseMove={e => handleMouseMove(e)}
               whileHover={{
                 scale: 1.1,
-                background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
               }}
               onClick={() => {
                 handleButtonClick("about", currentPage);
@@ -360,12 +331,8 @@ function App() {
               whileTap={{ scale: 0.9 }}
               className='projectsButton'
               ref={projectsRef}
-              onHoverStart={() => setI(4)}
-              onMouseEnter={e => handleMouseMove(e)}
-              onMouseMove={e => handleMouseMove(e)}
               whileHover={{
                 scale: 1.1,
-                background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
               }}
               onClick={() => {
                 handleButtonClick("projects", currentPage);
