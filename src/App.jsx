@@ -50,6 +50,7 @@ function App() {
 
   //eslint-disable-next-line
   const [currentPage, setCurrentPage] = useState("home"); // Track the current page
+  const [expanded, setExpanded] = useState(true);
 
   const loadVariants = {
     fadein: { opacity: 1 },
@@ -57,6 +58,24 @@ function App() {
       opacity: 0,
       zIndex: -1,
     }
+  }
+
+  const smoothPageVariants = {
+    shrink: {
+      height: "25vh",
+      transition: {
+        duration: 5,
+        ease: "easeInOut",
+      }
+    },
+    expand: {
+      height: "60vh",
+      transition: {
+        duration: 5,
+        ease: "easeInOut",
+      }
+    }
+
   }
 
   const draw = {
@@ -115,6 +134,12 @@ function App() {
   const numStars = 2000;
 
   useEffect(() => {
+    setTimeout(() => {
+      setExpanded(true);
+    }, 5000);
+  }, [expanded]);
+
+  useEffect(() => {
     setCX(Array.from({ length: numStars }, () => Math.floor(Math.random() * 1001) - 500));
     setCY(Array.from({ length: numStars }, () => Math.floor(Math.random() * 1001) - 500));
     setCZ(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
@@ -135,6 +160,7 @@ function App() {
         setContact(false)
         setProjects(false)
         setResume(false)
+        setExpanded(false)
         break;
       case "about":
         setHome(false)
@@ -142,6 +168,7 @@ function App() {
         setContact(false)
         setProjects(false)
         setResume(false)
+        setExpanded(false)
         break;
       case "contact":
         setHome(false)
@@ -156,6 +183,7 @@ function App() {
         setContact(false)
         setProjects(true)
         setResume(false)
+        setExpanded(false)
         break;
       case "resume":
         setHome(false)
@@ -163,11 +191,11 @@ function App() {
         setContact(false)
         setProjects(false)
         setResume(true)
+        setExpanded(false)
         break;
       default:
         break;
     }
-    console.log(page)
   };
 
 
@@ -236,181 +264,193 @@ function App() {
         />
       </motion.div>
       <motion.div
-        className='page'
-        initial={{ opacity: 0 }}
-        animate={transition ? "fadein" : "fadeout"}
-        variants={loadVariants}
-        transition={{ duration: 1 }}
+        className='pagebackground'
+        initial={{ opacity: 1 }}
+        animate={expanded ? "expand" : "shrink"}
+        variants={smoothPageVariants}
       >
         <motion.div
-          className='navigation'
+          className='page'
+          initial={{ opacity: 0 }}
+          animate={transition ? "fadein" : "fadeout"}
+          variants={loadVariants}
+          transition={{ duration: 1 }}
         >
-          <motion.button
-            initial={{ opacity: 1 }}
-            whileTap={{ scale: 0.9 }}
-            className='resumeButton'
-            ref={resumeRef}
-            onHoverStart={() => setI(0)}
-            onMouseEnter={e => handleMouseMove(e)}
-            onMouseMove={e => handleMouseMove(e)}
-            whileHover={{
-              scale: 1.1,
-              background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
-            }}
-            onClick={() => {
-              handleButtonClick("resume", currentPage);
-            }}
+          <motion.div
+            className='navigation'
           >
-            <span className='button-text'>Resume</span>
-          </motion.button>
-          <motion.button
-            initial={{ opacity: 1 }}
-            whileTap={{ scale: 0.9 }}
-            className='contactButton'
-            ref={contactRef}
-            onHoverStart={() => setI(1)}
-            onMouseEnter={e => handleMouseMove(e)}
-            onMouseMove={e => handleMouseMove(e)}
-            whileHover={{
-              scale: 1.1,
-              background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
-            }}
-            onClick={() => {
-              handleButtonClick("contact", currentPage);
-            }}
+            <motion.button
+              initial={{ opacity: 1 }}
+              whileTap={{ scale: 0.9 }}
+              className='resumeButton'
+              ref={resumeRef}
+              onHoverStart={() => setI(0)}
+              onMouseEnter={e => handleMouseMove(e)}
+              onMouseMove={e => handleMouseMove(e)}
+              whileHover={{
+                scale: 1.1,
+                background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+              }}
+              onClick={() => {
+                handleButtonClick("resume", currentPage);
+                setExpanded(false);
+              }}
+            >
+              <span className='button-text'>Resume</span>
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 1 }}
+              whileTap={{ scale: 0.9 }}
+              className='contactButton'
+              ref={contactRef}
+              onHoverStart={() => setI(1)}
+              onMouseEnter={e => handleMouseMove(e)}
+              onMouseMove={e => handleMouseMove(e)}
+              whileHover={{
+                scale: 1.1,
+                background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+              }}
+              onClick={() => {
+                handleButtonClick("contact", currentPage);
+                setExpanded(false);
+              }}
+            >
+              <span className='button-text'>Contact Me</span>
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 1 }}
+              whileTap={{ scale: 0.9 }}
+              className='homeButton'
+              ref={homeRef}
+              onHoverStart={() => setI(2)}
+              onMouseEnter={e => handleMouseMove(e)}
+              onMouseMove={e => handleMouseMove(e)}
+              whileHover={{
+                scale: 1.1,
+                background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+              }}
+              onClick={() => {
+                handleButtonClick("home", currentPage);
+                setExpanded(false);
+              }}
+            >
+              <span className='button-text'>Home</span>
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 1 }}
+              whileTap={{ scale: 0.9 }}
+              className='aboutButton'
+              ref={aboutRef}
+              onHoverStart={() => setI(3)}
+              onMouseEnter={e => handleMouseMove(e)}
+              onMouseMove={e => handleMouseMove(e)}
+              whileHover={{
+                scale: 1.1,
+                background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+              }}
+              onClick={() => {
+                handleButtonClick("about", currentPage);
+                setExpanded(false);
+              }}
+            >
+              <span className='button-text'>About Me</span>
+            </motion.button>
+            <motion.button
+              initial={{ opacity: 1 }}
+              whileTap={{ scale: 0.9 }}
+              className='projectsButton'
+              ref={projectsRef}
+              onHoverStart={() => setI(4)}
+              onMouseEnter={e => handleMouseMove(e)}
+              onMouseMove={e => handleMouseMove(e)}
+              whileHover={{
+                scale: 1.1,
+                background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
+              }}
+              onClick={() => {
+                handleButtonClick("projects", currentPage);
+                setExpanded(false);
+              }}
+            >
+              <span className='button-text'>My Projects</span>
+            </motion.button>
+          </motion.div>
+          <AnimatePresence
+            mode="wait"
+            initial={false}
           >
-            <span className='button-text'>Contact Me</span>
-          </motion.button>
-          <motion.button
-            initial={{ opacity: 1 }}
-            whileTap={{ scale: 0.9 }}
-            className='homeButton'
-            ref={homeRef}
-            onHoverStart={() => setI(2)}
-            onMouseEnter={e => handleMouseMove(e)}
-            onMouseMove={e => handleMouseMove(e)}
-            whileHover={{
-              scale: 1.1,
-              background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
-            }}
-            onClick={() => {
-              handleButtonClick("home", currentPage);
-            }}
-          >
-            <span className='button-text'>Home</span>
-          </motion.button>
-          <motion.button
-            initial={{ opacity: 1 }}
-            whileTap={{ scale: 0.9 }}
-            className='aboutButton'
-            ref={aboutRef}
-            onHoverStart={() => setI(3)}
-            onMouseEnter={e => handleMouseMove(e)}
-            onMouseMove={e => handleMouseMove(e)}
-            whileHover={{
-              scale: 1.1,
-              background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
-            }}
-            onClick={() => {
-              handleButtonClick("about", currentPage);
-            }}
-          >
-            <span className='button-text'>About Me</span>
-          </motion.button>
-          <motion.button
-            initial={{ opacity: 1 }}
-            whileTap={{ scale: 0.9 }}
-            className='projectsButton'
-            ref={projectsRef}
-            onHoverStart={() => setI(4)}
-            onMouseEnter={e => handleMouseMove(e)}
-            onMouseMove={e => handleMouseMove(e)}
-            whileHover={{
-              scale: 1.1,
-              background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
-            }}
-            onClick={() => {
-              handleButtonClick("projects", currentPage);
-            }}
-          >
-            <span className='button-text'>My Projects</span>
-          </motion.button>
+            {home && (
+              <motion.div
+                key="home"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 1.5,
+                  ...(about || contact || projects || resume ? { delay: 1.5 } : {}),
+                }}
+                exit={{ opacity: 0 }}
+              >
+                <Home />
+              </motion.div>
+            )}
+            {about && (
+              <motion.div
+                key="about"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 1.5,
+                  ...(home || resume || contact || projects ? { delay: 1.5 } : {}),
+                }}
+                exit={{ opacity: 0 }}
+              >
+                <About />
+              </motion.div>
+            )}
+            {contact && (
+              <motion.div
+                key="contact"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 1.5,
+                  ...(home || resume || about || projects ? { delay: 1.5 } : {}),
+                }}
+                exit={{ opacity: 0 }}
+              >
+                <Contact />
+              </motion.div>
+            )}
+            {projects && (
+              <motion.div
+                key="projects"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 1.5,
+                  ...(home || resume || about || contact ? { delay: 1.5 } : {}),
+                }}
+                exit={{ opacity: 0 }}
+              >
+                <Projects />
+              </motion.div>
+            )}
+            {resume && (
+              <motion.div
+                key="resume"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 1.5,
+                  ...(home || projects || about || contact ? { delay: 1.5 } : {}),
+                }}
+                exit={{ opacity: 0 }}
+              >
+                <Resume />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
-        <AnimatePresence
-          mode="wait"
-          initial={false}
-        >
-          {home && (
-            <motion.div
-              key="home"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                duration: 1.5,
-                ...(about || contact || projects || resume ? { delay: 1.5 } : {}),
-              }}
-              exit={{ opacity: 0 }}
-            >
-              <Home />
-            </motion.div>
-          )}
-          {about && (
-            <motion.div
-              key="about"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                duration: 1.5,
-                ...(home || resume || contact || projects ? { delay: 1.5 } : {}),
-              }}
-              exit={{ opacity: 0 }}
-            >
-              <About />
-            </motion.div>
-          )}
-          {contact && (
-            <motion.div
-              key="contact"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                duration: 1.5,
-                ...(home || resume || about || projects ? { delay: 1.5 } : {}),
-              }}
-              exit={{ opacity: 0 }}
-            >
-              <Contact />
-            </motion.div>
-          )}
-          {projects && (
-            <motion.div
-              key="projects"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                duration: 1.5,
-                ...(home || resume || about || contact ? { delay: 1.5 } : {}),
-              }}
-              exit={{ opacity: 0 }}
-            >
-              <Projects />
-            </motion.div>
-          )}
-          {resume && (
-            <motion.div
-              key="resume"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{
-                duration: 1.5,
-                ...(home || projects || about || contact ? { delay: 1.5 } : {}),
-              }}
-              exit={{ opacity: 0 }}
-            >
-              <Resume />
-            </motion.div>
-          )}
-        </AnimatePresence>
       </motion.div>
       <Canvas className='canvas'>
         <Suspense fallback={null}>
