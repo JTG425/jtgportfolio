@@ -62,16 +62,16 @@ function App() {
 
   const smoothPageVariants = {
     shrink: {
-      height: "25vh",
+      height: "20vh",
       transition: {
-        duration: 5,
+        duration: 3,
         ease: "easeInOut",
       }
     },
     expand: {
-      height: "80vh",
+      height: "95vh",
       transition: {
-        duration: 5,
+        duration: 3,
         ease: "easeInOut",
       }
     }
