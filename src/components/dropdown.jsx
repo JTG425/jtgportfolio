@@ -60,7 +60,7 @@ const menuItem = {
     hidden: {
         opacity: 0,
         zIndex: 2,
-        
+
     },
     shown: {
         opacity: 1,
@@ -117,7 +117,8 @@ function getRelativeCoordinates(event, referenceElement) {
 
 
 
-export default function Dropdown({ home, about, contact, projects, resume, setHome, setAbout, setContact, setProjects, setResume, handleButtonClick, expanded, setExpanded }) {
+export default function Dropdown(props) {
+    const { home, about, contact, projects, resume, setHome, setAbout, setContact, setProjects, setResume, handleButtonClick, expanded, setExpanded } = props;
     const [toggle, setToggle] = useState(false);
     const [page, setPage] = useState("Home");
     const [i, setI] = useState(0);

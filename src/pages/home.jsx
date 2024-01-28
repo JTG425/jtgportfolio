@@ -65,7 +65,7 @@ function Home() {
       <TypeAnimation
         className='type-animation'
         sequence={[
-          3000,
+          5000,
           'Hello, My Name is Joshua',
         ]}
         wrapper='h1'
@@ -76,7 +76,7 @@ function Home() {
       <TypeAnimation
         className='type-animation'
         sequence={[
-          5000,
+          6000,
           'An Aspiring Web Developer',
         ]}
         wrapper='h2'
@@ -86,26 +86,26 @@ function Home() {
       >
       </TypeAnimation>
       <AnimatePresence>
-          <motion.div
-            className='tech-stack'
-            initial={'hidden'}
-            animate={'shown'}
-            variants={parentstackVariants}
-          >
-            {stackLogos.map((logo, index) => {
-              return (
-                <motion.img
-                  key={index}
-                  src={logo}
-                  variants={stackItemsVariants}
-                  alt='tech-stack'
-                  className='tech-stack-logo'
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                />
-              )
-            })}
-          </motion.div>
+        <motion.div
+          className='tech-stack'
+          initial={'hidden'}
+          animate={'shown'}
+          variants={parentstackVariants}
+        >
+          {stackLogos.map((logo, index) => {
+            return (
+              <motion.img
+                key={index}
+                src={logo}
+                variants={stackItemsVariants}
+                alt='tech-stack'
+                className='tech-stack-logo'
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              />
+            )
+          })}
+        </motion.div>
       </AnimatePresence >
     </motion.div >
   )

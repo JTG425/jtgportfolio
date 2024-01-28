@@ -60,16 +60,30 @@ function App() {
     }
   }
 
+
+  const pageVariants = {
+    fadein: {
+      opacity: 1,
+      transition: {
+        delay: 3,
+      }
+    },
+    fadeout: {
+      opacity: 0,
+      zIndex: -1,
+    }
+  }
+
   const smoothPageVariants = {
     shrink: {
-      height: "20vh",
+      height: "10vh",
       transition: {
         duration: 3,
         ease: "easeInOut",
       }
     },
     expand: {
-      height: "95vh",
+      height: "fit-content",
       transition: {
         duration: 3,
         ease: "easeInOut",
@@ -133,6 +147,8 @@ function App() {
 
   const numStars = 2000;
 
+
+  /* Shrink / Expand Timing */
   useEffect(() => {
     setTimeout(() => {
       setExpanded(true);
@@ -260,7 +276,7 @@ function App() {
           className='page'
           initial={{ opacity: 0 }}
           animate={transition ? "fadein" : "fadeout"}
-          variants={loadVariants}
+          variants={pageVariants}
           transition={{ duration: 1 }}
         >
           <motion.div
