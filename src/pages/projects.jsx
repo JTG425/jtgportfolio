@@ -15,7 +15,6 @@ function Projects() {
     },
     shown: {
       opacity: 1,
-      delay: 5,
       transition: {
         duration: 5,
         staggerChildren: 0.5,

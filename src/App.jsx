@@ -65,7 +65,7 @@ function App() {
     fadein: {
       opacity: 1,
       transition: {
-        delay: 3,
+
       }
     },
     fadeout: {
@@ -78,7 +78,7 @@ function App() {
     shrink: {
       height: "10vh",
       transition: {
-        duration: 3,
+        duration: 1,
         ease: "easeInOut",
       }
     },
@@ -152,7 +152,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setExpanded(true);
-    }, 5000);
+    }, 3000);
   }, [expanded]);
 
   useEffect(() => {

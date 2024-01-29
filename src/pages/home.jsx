@@ -36,7 +36,6 @@ function Home() {
     shown: {
       opacity: 1,
       transition: {
-        delay: 6,
         when: 'beforeChildren',
         staggerChildren: 0.25,
         duration: 1,
@@ -61,30 +60,10 @@ function Home() {
   return (
 
     <motion.div
-      className="Home">
-      <TypeAnimation
-        className='type-animation'
-        sequence={[
-          5000,
-          'Hello, My Name is Joshua',
-        ]}
-        wrapper='h1'
-        cursor={false}
-        speed={50}
-        repeat={1}
-      />
-      <TypeAnimation
-        className='type-animation'
-        sequence={[
-          6000,
-          'An Aspiring Web Developer',
-        ]}
-        wrapper='h2'
-        cursor={false}
-        speed={50}
-        repeat={1}
-      >
-      </TypeAnimation>
+      className="Home"
+    >
+      <h1>Hello, My Name Is Joshua</h1>
+      <h2>An Aspiring Web Developer</h2>
       <AnimatePresence>
         <motion.div
           className='tech-stack'

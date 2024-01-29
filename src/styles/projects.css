@@ -50,10 +50,13 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        max-height: 100vh;
+        
     }
 
     .project {
         width: 80vw;
+        max-height: 175px;
     }
   }
 

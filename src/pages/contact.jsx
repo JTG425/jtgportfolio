@@ -33,7 +33,6 @@ function Contact() {
     shown: {
       opacity: 1,
       transition: {
-        delay: 3,
         when: 'beforeChildren',
         staggerChildren: 0.25,
         duration: 1,
