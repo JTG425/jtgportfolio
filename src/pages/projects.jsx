@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import '../styles/projects.css'
 
 
 function Projects() {
+  const [project, setProject] = useState(0)
 
   const containerVariants = {
     hidden: {
@@ -46,11 +47,13 @@ function Projects() {
           initial="hidden"
           animate="shown"
           exit="hidden"
-
         >
           <motion.div
             className='project'
             variants={projectVariants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setProject(1)}
           >
             <h2>FGB Theaters Website Development</h2>
             <motion.a
