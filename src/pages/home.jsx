@@ -67,8 +67,8 @@ function Home() {
       <AnimatePresence>
         <motion.div
           className='tech-stack'
-          initial={'hidden'}
-          animate={'shown'}
+          initial='hidden'
+          animate='shown'
           variants={parentstackVariants}
         >
           {stackLogos.map((logo, index) => {
