@@ -142,7 +142,7 @@ body {}
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  overflow-x: hidden;
+  overflow-x: visible;
   border-radius: 0.5rem;
   background: rgb(43, 43, 43);
   background: linear-gradient(180deg, rgba(43, 43, 43, 0.9) 0%, rgba(43, 43, 43, 0.45) 75%, rgba(0, 0, 0, 0) 100%);

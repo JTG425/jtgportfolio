@@ -1,0 +1,83 @@
+.resume-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.resume {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 25px auto;
+    width: 80vw;
+    text-align: justify;
+}
+
+.resume h2 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.resume h3 {
+    font-size: 1.5rem;
+    color: var(--primary-content);
+    margin: 0;
+}
+
+.resume p {
+    margin: 0;
+}
+
+.resume-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.resume-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.education-date {
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    justify-content: space-between;
+    width: 80vw;
+}
+
+.education-location {
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    justify-content: space-between;
+    width: 80vw;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.summary p {
+    text-align: justify;
+}
+
+.qualifications {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: justify;
+}
+
+
+@media screen and (max-width: 600px) {
+  }

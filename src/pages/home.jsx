@@ -6,6 +6,7 @@ import '../styles/home.css'
 
 
 function Home() {
+  const [bounce, setBounce] = useState(null)
   const stackLogos = [
     'https://i.imgur.com/FsACRhX.png', // React.js
     'https://i.imgur.com/vlOBr4X.png', // Framer Motion
@@ -14,7 +15,6 @@ function Home() {
     'https://i.imgur.com/ylyoerF.png', // HTML5
     'https://i.imgur.com/XFReta1.png', // CSS3
     'https://i.imgur.com/QurGWvg.png', // Talwind CSS
-
   ]
 
   const contentVariants = {
@@ -36,6 +36,7 @@ function Home() {
     shown: {
       opacity: 1,
       transition: {
+        delay: 4.75,
         when: 'beforeChildren',
         staggerChildren: 0.25,
         duration: 1,
@@ -49,12 +50,8 @@ function Home() {
     },
     shown: {
       opacity: 1,
-      transition: {
-        duration: 1,
-      }
     }
   }
-
 
 
   return (
@@ -73,15 +70,16 @@ function Home() {
         >
           {stackLogos.map((logo, index) => {
             return (
-              <motion.img
-                key={index}
-                src={logo}
-                variants={stackItemsVariants}
-                alt='tech-stack'
-                className='tech-stack-logo'
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              />
+              <motion.div variants={stackItemsVariants}>
+                <motion.img
+                  key={index}
+                  src={logo}
+                  alt='tech-stack'
+                  className='tech-stack-logo'
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                />
+              </motion.div>
             )
           })}
         </motion.div>

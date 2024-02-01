@@ -58,7 +58,6 @@ export default function Rocket(props) {
     setDestination(destination);
     animateRocketToPosition(startPosition[0], startPosition[1], endPosition[0], endPosition[1], degree, true, direction, d);
     setCurrentPlanet(destination);
-    console.log(home, about, contact, projects, resume)
   };
 
 
