@@ -80,4 +80,10 @@
 
 
 @media screen and (max-width: 600px) {
+    .resume-container {
+        width: 100vw;
+    }
+    .resume {
+        width: 100vw;
+    }
   }
