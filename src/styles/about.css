@@ -1,0 +1,25 @@
+.about {
+    width: 80vw;
+}
+
+.card1 {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px 0;
+}
+.card1 p {
+    margin: 0 20px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-align: left;
+}
+.portrait {
+    width: 200px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}

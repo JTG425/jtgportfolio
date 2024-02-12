@@ -1,3 +1,7 @@
+.contact {
+    width: 80vw;
+}
+
 .contact-content {
     display: flex;
     flex-direction: column;

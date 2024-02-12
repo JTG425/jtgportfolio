@@ -45,8 +45,6 @@ function App() {
   const contactRef = useRef();
   const projectsRef = useRef();
   const homeRef = useRef();
-  const [mousePosition, setMousePosition] = useState({});
-  const [i, setI] = useState(0);
 
   //eslint-disable-next-line
   const [currentPage, setCurrentPage] = useState("home"); // Track the current page

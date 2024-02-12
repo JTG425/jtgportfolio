@@ -4,6 +4,7 @@ import '../styles/projects.css'
 
 
 function Projects() {
+  //eslint-disable-next-line
   const [project, setProject] = useState(0)
 
   const containerVariants = {
@@ -38,7 +39,7 @@ function Projects() {
   }
 
   return (
-    <div className="Home">
+    <div className="projects">
       <h1>My Projects</h1>
       <AnimatePresence>
         <motion.div

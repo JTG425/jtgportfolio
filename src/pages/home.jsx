@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
-import { TypeAnimation } from 'react-type-animation';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/home.css'
 
 
 
 function Home() {
-  const [bounce, setBounce] = useState(null)
   const stackLogos = [
     'https://i.imgur.com/FsACRhX.png', // React.js
     'https://i.imgur.com/vlOBr4X.png', // Framer Motion
@@ -17,17 +15,6 @@ function Home() {
     'https://i.imgur.com/QurGWvg.png', // Talwind CSS
   ]
 
-  const contentVariants = {
-    hidden: {
-      opacity: 0,
-    },
-    shown: {
-      opacity: 1,
-      transition: {
-        duration: 1,
-      }
-    }
-  }
 
   const parentstackVariants = {
     hidden: {

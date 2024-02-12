@@ -1,3 +1,7 @@
+.projects {
+    width: 80vw;
+}
+
 .projects-container {
     display: flex;
     flex-direction: row;

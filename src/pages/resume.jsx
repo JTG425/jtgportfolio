@@ -4,14 +4,9 @@ import { motion } from 'framer-motion';
 import '../styles/resume.css'
 
 function Resume() {
-  const [numPages, setNumPages] = useState(1);
-  const [pageNumber, setPageNumber] = useState(1);
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
 
   return (
-    <div className="Home">
+    <div className="Resume-Top">
       <motion.div
         className="resume-container"
       >

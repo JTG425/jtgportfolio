@@ -53,7 +53,7 @@ function Contact() {
   }
 
   return (
-    <motion.div className="Home">
+    <motion.div className="contact">
       <h1>Let's Get In Touch</h1>
       <AnimatePresence>
         <motion.div
