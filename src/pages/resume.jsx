@@ -25,7 +25,7 @@ function Resume() {
           >
             <h3>Education</h3>
             <span className='education-date'>
-              <p><b>Bachelor of Science: Electrical and Computer Engineering</b></p>
+              <p><b>B.S. Electrical and Computer Engineering</b></p>
               <p>Expected in May 2024</p>
             </span>
             <span className='education-location'>
@@ -99,7 +99,7 @@ function Resume() {
                     containment chamber for harmful gases.
                   </li>
                   <li>
-                  Tasked with designing and implementing the Human Machine Interface to control the system.
+                    Tasked with designing and implementing the Human Machine Interface to control the system.
                   </li>
                 </ul>
               </p>
@@ -107,7 +107,6 @@ function Resume() {
           </motion.div>
 
         </motion.div>
-
       </motion.div>
     </div>
 
