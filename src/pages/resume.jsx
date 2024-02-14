@@ -9,12 +9,15 @@ function Resume() {
     <div className="Resume-Top">
       <motion.div
         className="resume-container"
+        key="r1"
       >
         <motion.div
           className="resume"
+          key="r2"
         >
           <motion.div
             className='resume-header'
+            key="r3"
           >
             <h2>Joshua Golonka</h2>
             <p>Columbus, OH, 43201</p>
@@ -22,12 +25,14 @@ function Resume() {
 
           <motion.div
             className='resume-content'
+            key="r4"
           >
             <h3>Education</h3>
             <span className='education-date'>
               <p><b>B.S. Electrical and Computer Engineering</b></p>
               <p>Expected in May 2024</p>
             </span>
+            <p>Minor: Creative Writing</p>
             <span className='education-location'>
               <p>The Ohio State University</p>
               <p>Columbus, OH</p>
@@ -36,6 +41,7 @@ function Resume() {
 
           <motion.div
             className='resume-content'
+            key="r5"
           >
             <h3>Professional Summary</h3>
             <span className='summary'>
@@ -51,6 +57,7 @@ function Resume() {
 
           <motion.div
             className='resume-content'
+            key="r6"
           >
             <h3>Technical Qualifications</h3>
             <span className='qualifications'>
@@ -79,6 +86,7 @@ function Resume() {
 
           <motion.div
             className='resume-content'
+            key="r7"
           >
             <h3>Academic Engineering Projects</h3>
             <span className='resume-projects'>

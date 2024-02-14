@@ -70,3 +70,7 @@
     align-items: center;
     z-index: 5;
 }
+
+.confirmation {
+    padding: 25px;
+}

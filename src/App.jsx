@@ -51,10 +51,15 @@ function App() {
   const [expanded, setExpanded] = useState(false);
 
   const loadVariants = {
-    fadein: { opacity: 1 },
+    fadein: {
+      opacity: 1,
+    },
     fadeout: {
       opacity: 0,
       zIndex: -1,
+      transition: {
+        duration: 3,
+      }
     }
   }
 
@@ -104,44 +109,6 @@ function App() {
       };
     }
   };
-
-  //https://codesandbox.io/p/sandbox/framer-motion-mouse-position-2b4sd?file=%2Fsrc%2FApp.js%3A40%2C1-69%2C2
-  function getRelativeCoordinates(event, referenceElement) {
-    const position = {
-      x: event.pageX,
-      y: event.pageY
-    };
-
-    const offset = {
-      left: referenceElement.offsetLeft,
-      top: referenceElement.offsetTop,
-      width: referenceElement.clientWidth,
-      height: referenceElement.clientHeight
-    };
-
-    let reference = referenceElement.offsetParent;
-
-    while (reference) {
-      offset.left += reference.offsetLeft;
-      offset.top += reference.offsetTop;
-      reference = reference.offsetParent;
-    }
-
-    const startX = (position.x - offset.left) / offset.width;
-    const startY = (position.y - offset.top) / offset.height;
-
-    return {
-      x: position.x - offset.left,
-      y: position.y - offset.top,
-      width: offset.width,
-      height: offset.height,
-      centerX: (position.x - offset.left - offset.width / 2) / (offset.width / 2) - 0.5,
-      centerY: (position.y - offset.top - offset.height / 2) / (offset.height / 2) - 0.5,
-      startX: startX,
-      startY: startY,
-    };
-  }
-
 
   const numStars = 2000;
 
@@ -215,31 +182,32 @@ function App() {
 
   return (
     <div className="App">
-      <motion.div
-        className='loading'
-        initial={{ opacity: 1 }}
-        animate={transition ? "fadeout" : "fadein"}
-        variants={loadVariants}
-        transition={{ duration: 3 }}
-      >
-        <motion.svg
-          width="100"
-          height="100"
-          viewBox="0 0 200 200"
-          initial="hidden"
-          animate="visible"
+      <AnimatePresence>
+        <motion.div
+          className='loading'
+          initial={{ opacity: 1 }}
+          animate={transition ? "fadeout" : "fadein"}
+          variants={loadVariants}
         >
-          <motion.circle
-            cx="100"
-            cy="100"
-            r="80"
-            variants={draw}
-            custom={1}
+          <motion.svg
+            width="100"
+            height="100"
+            viewBox="0 0 200 200"
+            initial="hidden"
+            animate="visible"
           >
-          </motion.circle>
-        </motion.svg>
-        <p className='loading-text'>Loading</p>
-      </motion.div>
+            <motion.circle
+              cx="100"
+              cy="100"
+              r="80"
+              variants={draw}
+              custom={1}
+            >
+            </motion.circle>
+          </motion.svg>
+          <p className='loading-text'>Loading</p>
+        </motion.div>
+      </AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         key="dropdown"
@@ -447,7 +415,7 @@ function App() {
           />
           <HomeModel position={[0, -10.35, 0]} />
           <OrbitControls
-            enableZoom={true}
+            enableZoom={false}
             minDistance={20}
             maxDistance={200}
             minPolarAngle={Math.PI / 2}

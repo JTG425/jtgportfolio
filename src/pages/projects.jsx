@@ -1,112 +1,143 @@
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import '../styles/projects.css'
-
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import TheaterHidden from '../projectComponents/fgbhidden';
+import Theater from '../projectComponents/fgb';
+import Capstone from '../projectComponents/capstone';
+import CapstoneHidden from '../projectComponents/capstonehidden';
+import '../styles/projects.css';
 
 function Projects() {
-  //eslint-disable-next-line
-  const [project, setProject] = useState(0)
+  const [project, setProject] = useState(null);
+  const [showProject, setShowProject] = useState(false);
 
-  const containerVariants = {
-    hidden: {
-      opacity: 0,
-      transition: {
-        duration: 2,
-        when: "afterChildren",
-      }
-    },
-    shown: {
-      opacity: 1,
-      transition: {
-        duration: 5,
-        staggerChildren: 0.5,
-        when: "beforeChildren",
-      }
-    }
+  function handleProjectClick(projectNumber) {
+    setProject(projectNumber);
+    setShowProject(true);
   }
 
-  const projectVariants = {
-    hidden: {
-      opacity: 0,
-    },
-    shown: {
+  const showProjectVariants = {
+    show: {
       opacity: 1,
-      height: '25vh',
+      height: "80vh",
+      y: "-17vh",
       transition: {
-        duration: 2,
+        duration: 1,
+        type: "spring",
       }
-    }
+    },
+    hide: {
+      y: 0,
+      height: "100%",
+      opacity: 1,
+      transition: {
+        duration: 1,
+        type: "spring",
+      }
+    },
   }
+
+
 
   return (
     <div className="projects">
       <h1>My Projects</h1>
+      <p>Click A Card For More Information</p>
       <AnimatePresence>
         <motion.div
           className='projects-container'
-          variants={containerVariants}
-          initial="hidden"
-          animate="shown"
-          exit="hidden"
         >
           <motion.div
+            key="theater"
+            initial="hide"
             className='project'
-            variants={projectVariants}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setProject(1)}
+            animate={showProject && project === 1 ? "show" : "hide"}
+            variants={showProjectVariants}
+            onClick={() => {
+              setShowProject(!showProject)
+              setProject(1)
+            }}
           >
-            <h2>FGB Theaters Website Development</h2>
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              href="https://github.com/JTG425/jtgportfolio"
-              target="_blank"
-            >
-              Github
-            </motion.a>
-            <p>Project 1 Description</p>
+            {showProject && project === 1 ? (
+              <Theater />
+            ) : (
+              <TheaterHidden
+                key="fgbhidden"
+              />
+            )}
           </motion.div>
-
-
+        </motion.div>
+        <motion.div
+          className='projects-container'
+        >
           <motion.div
+            key="capstone"
+            initial="hide"
             className='project'
-            variants={projectVariants}
+            animate={showProject && project === 2 ? "show" : "hide"}
+            variants={showProjectVariants}
+            onClick={() => {
+              setShowProject(!showProject)
+              setProject(2)
+            }}
           >
-            <h2>Capstone HMI Development</h2>
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              href="https://github.com/JTG425/jtgportfolio"
-              target="_blank"
-            >
-              Github
-            </motion.a>
-            <p>Project 2 Description</p>
+            {showProject && project === 2 ? (
+              <Capstone />
+            ) : (
+              <CapstoneHidden
+                key="fgbhidden"
+              />
+            )}
           </motion.div>
-
+        </motion.div>
+        <motion.div
+          className='projects-container'
+        >
           <motion.div
+            key="capstone"
+            initial="hide"
             className='project'
-            variants={projectVariants}
+            animate={showProject && project === 3 ? "show" : "hide"}
+            variants={showProjectVariants}
+            onClick={() => {
+              setShowProject(!showProject)
+              setProject(3)
+            }}
           >
-            <h2>This Website</h2>
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              href="https://github.com/JTG425/jtgportfolio"
-              target="_blank"
-            >
-              Github
-            </motion.a>
+            {showProject && project === 3 ? (
+              <Capstone />
+            ) : (
+              <CapstoneHidden
+                key="fgbhidden"
+              />
+            )}
+          </motion.div>
+        </motion.div>
+        <motion.div
+          className='projects-container'
+        >
+          <motion.div
+            key="capstone"
+            initial="hide"
+            className='project'
+            animate={showProject && project === 4 ? "show" : "hide"}
+            variants={showProjectVariants}
+            onClick={() => {
+              setShowProject(!showProject)
+              setProject(4)
+            }}
+          >
+            {showProject && project === 4 ? (
+              <Capstone />
+            ) : (
+              <CapstoneHidden
+                key="fgbhidden"
+              />
+            )}
           </motion.div>
         </motion.div>
       </AnimatePresence>
     </div>
-
-  )
+  );
 }
-
-
-
 
 export default Projects;

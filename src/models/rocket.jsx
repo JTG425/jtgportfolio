@@ -36,8 +36,7 @@ export default function Rocket(props) {
   const [currentPlanet, setCurrentPlanet] = useState("home");
   const [destination, setDestination] = useState("home");
   const [launch, setLaunch] = useState(false);
-  const { home, about, contact, projects, resume} = props;
-  console.log(home, about, contact, projects, resume)
+  const { home, about, contact, projects, resume } = props;
 
   const rocketRef = useRef();
   const camRef = useRef();
@@ -63,40 +62,40 @@ export default function Rocket(props) {
 
   useEffect(() => {
     try {
-    switch (currentPlanet) {
-      case "home":
-        if (about) navigateTo("about", homePosition, aboutPosition, degree1, "right", 1);
-        else if (contact) navigateTo("contact", homePosition, contactPosition, degree1, "left", 1);
-        else if (projects) navigateTo("projects", homePosition, projectsPosition, degree2, "right", 2);
-        else if (resume) navigateTo("resume", homePosition, resumePosition, degree2, "left", 2);
-        break;
-      case "about":
-        if (home) navigateTo("home", aboutPosition, homePosition, degree1, "left", 1);
-        else if (contact) navigateTo("contact", aboutPosition, contactPosition, degree2, "left", 2);
-        else if (projects) navigateTo("projects", aboutPosition, projectsPosition, degree1, "right", 1);
-        else if (resume) navigateTo("resume", aboutPosition, resumePosition, degree3, "left", 3);
-        break;
-      case "contact":
-        if (home) navigateTo("home", contactPosition, homePosition, degree1, "right", 1);
-        else if (about) navigateTo("about", contactPosition, aboutPosition, degree2, "right", 2);
-        else if (projects) navigateTo("projects", contactPosition, projectsPosition, degree3, "right", 3);
-        else if (resume) navigateTo("resume", contactPosition, resumePosition, degree1, "left", 1);
-        break;
-      case "projects":
-        if (home) navigateTo("home", projectsPosition, homePosition, degree2, "left", 2);
-        else if (about) navigateTo("about", projectsPosition, aboutPosition, degree1,"left", 1);
-        else if (contact) navigateTo("contact", projectsPosition, contactPosition, degree3, "left", 3);
-        else if (resume) navigateTo("resume", projectsPosition, resumePosition, degree4, "left", 4);
-        break;
-      case "resume":
-        if (home) navigateTo("home", resumePosition, homePosition, degree2, "right", 2);
-        else if (about) navigateTo("about", resumePosition, aboutPosition, degree3, "right", 3);
-        else if (contact) navigateTo("contact", resumePosition, contactPosition, degree1, "right", 1);
-        else if (projects) navigateTo("projects", resumePosition, projectsPosition, degree4, "right", 4);
-        break;
-      default:
-        break;
-    }
+      switch (currentPlanet) {
+        case "home":
+          if (about) navigateTo("about", homePosition, aboutPosition, degree1, "right", 1);
+          else if (contact) navigateTo("contact", homePosition, contactPosition, degree1, "left", 1);
+          else if (projects) navigateTo("projects", homePosition, projectsPosition, degree2, "right", 2);
+          else if (resume) navigateTo("resume", homePosition, resumePosition, degree2, "left", 2);
+          break;
+        case "about":
+          if (home) navigateTo("home", aboutPosition, homePosition, degree1, "left", 1);
+          else if (contact) navigateTo("contact", aboutPosition, contactPosition, degree2, "left", 2);
+          else if (projects) navigateTo("projects", aboutPosition, projectsPosition, degree1, "right", 1);
+          else if (resume) navigateTo("resume", aboutPosition, resumePosition, degree3, "left", 3);
+          break;
+        case "contact":
+          if (home) navigateTo("home", contactPosition, homePosition, degree1, "right", 1);
+          else if (about) navigateTo("about", contactPosition, aboutPosition, degree2, "right", 2);
+          else if (projects) navigateTo("projects", contactPosition, projectsPosition, degree3, "right", 3);
+          else if (resume) navigateTo("resume", contactPosition, resumePosition, degree1, "left", 1);
+          break;
+        case "projects":
+          if (home) navigateTo("home", projectsPosition, homePosition, degree2, "left", 2);
+          else if (about) navigateTo("about", projectsPosition, aboutPosition, degree1, "left", 1);
+          else if (contact) navigateTo("contact", projectsPosition, contactPosition, degree3, "left", 3);
+          else if (resume) navigateTo("resume", projectsPosition, resumePosition, degree4, "left", 4);
+          break;
+        case "resume":
+          if (home) navigateTo("home", resumePosition, homePosition, degree2, "right", 2);
+          else if (about) navigateTo("about", resumePosition, aboutPosition, degree3, "right", 3);
+          else if (contact) navigateTo("contact", resumePosition, contactPosition, degree1, "right", 1);
+          else if (projects) navigateTo("projects", resumePosition, projectsPosition, degree4, "right", 4);
+          break;
+        default:
+          break;
+      }
     } catch (error) {
       console.log(error)
     }
