@@ -40,7 +40,7 @@ export default function Rocket(props) {
 
   const rocketRef = useRef();
   const camRef = useRef();
-  const cameraPosition = new THREE.Vector3(0, 0, 40);
+  const cameraPosition = new THREE.Vector3(40, 40, 40);
   const rocketPosition = new THREE.Vector3(0, 0, 0);
   const homePosition = [0, 0];
   const aboutPosition = [200, 0];
