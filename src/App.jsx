@@ -110,7 +110,7 @@ function App() {
     }
   };
 
-  const numStars = 2000;
+  const numStars = 1000;
 
 
   /* Shrink / Expand Timing */
@@ -124,7 +124,7 @@ function App() {
     setCX(Array.from({ length: numStars }, () => Math.floor(Math.random() * 1001) - 500));
     setCY(Array.from({ length: numStars }, () => Math.floor(Math.random() * 1001) - 500));
     setCZ(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
-    setR(Array.from({ length: numStars }, () => Math.random() * 0.05));
+    setR(Array.from({ length: numStars }, () => Math.random() * 0.1));
     setTimeout(() => {
       setTransition(true);
     }, 3000);
@@ -428,7 +428,7 @@ function App() {
           <ProjectsModel position={[400, -10.35, 0]} />
           <ResumeModel position={[-400, -8, 0]} />
           {Array.from({ length: numStars }, (_, index) => (
-            <Stars r={r} position={[cx[index], cz[index], cy[index]]} scale={0.1} />
+            <Stars r={r} position={[cx[index], cz[index], cy[index]]} scale={r[index]} />
           ))}
 
           <Environment preset="sunset" />

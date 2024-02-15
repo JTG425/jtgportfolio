@@ -1,141 +1,111 @@
-import React, { useState, useRef } from 'react';
+import '../styles/projects.css';
 import { motion, AnimatePresence } from 'framer-motion';
-import TheaterHidden from '../projectComponents/fgbhidden';
+import { useState } from 'react';
 import Theater from '../projectComponents/fgb';
 import Capstone from '../projectComponents/capstone';
-import CapstoneHidden from '../projectComponents/capstonehidden';
-import '../styles/projects.css';
+
+const cardVariants = {
+  open: {
+    opacity: 1,
+    zIndex: 2,
+    height: "50vh", // Change depending on # Of Items.
+    scale: 1,
+    transition: {
+      duration: 1,
+      type: 'spring',
+    }
+  },
+  closed: {
+    scale: 1,
+    zIndex: 0,
+    transition: {
+      type: 'spring',
+    }
+  }
+}
+
+const containerVariants = {
+  open: {
+    opacity: 1,
+    zIndex: 2,
+    height: "50vh", // Change depending on # Of Items.
+    scale: 1,
+    transition: {
+      duration: 1,
+      type: 'spring',
+    }
+  },
+  closed: {
+    scale: 1,
+    zIndex: 0,
+    transition: {
+      type: 'spring',
+    }
+  }
+}
 
 function Projects() {
-  const [project, setProject] = useState(null);
-  const [showProject, setShowProject] = useState(false);
-
-  function handleProjectClick(projectNumber) {
-    setProject(projectNumber);
-    setShowProject(true);
-  }
-
-  const showProjectVariants = {
-    show: {
-      opacity: 1,
-      height: "80vh",
-      y: "-17vh",
-      transition: {
-        duration: 1,
-        type: "spring",
-      }
-    },
-    hide: {
-      y: 0,
-      height: "100%",
-      opacity: 1,
-      transition: {
-        duration: 1,
-        type: "spring",
-      }
-    },
-  }
+  const [show, setShow] = useState(false);
+  const [selected, setSelected] = useState(null);
 
 
+  /* Use Component Names For Items */
+  const menuItems = [
+    "Theater",
+    "Capstone",
+  ];
 
+  /* Displayed Text */
+  const menuItemNames = [
+    "FGB Theaters Website Development",
+    "ECE Capstone Design Project",
+  ];
   return (
-    <div className="projects">
-      <h1>My Projects</h1>
-      <p>Click A Card For More Information</p>
-      <AnimatePresence>
-        <motion.div
-          className='projects-container'
-        >
+    <div className='projects'>
+        <h1>My Projects</h1>
+      {menuItems.map((item, index) => {
+        return (
           <motion.div
-            key="theater"
-            initial="hide"
-            className='project'
-            animate={showProject && project === 1 ? "show" : "hide"}
-            variants={showProjectVariants}
-            onClick={() => {
-              setShowProject(!showProject)
-              setProject(1)
-            }}
+            className='project-container'
+            animate={show && selected === index ? 'open' : 'closed'}
+            variants={containerVariants}
+
+            key={index}
           >
-            {showProject && project === 1 ? (
-              <Theater />
-            ) : (
-              <TheaterHidden
-                key="fgbhidden"
-              />
-            )}
+            <div>
+              <AnimatePresence>
+                <motion.div
+                  className='project'
+                  animate={show && selected === index ? 'open' : 'closed'}
+                  whileHover={() => {
+                    if (!show) {
+                      return { y: -10 };
+                    }
+                  }}
+                  variants={cardVariants}
+                  onClick={() => {
+                    setShow(!show);
+                    setSelected(index);
+                  }}
+                  exit={{ opacity: 0 }}
+                  key={`content-${index}`}
+                >
+                  {show && selected === index ? (
+                    <div>
+                      <h2>{menuItemNames[index]}</h2>
+                      {/* Trying To Make This Dynamic */}
+                      {index === 0 ? <Theater /> : <Capstone />}
+                    </div>
+                  ) : (
+                    <h2>{menuItemNames[index]}</h2>
+                  )}
+
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </motion.div>
-        </motion.div>
-        <motion.div
-          className='projects-container'
-        >
-          <motion.div
-            key="capstone"
-            initial="hide"
-            className='project'
-            animate={showProject && project === 2 ? "show" : "hide"}
-            variants={showProjectVariants}
-            onClick={() => {
-              setShowProject(!showProject)
-              setProject(2)
-            }}
-          >
-            {showProject && project === 2 ? (
-              <Capstone />
-            ) : (
-              <CapstoneHidden
-                key="fgbhidden"
-              />
-            )}
-          </motion.div>
-        </motion.div>
-        <motion.div
-          className='projects-container'
-        >
-          <motion.div
-            key="capstone"
-            initial="hide"
-            className='project'
-            animate={showProject && project === 3 ? "show" : "hide"}
-            variants={showProjectVariants}
-            onClick={() => {
-              setShowProject(!showProject)
-              setProject(3)
-            }}
-          >
-            {showProject && project === 3 ? (
-              <Capstone />
-            ) : (
-              <CapstoneHidden
-                key="fgbhidden"
-              />
-            )}
-          </motion.div>
-        </motion.div>
-        <motion.div
-          className='projects-container'
-        >
-          <motion.div
-            key="capstone"
-            initial="hide"
-            className='project'
-            animate={showProject && project === 4 ? "show" : "hide"}
-            variants={showProjectVariants}
-            onClick={() => {
-              setShowProject(!showProject)
-              setProject(4)
-            }}
-          >
-            {showProject && project === 4 ? (
-              <Capstone />
-            ) : (
-              <CapstoneHidden
-                key="fgbhidden"
-              />
-            )}
-          </motion.div>
-        </motion.div>
-      </AnimatePresence>
+        )
+      })}
     </div>
   );
 }
