@@ -8,18 +8,19 @@ const cardVariants = {
   open: {
     opacity: 1,
     zIndex: 2,
-    height: "50vh", // Change depending on # Of Items.
+    height: "fit-content", // Change depending on # Of Items.
+    paddingBottom: "50px",
     scale: 1,
     transition: {
       duration: 1,
-      type: 'spring',
     }
   },
   closed: {
     scale: 1,
     zIndex: 0,
+    height: "50px",
     transition: {
-      type: 'spring',
+      duration: 1,
     }
   }
 }
@@ -28,18 +29,18 @@ const containerVariants = {
   open: {
     opacity: 1,
     zIndex: 2,
-    height: "50vh", // Change depending on # Of Items.
+    height: "fit-content", // Change depending on # Of Items.
     scale: 1,
     transition: {
       duration: 1,
-      type: 'spring',
     }
   },
   closed: {
     scale: 1,
     zIndex: 0,
+    height: "50px",
     transition: {
-      type: 'spring',
+      duration: 1,
     }
   }
 }
@@ -62,7 +63,7 @@ function Projects() {
   ];
   return (
     <div className='projects'>
-        <h1>My Projects</h1>
+      <h1>My Projects</h1>
       {menuItems.map((item, index) => {
         return (
           <motion.div
@@ -84,7 +85,7 @@ function Projects() {
                   }}
                   variants={cardVariants}
                   onClick={() => {
-                    setShow(!show);
+                    setShow(true);
                     setSelected(index);
                   }}
                   exit={{ opacity: 0 }}

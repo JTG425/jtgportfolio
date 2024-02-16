@@ -70,6 +70,9 @@ function Home() {
             )
           })}
         </motion.div>
+        <div>
+          <p>Site Still Under Construction</p>
+        </div>
       </AnimatePresence >
     </motion.div >
   )
