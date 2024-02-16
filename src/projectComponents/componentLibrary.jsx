@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 
 
-export default function Theater(props) {
+export default function ComponentLibrary(props) {
     const stackLogos = [
         'https://i.imgur.com/FsACRhX.png', // React.js
         'https://i.imgur.com/vlOBr4X.png', // Framer Motion
@@ -48,7 +48,7 @@ export default function Theater(props) {
                     return (
                         <motion.div variants={stackItemsVariants}>
                             <motion.img
-                                key={`project-tech-logo-fgb-${index}`}
+                                key={`project-tech-logo-${index}`}
                                 src={logo}
                                 alt='tech-stack'
                                 className='used-tech-stack-logo'
@@ -62,7 +62,6 @@ export default function Theater(props) {
             <div className="project-content">
             <motion.div
                 className="project-preview"
-                key="project-preview-fgb"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
             >
@@ -71,13 +70,18 @@ export default function Theater(props) {
             </motion.div>
             <motion.div
                 className="project-description"
-                key="project-description-fgb"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
             >
                 <h3 className="project-description-title">What Is This?</h3>
                 <p>
-                    placeholder
+                    I Have a passion for creating responsive, dynamic,
+                    and visually appealing web application components.
+                    My favorite tool for this is Framer Motion. Because
+                    of this, I decided to start creating random components
+                    that range from simple buttons to complex modals and 
+                    sliders. This is a work in progress and I will be adding
+                    to it as I create more components.
                 </p>
             </motion.div>
             </div>

@@ -46,7 +46,7 @@ export default function Capstone(props) {
                     return (
                         <motion.div variants={stackItemsVariants}>
                             <motion.img
-                                key={`project-tech-logo-${index}`}
+                                key={`project-tech-logo-cap-${index}`}
                                 src={logo}
                                 alt='tech-stack'
                                 className='used-tech-stack-logo'
@@ -60,6 +60,7 @@ export default function Capstone(props) {
             <div className="project-content">
             <motion.div
                 className="project-preview"
+                key="project-preview-captone"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
             >
@@ -68,11 +69,14 @@ export default function Capstone(props) {
             </motion.div>
             <motion.div
                 className="project-description"
+                key="project-description-capstone"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
             >
-                <p>PlaceHolder</p>
-                <p>(Will Be a Description Of Project)</p>
+                <h3 className="project-description-title">What Is This?</h3>
+                <p>
+                    placeholder
+                </p>
             </motion.div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 .projects {
     width: 80vw;
+    max-width: 80vw;
     margin-top: 10px;
-    max-height: 80vh;
     overflow-y: scroll;
     overflow-x: hidden;
     -ms-overflow-style: none;
@@ -22,8 +22,7 @@
     align-items: center;
     position: relative;
     justify-content: center;
-    padding: 10px;
-    margin: 0;
+    margin-bottom: 10px;
 }
 
 
@@ -43,13 +42,20 @@
     background-blend-mode: overlay;
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    cursor: pointer;
 }
 
 
 .project::-webkit-scrollbar {
     display: none;
     /* Safari and Chrome */
+}
+
+.project-open {
+    width: 100%;
+    height: fit-content;
+    padding: 1px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .project-content {
@@ -76,6 +82,18 @@
     width: 20vw;
     height: 20vw;
 }
+
+.project-description p {
+    text-align: justify;
+    margin-top:0;
+}
+
+.project-description h3 {
+    color: white;
+    margin-top: 0;
+    margin-bottom: 1px;
+}
+
 
 .used-tech-stack {
     display: flex;

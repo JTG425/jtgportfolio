@@ -39,7 +39,6 @@ function App() {
   const [r, setR] = useState(0);
   //eslint-disable-next-line
   const homePosition = new THREE.Vector3(0, -10.35, 0);
-  const rocketRef = useRef();
   const resumeRef = useRef();
   const aboutRef = useRef();
   const contactRef = useRef();
@@ -210,7 +209,7 @@ function App() {
       </AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
-        key="dropdown"
+        key="dropdown-component"
         animate={transition ? "fadein" : "fadeout"}
         variants={loadVariants}
         transition={{ duration: 1 }}
@@ -406,7 +405,6 @@ function App() {
           <Rocket
             position={[0, 0, 0]}
             scale={0.5}
-            ref={rocketRef}
             resume={resume}
             about={about}
             contact={contact}
@@ -428,7 +426,7 @@ function App() {
           <ProjectsModel position={[400, -10.35, 0]} />
           <ResumeModel position={[-400, -8, 0]} />
           {Array.from({ length: numStars }, (_, index) => (
-            <Stars r={r} position={[cx[index], cz[index], cy[index]]} scale={r[index]} />
+            <Stars key={`star-${cx[index]}-${cy[index]}-${cz[index]}`} r={r} position={[cx[index], cz[index], cy[index]]} scale={r[index]} />
           ))}
 
           <Environment preset="sunset" />

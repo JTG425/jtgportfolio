@@ -45,6 +45,7 @@ function Home() {
 
     <motion.div
       className="Home"
+      key="home-container-key"
     >
       <h1>Hello, My Name Is Joshua</h1>
       <h2>An Aspiring Web Developer</h2>
@@ -53,13 +54,17 @@ function Home() {
           className='tech-stack'
           initial='hidden'
           animate='shown'
+          key="home-tech-stack-key"
           variants={parentstackVariants}
         >
           {stackLogos.map((logo, index) => {
             return (
-              <motion.div variants={stackItemsVariants}>
+              <motion.div 
+              key={`home-tech-stack-logo-div-${index}`}
+              variants={stackItemsVariants}
+              >
                 <motion.img
-                  key={index}
+                  key={`home-tech-stack-logo-${index}`}
                   src={logo}
                   alt='tech-stack'
                   className='tech-stack-logo'

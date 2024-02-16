@@ -159,10 +159,12 @@ export default function Dropdown(props) {
         <AnimatePresence>
             <motion.div
                 className="dropdown-container"
+                key="dropdown-container-key"
                 initial={{ opacity: 1 }}
             >
                 <motion.button
                     className="dropdown-button"
+                    key="dropdown-button-key"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     initial={{ opacity: 1 }}
@@ -175,6 +177,7 @@ export default function Dropdown(props) {
                         className="arrow"
                         style={{ transformOrigin: "50% 55%" }}
                         initial={{ rotate: 0 }}
+                        key="arrow-key"
                         animate={toggle ? "rotateUp" : "rotateDown"}
                         variants={arrowVariants}
                     >
@@ -187,15 +190,19 @@ export default function Dropdown(props) {
                     className="dropdown-menu"
                     initial={{ opacity: 0 }}
                     animate={toggle ? "shown" : "hidden"}
+                    key="dropdown-menu-key"
                     variants={containerVariants}
                 >
                     {menuOptions.map((option, index) => {
                         return (
-                            <motion.div variants={menuItem}>
+                            <motion.div 
+                            variants={menuItem}
+                            key={`dropdown-menu-item-div-key-${index}`}
+                            >
                                 <motion.button
                                     className="dropdown-item"
                                     ref={index === 0 ? buttonRef0 : index === 1 ? buttonRef1 : index === 2 ? buttonRef2 : index === 3 ? buttonRef3 : buttonRef4}
-                                    key={index}
+                                    key={`dropdown-item-key-${index}`}
                                     initial={{ scale: 0.9 }}
                                     onHoverStart={() => setI(index)}
                                     onMouseMove={e => handleMouseMove(e)}
@@ -215,6 +222,7 @@ export default function Dropdown(props) {
                 </motion.div>
                 <motion.div
                     className="blurred-background"
+                    key="blurred-background-key"
                     initial={{ opacity: 0 }}
                     animate={toggle ? "shown" : "hidden"}
                     variants={containerVariants}
