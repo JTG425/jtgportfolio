@@ -9,7 +9,7 @@ const cardVariants = {
   open: {
     opacity: 1,
     zIndex: 2,
-    height: "550px", // Change depending on # Of Items.
+    height: "50vh", // Change depending on # Of Items.
     paddingBottom: "10px",
     scale: 1,
     transition: {
@@ -30,7 +30,7 @@ const containerVariants = {
   open: {
     opacity: 1,
     zIndex: 2,
-    height: "550px", // Change depending on # Of Items.
+    height: "50vh", // Change depending on # Of Items.
     scale: 1,
     transition: {
       duration: 1,

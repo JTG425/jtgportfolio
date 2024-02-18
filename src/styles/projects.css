@@ -70,7 +70,7 @@
 
 .project-preview {
     width: 20vw;
-    height: 20vw;
+    height: 200px;
     border-radius: 6px;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.2) 12%, rgba(255, 255, 255, 0.1) 77%);
     background-blend-mode: overlay;
