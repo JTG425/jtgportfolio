@@ -134,16 +134,35 @@ export default function Dropdown(props) {
 
     const handleMouseMove = e => {
         if (i === 0) {
-            setMousePosition(getRelativeCoordinates(e, buttonRef0.current));
+            const mousePos = getRelativeCoordinates(e, buttonRef0.current);
+            const gradientBackground = `radial-gradient(circle at ${mousePos.startX * 100}% ${mousePos.startY * 100}%, rgba(100,100,100,0.75) 0%, rgba(255, 255,255,0.15) 50%)`;
+            buttonRef0.current.style.background = gradientBackground;
         } else if (i === 1) {
-            setMousePosition(getRelativeCoordinates(e, buttonRef1.current));
+            const mousePos = getRelativeCoordinates(e, buttonRef1.current);
+            const gradientBackground = `radial-gradient(circle at ${mousePos.startX * 100}% ${mousePos.startY * 100}%, rgba(100,100,100,0.75) 0%, rgba(255, 255,255,0.15) 50%)`;
+            buttonRef1.current.style.background = gradientBackground;
         } else if (i === 2) {
-            setMousePosition(getRelativeCoordinates(e, buttonRef2.current));
+            const mousePos = getRelativeCoordinates(e, buttonRef2.current);
+            const gradientBackground = `radial-gradient(circle at ${mousePos.startX * 100}% ${mousePos.startY * 100}%, rgba(100,100,100,0.75) 0%, rgba(255, 255,255,0.15) 50%)`;
+            buttonRef2.current.style.background = gradientBackground;
         } else if (i === 3) {
-            setMousePosition(getRelativeCoordinates(e, buttonRef3.current));
+            const mousePos = getRelativeCoordinates(e, buttonRef3.current);
+            const gradientBackground = `radial-gradient(circle at ${mousePos.startX * 100}% ${mousePos.startY * 100}%, rgba(100,100,100,0.75) 0%, rgba(255, 255,255,0.15) 50%)`;
+            buttonRef3.current.style.background = gradientBackground;
         } else if (i === 4) {
-            setMousePosition(getRelativeCoordinates(e, buttonRef4.current));
+            const mousePos = getRelativeCoordinates(e, buttonRef4.current);
+            const gradientBackground = `radial-gradient(circle at ${mousePos.startX * 100}% ${mousePos.startY * 100}%, rgba(100,100,100,0.75) 0%, rgba(255, 255,255,0.15) 50%)`;
+            buttonRef4.current.style.background = gradientBackground;
         }
+    };
+
+    const handleMouseLeave = () => {
+        setI(-1);
+        buttonRef0.current.style.background = '';
+        buttonRef1.current.style.background = '';
+        buttonRef2.current.style.background = '';
+        buttonRef3.current.style.background = '';
+        buttonRef4.current.style.background = '';
     };
 
     const handleDropdownClick = (page, i) => {
@@ -195,9 +214,9 @@ export default function Dropdown(props) {
                 >
                     {menuOptions.map((option, index) => {
                         return (
-                            <motion.div 
-                            variants={menuItem}
-                            key={`dropdown-menu-item-div-key-${index}`}
+                            <motion.div
+                                variants={menuItem}
+                                key={`dropdown-menu-item-div-key-${index}`}
                             >
                                 <motion.button
                                     className="dropdown-item"
@@ -205,12 +224,10 @@ export default function Dropdown(props) {
                                     key={`dropdown-item-key-${index}`}
                                     initial={{ scale: 0.9 }}
                                     onHoverStart={() => setI(index)}
-                                    onMouseMove={e => handleMouseMove(e)}
-                                    whileHover={{
-                                        scale: 0.95,
-                                        background: `radial-gradient(circle at ${mousePosition.startX * 100}% ${mousePosition.startY * 100}%, #1a148c 0%, #2b2b2b 100%)`,
-                                    }}
+                                    onMouseMove={handleMouseMove}
+                                    whileHover={{ scale: 0.95 }}
                                     whileTap={{ scale: 0.9 }}
+                                    onHoverEnd={handleMouseLeave}
                                     onClick={handleDropdownClick(option, index)}
                                 >
                                     <span className="button-text">{displayed[index]}</span>

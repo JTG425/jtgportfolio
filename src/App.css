@@ -42,6 +42,13 @@ body {}
   /* Firefox */
 }
 
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .canvas {
   background-color: black;
   z-index: 0;
@@ -55,7 +62,7 @@ body {}
   justify-content: space-between;
   padding-top: 15px;
   position: relative;
-  width: 80vw;
+  width: 60vw;
 }
 
 .homeButton {
