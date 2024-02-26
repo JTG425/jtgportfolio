@@ -59,9 +59,9 @@ function Home() {
         >
           {stackLogos.map((logo, index) => {
             return (
-              <motion.div 
-              key={`home-tech-stack-logo-div-${index}`}
-              variants={stackItemsVariants}
+              <motion.div
+                key={`home-tech-stack-logo-div-${index}`}
+                variants={stackItemsVariants}
               >
                 <motion.img
                   key={`home-tech-stack-logo-${index}`}
