@@ -2,7 +2,8 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 
 
-export default function ComponentLibrary(props) {
+const ComponentLibrary = React.memo(function ComponentLibrary(props) {
+    const projectIndex = props.projectIndex;
     const stackLogos = [
         'https://i.imgur.com/FsACRhX.png', // React.js
         'https://i.imgur.com/vlOBr4X.png', // Framer Motion
@@ -46,9 +47,12 @@ export default function ComponentLibrary(props) {
             >
                 {stackLogos.map((logo, index) => {
                     return (
-                        <motion.div variants={stackItemsVariants}>
+                        <motion.div
+                            variants={stackItemsVariants}
+                            key={`project-${projectIndex}-stack-logo-comp-${index}`}
+                        >
                             <motion.img
-                                key={`project-tech-logo-${index}`}
+                                key={`${projectIndex}-tech-logo-component-${index}`}
                                 src={logo}
                                 alt='tech-stack'
                                 className='used-tech-stack-logo'
@@ -60,31 +64,33 @@ export default function ComponentLibrary(props) {
                 })}
             </motion.div>
             <div className="project-content">
-            <motion.div
-                className="project-preview"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-            >
-                <p>PlaceHolder</p>
-                <p>(Will Be Screenshot of Site That Links to Live Site)</p>
-            </motion.div>
-            <motion.div
-                className="project-description"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-            >
-                <h3 className="project-description-title">What Is This?</h3>
-                <p>
-                    I Have a passion for creating responsive, dynamic,
-                    and visually appealing web application components.
-                    My favorite tool for this is Framer Motion. Because
-                    of this, I decided to start creating random components
-                    that range from simple buttons to complex modals and 
-                    sliders. This is a work in progress and I will be adding
-                    to it as I create more components.
-                </p>
-            </motion.div>
+                <motion.div
+                    className="project-preview"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
+                    <p>PlaceHolder</p>
+                    <p>(Will Be Screenshot of Site That Links to Live Site)</p>
+                </motion.div>
+                <motion.div
+                    className="project-description"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
+                    <h3 className="project-description-title">What Is This?</h3>
+                    <p>
+                        I Have a passion for creating responsive, dynamic,
+                        and visually appealing web application components.
+                        My favorite tool for this is Framer Motion. Because
+                        of this, I decided to start creating random components
+                        that range from simple buttons to complex modals and
+                        sliders. This is a work in progress and I will be adding
+                        to it as I create more components.
+                    </p>
+                </motion.div>
             </div>
         </div>
     );
-}
+});
+
+export default ComponentLibrary;

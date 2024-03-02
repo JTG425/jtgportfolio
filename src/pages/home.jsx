@@ -1,57 +1,44 @@
 
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
+import anime from "animejs";
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import '../styles/home.css'
 
-//https://codesandbox.io/p/sandbox/framer-motion-mouse-position-2b4sd?file=%2Fsrc%2FApp.js%3A40%2C1-69%2C2
-function getRelativeCoordinates(event, referenceElement) {
-  const position = {
-    x: event.pageX,
-    y: event.pageY
-  };
-
-  const offset = {
-    left: referenceElement.offsetLeft,
-    top: referenceElement.offsetTop,
-    width: referenceElement.clientWidth,
-    height: referenceElement.clientHeight
-  };
-
-  let reference = referenceElement.offsetParent;
-
-  while (reference) {
-    offset.left += reference.offsetLeft;
-    offset.top += reference.offsetTop;
-    reference = reference.offsetParent;
-  }
-
-  const startX = (position.x - offset.left) / offset.width;
-  const startY = (position.y - offset.top) / offset.height;
-
-  return {
-    x: position.x - offset.left,
-    y: position.y - offset.top,
-    // width: offset.width,
-    // height: offset.height,
-    centerX: (position.x - offset.left - offset.width / 2) / (offset.width / 2) - 0.5,
-    centerY: (position.y - offset.top - offset.height / 2) / (offset.height / 2) - 0.5,
-    startX: startX,
-    startY: startY,
-  };
-}
 
 function Home() {
-  const [i, setI] = useState(-1);
-  const [wave, setWave] = useState(false);
-  const imgRefs = [
-    useRef(),
-    useRef(),
-    useRef(),
-    useRef(),
-    useRef(),
-    useRef(),
-    useRef(),
-  ];
+
+  const handleStackLogoClick = (e, index) => {
+    anime({
+      targets: '.tech-stack-logo-div',
+      scale: [
+        { value: 1.01, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.02, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.03, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.04, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.05, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.06, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.07, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.08, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.09, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.10, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.09, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.08, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.07, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.06, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.05, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.04, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.03, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.02, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1.01, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+        { value: 1, easing: 'spring(1, 80, 10, 0)', duration: 50 },
+      ],
+      delay: anime.stagger(250, { from: index })
+    });
+  }
+
+
+
+
 
   const stackLogos = [
     'https://i.imgur.com/FsACRhX.png', // React.js
@@ -63,58 +50,6 @@ function Home() {
     'https://i.imgur.com/QurGWvg.png', // Talwind CSS
   ]
 
-
-  const handleMouseMove = e => {
-    if (imgRefs[i] === undefined) return;
-    if (wave) return;
-    const mousePos = getRelativeCoordinates(e, imgRefs[i].current);
-    imgRefs[i].current.style.transform = `translate(${mousePos.centerX}px, ${mousePos.centerY}px)`;
-  };
-
-  const handleClickWave = () => {
-    if (i < 0 || i >= imgRefs.length) return; // Check if 'i' is within bounds
-    const widthX = 0;
-    const heightY = -50;
-    const slightDropY = 20; // Slightly lower position before going back
-
-    for (let j = 0; j < imgRefs.length; j++) {
-      const delay = Math.abs(j - i) * 150; // Calculate delay based on distance from clicked ref 'i'
-
-      setTimeout(() => {
-        if (imgRefs[j].current) { // Check if ref exists
-          imgRefs[j].current.style.transform = `translate(${widthX}px, ${heightY}px)`;
-          imgRefs[j].current.style.transition = 'transform 0.5s ease-in-out';
-
-          const handleTransitionEnd = () => {
-            imgRefs[j].current.style.transform = `translate(${widthX}px, ${slightDropY}px)`;
-            imgRefs[j].current.style.transition = 'transform 0.75s ease-in-out';
-
-            const handleSlightDropEnd = () => {
-              imgRefs[j].current.style.transform = ''; // Revert to original position
-              imgRefs[j].current.removeEventListener('transitionend', handleSlightDropEnd); // Clean up the event listener for slight drop
-            };
-
-            imgRefs[j].current.addEventListener('transitionend', handleSlightDropEnd);
-            imgRefs[j].current.removeEventListener('transitionend', handleTransitionEnd); // Clean up the event listener for initial transition
-          };
-
-          imgRefs[j].current.addEventListener('transitionend', handleTransitionEnd);
-        }
-      }, delay);
-    }
-
-    setTimeout(() => {
-      setWave(false); // Assuming 'setWave' is a state setter to control the wave animation
-    }, imgRefs.length * 150 + 500); // Wait for the last animation to finish + 0.5s buffer
-  };
-
-
-  const handleMouseLeave = () => {
-    setI(-1);
-    for (let i = 0; i < imgRefs.length; i++) {
-      imgRefs[i].current.style.background = '';
-    }
-  };
 
   const parentstackVariants = {
     hidden: {
@@ -164,13 +99,7 @@ function Home() {
               <motion.div
                 className='tech-stack-logo-div'
                 key={`home-tech-stack-logo-div-${index}`}
-                ref={imgRefs[index]}
-                drag
-                dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                dragElastic={1}
-                onHoverStart={() => setI(index)}
-                //onMouseMove={handleMouseMove}
-                //onMouseLeave={handleMouseLeave}
+                onClick={(e) => handleStackLogoClick(e, index)}
                 variants={stackItemsVariants}
               >
                 <motion.img
@@ -178,8 +107,8 @@ function Home() {
                   src={logo}
                   draggable='false'
                   alt='tech-stack'
+                  whileTap={{ scale: 0.9 }}
                   className='tech-stack-logo'
-                  onTap={handleClickWave}
                 />
               </motion.div>
             )

@@ -19,6 +19,7 @@ const cardVariants = {
   closed: {
     scale: 1,
     zIndex: 0,
+    overflow: "hidden",
     height: "50px", // Change depending on # Of Items.
     transition: {
       duration: 1,
@@ -39,6 +40,7 @@ const containerVariants = {
   closed: {
     scale: 1,
     zIndex: 0,
+    overflow: "hidden",
     height: "50px", // Change depending on # Of Items.
     transition: {
       duration: 1,
@@ -49,10 +51,8 @@ const containerVariants = {
 const headerVariants = {
   open: {
     marginTop: "10px",
-    background: "linear-gradient(0deg, rgba(255, 255, 255, 0.2) 12%, rgba(255, 255, 255, 0.1) 77%)",
   },
   closed: {
-    background: "rgba(255, 255, 255, 0)",
   }
 }
 
@@ -90,34 +90,11 @@ function Projects() {
                 <motion.div
                   className='project'
                   animate={show && selected === index ? 'open' : 'closed'}
-                  // whileHover={() => {
-                  //   if (!show) {
-                  //     return { y: -5 };
-                  //   }
-                  // }}
                   variants={cardVariants}
                   exit={{ opacity: 0 }}
                   key={`content-${index}`}
                 >
-                  {show && selected === index ? (
-                    <div>
-                      <motion.div
-                        className='project-open'
-                        animate={show && selected === index ? 'open' : 'closed'}
-                        variants={headerVariants}
-                        onClick={() => {
-                          setShow(!show);
-                          setSelected(index);
-                        }}
-                        key={`content-header-${index}`}
-                      >
-                        <h2>{menuItemNames[index]}</h2>
-                      </motion.div>
-
-                      {/* Trying To Make This Dynamic */}
-                      {index === 0 ? <Theater /> : index === 1 ? <Capstone /> : <ComponentLibrary />}
-                    </div>
-                  ) : (
+                  <div>
                     <motion.div
                       className='project-open'
                       animate={show && selected === index ? 'open' : 'closed'}
@@ -126,11 +103,12 @@ function Projects() {
                         setShow(!show);
                         setSelected(index);
                       }}
+                      key={`content-header-${index}`}
                     >
                       <h2>{menuItemNames[index]}</h2>
                     </motion.div>
-                  )}
-
+                    {index === 0 ? <Theater projectIndex={index} /> : index === 1 ? <Capstone projectIndex={index} /> : <ComponentLibrary projectIndex={index} />}
+                  </div>
                 </motion.div>
               </AnimatePresence>
             </div>

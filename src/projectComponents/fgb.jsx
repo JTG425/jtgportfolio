@@ -2,7 +2,8 @@ import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 
 
-export default function Theater(props) {
+const Theater = React.memo(function Theater(props) {
+    const projectIndex = props.projectIndex;
     const stackLogos = [
         'https://i.imgur.com/FsACRhX.png', // React.js
         'https://i.imgur.com/vlOBr4X.png', // Framer Motion
@@ -46,9 +47,12 @@ export default function Theater(props) {
             >
                 {stackLogos.map((logo, index) => {
                     return (
-                        <motion.div variants={stackItemsVariants}>
+                        <motion.div
+                            variants={stackItemsVariants}
+                            key={`project-${projectIndex}-stack-logo-fgb-${index}`}
+                        >
                             <motion.img
-                                key={`project-tech-logo-fgb-${index}`}
+                                key={`project-${projectIndex}-tech-logo-fgb-${index}`}
                                 src={logo}
                                 alt='tech-stack'
                                 className='used-tech-stack-logo'
@@ -60,27 +64,29 @@ export default function Theater(props) {
                 })}
             </motion.div>
             <div className="project-content">
-            <motion.div
-                className="project-preview"
-                key="project-preview-fgb"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-            >
-                <p>PlaceHolder</p>
-                <p>(Will Be Screenshot of Site That Links to Live Site)</p>
-            </motion.div>
-            <motion.div
-                className="project-description"
-                key="project-description-fgb"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-            >
-                <h3 className="project-description-title">What Is This?</h3>
-                <p>
-                    placeholder
-                </p>
-            </motion.div>
+                <motion.div
+                    className="project-preview"
+                    key="project-preview-fgb"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
+                    <p>PlaceHolder</p>
+                    <p>(Will Be Screenshot of Site That Links to Live Site)</p>
+                </motion.div>
+                <motion.div
+                    className="project-description"
+                    key="project-description-fgb"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
+                    <h3 className="project-description-title">What Is This?</h3>
+                    <p>
+                        placeholder
+                    </p>
+                </motion.div>
             </div>
         </div>
     );
-}
+});
+
+export default Theater;
