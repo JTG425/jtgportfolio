@@ -181,19 +181,18 @@ body {}
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 2vh;
-  left: 5vw;
   justify-content: flex-start;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  overflow-x: visible;
-  border-radius: 0.5rem;
+  overflow-x: hidden;
   background: rgb(43, 43, 43);
   background: linear-gradient(180deg, rgba(43, 43, 43, 0.9) 0%, rgba(43, 43, 43, 0.45) 75%, rgba(0, 0, 0, 0) 100%);
   height: auto;
-  width: 90vw;
   z-index: 1;
+  width: 100vw;
+  top: 0;
+  left: 0;
 }
 
 
@@ -267,10 +266,6 @@ circle {
   }
 
   .pagebackground {
-    width: 100vw;
     padding-top: 55px;
-    border-radius: 0;
-    top: 0;
-    left: 0;
   }
 }

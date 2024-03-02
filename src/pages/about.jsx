@@ -5,6 +5,34 @@ import '../styles/about.css'
 
 
 function About() {
+  const cardVarients = {
+    focused: {
+      scale: 1.1,
+      transition: {
+        duration: 0.5
+      }
+    },
+    notFocused: {
+      scale: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
+
+  const images = [
+    "https://i.imgur.com/7nSCuwh.jpg", // Portrait
+    "https://i.imgur.com/LypqAyD.jpg", // Maria Bennet and I
+    "https://i.imgur.com/T9U2pn8.jpg?1", // OSM
+    "https://i.imgur.com/LypqAyD.jpg", // Maria Bennet and I
+  ]
+  const text = [
+    "lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur quas cumque quasi hic, fuga saepe voluptatum architecto! Autem, id ipsa! Ad, eos ipsum nemo eaque voluptas modi sit ducimus eveniet.",
+    "lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur quas cumque quasi hic, fuga saepe voluptatum architecto! Autem, id ipsa! Ad, eos ipsum nemo eaque voluptas modi sit ducimus eveniet.",
+    "lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur quas cumque quasi hic, fuga saepe voluptatum architecto! Autem, id ipsa! Ad, eos ipsum nemo eaque voluptas modi sit ducimus eveniet.",
+    "lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur quas cumque quasi hic, fuga saepe voluptatum architecto! Autem, id ipsa! Ad, eos ipsum nemo eaque voluptas modi sit ducimus eveniet."
+  ]
 
   return (
     <div className="about">
@@ -15,21 +43,36 @@ function About() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <motion.div
-          className='card1'
-        >
-          <motion.img
-            className='portrait'
-            src="https://i.imgur.com/7nSCuwh.jpg"
-            alt="Me"
-          />
-          <p>My name is Joshua Golonka, I was born and raised in Montpelier, VT</p>
-
-        </motion.div>
-
-
-
-
+        {images.map((image, index) => {
+          let classNames, imageClassName
+          if (index % 2 === 0) {
+            classNames = 'cardEven'
+            imageClassName = 'imageEven'
+          } else {
+            classNames = 'cardOdd'
+            imageClassName = 'imageOdd'
+          }
+          return (
+            <motion.div
+              className={classNames}
+              key={`card-${index}`}
+              whileInView="focused"
+              whileOutOfView="notFocused"
+              variants={cardVarients}
+            >
+              <motion.img
+                className={imageClassName}
+                key={`image-${index}`}
+                src={images[index]}
+                alt="Me"
+              />
+              <p>
+                {text[index]}
+              </p>
+            </motion.div>
+          );
+        })
+        }
       </motion.div>
     </div>
 
