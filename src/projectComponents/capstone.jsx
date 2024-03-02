@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 
 const Capstone = React.memo(function Capstone(props) {
     const projectIndex = props.projectIndex;
+    const githubLink = "https://github.com/JTG425/GasSensorCalibration"
     const stackLogos = [
         'https://i.imgur.com/PghOkkB.png', // Python
         'https://i.imgur.com/O17QsIJ.png', // PyQT5
