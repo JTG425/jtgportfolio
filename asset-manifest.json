@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/jtgportfolio/static/css/main.1ea1bb8d.css",
+    "main.css": "/jtgportfolio/static/css/main.5d994f0b.css",
     "main.js": "/jtgportfolio/static/js/main.b0e134bc.js",
     "static/js/27.214afeed.chunk.js": "/jtgportfolio/static/js/27.214afeed.chunk.js",
     "index.html": "/jtgportfolio/index.html"
   },
   "entrypoints": [
-    "static/css/main.1ea1bb8d.css",
+    "static/css/main.5d994f0b.css",
     "static/js/main.b0e134bc.js"
   ]
 }
