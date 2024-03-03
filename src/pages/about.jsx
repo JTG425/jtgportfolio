@@ -1,5 +1,7 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { SocialIcon } from 'react-social-icons/component'
+import 'react-social-icons/instagram'
 import '../styles/about.css'
 
 
@@ -24,7 +26,7 @@ function About() {
   const images = [
     "https://i.imgur.com/7nSCuwh.jpg", // Portrait
     "https://i.imgur.com/LypqAyD.jpg", // Maria Bennet and I
-    "https://i.imgur.com/T9U2pn8.jpg?1", // OSM
+    "https://i.imgur.com/T9U2pn8.jpg?1", //
     "https://i.imgur.com/LypqAyD.jpg", // Maria Bennet and I
   ]
   const text = [
@@ -43,6 +45,11 @@ function About() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
+        <>
+        </>
+        {/* <div className='socials'>
+          <SocialIcon target="_blank" href="www.instagram.com/joshuagolonka25" url="www.instagram.com" bgColor="none" />
+        </div> */}
         {images.map((image, index) => {
           let classNames, imageClassName
           if (index % 2 === 0) {
@@ -66,9 +73,14 @@ function About() {
                 src={images[index]}
                 alt="Me"
               />
-              <p>
-                {text[index]}
-              </p>
+              <div>
+                <p>
+                  {text[index]}
+                </p>
+                <p>
+                  {text[index]}
+                </p>
+              </div>
             </motion.div>
           );
         })
