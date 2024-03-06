@@ -31,7 +31,6 @@ const containerVariants = {
   open: {
     opacity: 1,
     zIndex: 2,
-    height: "50vh", // Change depending on # Of Items.
     scale: 1,
     transition: {
       duration: 1,
@@ -40,8 +39,6 @@ const containerVariants = {
   closed: {
     scale: 1,
     zIndex: 0,
-    overflow: "hidden",
-    height: "50px", // Change depending on # Of Items.
     transition: {
       duration: 1,
     }

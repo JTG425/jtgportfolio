@@ -78,14 +78,14 @@ function App() {
 
   const smoothPageVariants = {
     shrink: {
-      height: "10vh",
+      opacity: 0,
       transition: {
         duration: 1,
         ease: "easeInOut",
       }
     },
     expand: {
-      height: "fit-content",
+      opacity: 1,
       transition: {
         duration: 3,
         ease: "easeInOut",
@@ -109,7 +109,7 @@ function App() {
     }
   };
 
-  const numStars = 1000;
+  const numStars = 750;
 
 
   /* Shrink / Expand Timing */
@@ -120,8 +120,8 @@ function App() {
   }, [expanded]);
 
   useEffect(() => {
-    setCX(Array.from({ length: numStars }, () => Math.floor(Math.random() * 1001) - 500));
-    setCY(Array.from({ length: numStars }, () => Math.floor(Math.random() * 1001) - 500));
+    setCX(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
+    setCY(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
     setCZ(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
     setR(Array.from({ length: numStars }, () => Math.random() * 0.1));
     setTimeout(() => {
@@ -413,18 +413,18 @@ function App() {
           />
           <HomeModel position={[0, -10.35, 0]} />
           <OrbitControls
-            enableZoom={false}
+            enableZoom={true}
             minDistance={20}
             maxDistance={200}
             minPolarAngle={Math.PI / 2}
-            maxPolarAngle={Math.PI - Math.PI / 2}
-            maxAzimuthAngle={0}
-            minAzimuthAngle={0}
+            maxPolarAngle={Math.PI / 2}
+            maxAzimuthAngle={Math.PI / 4}
+            minAzimuthAngle={Math.PI / 4}
           />
-          <AboutModel position={[200, -10.35, 0]} />
-          <ContactModel position={[-200, -10.35, 0]} />
-          <ProjectsModel position={[400, -10.35, 0]} />
-          <ResumeModel position={[-400, -8, 0]} />
+          <AboutModel position={[-50, 25, 50]} />
+          <ContactModel position={[50, -25, 75]} />
+          <ProjectsModel position={[75, 50, -20]} />
+          <ResumeModel position={[-75, -8, -75]} />
           {Array.from({ length: numStars }, (_, index) => (
             <Stars key={`star-${cx[index]}-${cy[index]}-${cz[index]}`} r={r} position={[cx[index], cz[index], cy[index]]} scale={r[index]} />
           ))}

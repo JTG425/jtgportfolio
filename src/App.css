@@ -178,6 +178,7 @@ body {}
 
 .pagebackground {
   display: flex;
+  height: fit-content;
   flex-direction: column;
   align-items: center;
   position: absolute;
@@ -188,7 +189,6 @@ body {}
   overflow-x: hidden;
   background: rgb(43, 43, 43);
   background: linear-gradient(180deg, rgba(43, 43, 43, 0.9) 0%, rgba(43, 43, 43, 0.45) 75%, rgba(0, 0, 0, 0) 100%);
-  height: auto;
   z-index: 1;
   width: 100vw;
   top: 0;
