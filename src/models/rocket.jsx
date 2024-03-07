@@ -102,7 +102,7 @@ export default function Rocket(props) {
 
     gsap.to({ t: 0 }, {
       t: 1,
-      duration: 10,
+      duration: 5,
       onUpdate: function () {
         const position = curve.getPointAt(this.targets()[0].t);
         rocketRef.current.position.copy(position);
@@ -137,18 +137,22 @@ export default function Rocket(props) {
     }
 
     if (landed) {
-
       const landedOpacity = 0;
       glowRef.current.material.opacity = landedOpacity;
       setGlowIntensity(0);
     }
 
-
-    const radius = 20;
+    const radius = 40;
     const cameraX = rocketPosition.x + radius;
     const cameraZ = rocketPosition.z + radius;
-    state.camera.position.set(cameraX, 10, cameraZ);
+    const x = cameraX * Math.cos(time * 0.05);
+    const z = cameraZ * Math.sin(time * 0.05);
+    state.camera.position.set(x, 10, z);
     state.camera.lookAt(rocketPosition);
+
+
+
+
 
     if (isLanding) {
       const uprightQuaternion = new THREE.Quaternion();
