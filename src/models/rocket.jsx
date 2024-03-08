@@ -38,11 +38,11 @@ export default function Rocket(props) {
   const glowSize = { radius: 1, height: 2 };
 
   const planetPositions = {
-    home: new THREE.Vector3(0, 0, 0),
-    about: new THREE.Vector3(-50, 36, 50),
-    contact: new THREE.Vector3(50, -15, 75),
-    projects: new THREE.Vector3(75, 60, -20),
-    resume: new THREE.Vector3(-75, 1, -75)
+    home: new THREE.Vector3(0, 0, 100),
+    about: new THREE.Vector3(-175, 0, -100),
+    contact: new THREE.Vector3(0, 0, -250),
+    projects: new THREE.Vector3(325, 0, 0),
+    resume: new THREE.Vector3(100, 0, 400)
   };
 
   const planetCameraPositions = {

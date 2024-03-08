@@ -3,6 +3,9 @@ import React, { Suspense, useState, useRef, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, OrbitControls } from '@react-three/drei'
 import { motion, AnimatePresence } from 'framer-motion'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
+import { Perf } from 'r3f-perf' // Performance Monitor
+
 //eslint-disable-next-line
 import { motion as m } from 'framer-motion-3d' //3d Motion
 import * as THREE from 'three'
@@ -14,6 +17,7 @@ import ContactModel from './models/contactPlanet'
 import HomeModel from './models/homePlanet'
 import ProjectsModel from './models/projectsPlanet'
 import ResumeModel from './models/resumePlanet'
+import SunModel from './models/sunModel'
 import Stars from './components/stars'
 import Home from './pages/home'
 import About from './pages/about'
@@ -39,15 +43,31 @@ function App() {
   const [r, setR] = useState(0);
   //eslint-disable-next-line
   const homePosition = new THREE.Vector3(0, -10.35, 0);
+
+  // Menu Button refs - Delete Later
   const resumeRef = useRef();
   const aboutRef = useRef();
   const contactRef = useRef();
   const projectsRef = useRef();
   const homeRef = useRef();
 
+  // Planet Refs
+  const homePlanetRef = useRef();
+  const aboutPlanetRef = useRef();
+  const contactPlanetRef = useRef();
+  const projectsPlanetRef = useRef();
+  const resumePlanetRef = useRef();
+
+
   //eslint-disable-next-line
   const [currentPage, setCurrentPage] = useState("home"); // Track the current page
   const [expanded, setExpanded] = useState(false);
+
+  const enableOrbit = false;
+
+
+
+
 
   const loadVariants = {
     fadein: {
@@ -109,7 +129,7 @@ function App() {
     }
   };
 
-  const numStars = 750;
+  const numStars = 500;
 
 
   /* Shrink / Expand Timing */
@@ -120,8 +140,8 @@ function App() {
   }, [expanded]);
 
   useEffect(() => {
-    setCX(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
-    setCY(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
+    setCX(Array.from({ length: numStars }, () => Math.floor(Math.random() * 501) - 250));
+    setCY(Array.from({ length: numStars }, () => Math.floor(Math.random() * 501) - 250));
     setCZ(Array.from({ length: numStars }, () => Math.floor(Math.random() * 201) - 100));
     setR(Array.from({ length: numStars }, () => Math.random() * 0.1));
     setTimeout(() => {
@@ -402,32 +422,38 @@ function App() {
       </motion.div>
       <Canvas className='canvas'>
         <Suspense fallback={null}>
+          <OrbitControls
+            enableZoom={true}
+            minDistance={20}
+            maxDistance={1000}
+          />
+          <Perf />
           <Rocket
-            position={[0, 0, 0]}
+            position={[0, 0, 100]}
             scale={0.5}
             resume={resume}
             about={about}
             contact={contact}
             projects={projects}
             home={home}
+            homeRef={homePlanetRef}
+            aboutRef={aboutPlanetRef}
+            contactRef={contactPlanetRef}
+            projectsRef={projectsPlanetRef}
+            resumeRef={resumePlanetRef}
           />
-          <HomeModel position={[0, -10.35, 0]} />
-          <OrbitControls
-            enableZoom={true}
-            minDistance={20}
-            maxDistance={200}
-            minPolarAngle={Math.PI / 2}
-            maxPolarAngle={Math.PI / 2}
-            maxAzimuthAngle={Math.PI / 4}
-            minAzimuthAngle={Math.PI / 4}
-          />
-          <AboutModel position={[-50, 25, 50]} />
-          <ContactModel position={[50, -25, 75]} />
-          <ProjectsModel position={[75, 50, -20]} />
-          <ResumeModel position={[-75, -8, -75]} />
-          {Array.from({ length: numStars }, (_, index) => (
+          {/* Sun, Reusing About */}
+          <SunModel position={[0, 0, 0]} scale={3} />
+
+
+          <HomeModel position={[0, -10.35, 100]} ref={homePlanetRef} orbitRadius={100} initialAngle={270} enableOrbit={enableOrbit} />
+          <AboutModel position={[-175, -10.35, -100]} ref={aboutPlanetRef} orbitRadius={175} initialAngle={180} enableOrbit={enableOrbit} />
+          <ContactModel position={[0, -10.35, -250]} ref={contactPlanetRef} orbitRadius={250} initialAngle={90} enableOrbit={enableOrbit} />
+          <ProjectsModel position={[325, -10.35, 0]} ref={projectsPlanetRef} orbitRadius={325} initialAngle={0} enableOrbit={enableOrbit} />
+          <ResumeModel position={[100, -10.35, 400]} ref={resumePlanetRef} orbitRadius={400} initialAngle={270} enableOrbit={enableOrbit} />
+          {/* {Array.from({ length: numStars }, (_, index) => (
             <Stars key={`star-${cx[index]}-${cy[index]}-${cz[index]}`} r={r} position={[cx[index], cz[index], cy[index]]} scale={r[index]} />
-          ))}
+          ))} */}
 
           <Environment preset="sunset" />
         </Suspense>
