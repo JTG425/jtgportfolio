@@ -13,7 +13,8 @@ import { useFrame } from '@react-three/fiber';
 export default function HomeModel(props) {
   const homeRef = useRef();
 
-  useFrame(() => {
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
     homeRef.current.rotation.y -= 0.0001;
   });
   const { nodes, materials } = useGLTF("models/homePlanet.glb");

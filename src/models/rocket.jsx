@@ -48,7 +48,7 @@ export default function Rocket(props) {
   const planetCameraPositions = {
     home: new THREE.Vector3(40, 40, 40),
     about: new THREE.Vector3(40, 40, 40),
-    contact: new THREE.Vector3(40, 40, 40),
+    contact: new THREE.Vector3(40, 40, -220),
     projects: new THREE.Vector3(40, 40, 40),
     resume: new THREE.Vector3(30, 40, -60)
   };
@@ -97,7 +97,7 @@ export default function Rocket(props) {
     const landed = 1;
     setLanded(false);
 
-    const midPosition = new THREE.Vector3().addVectors(startPosition, endPosition).multiplyScalar(0.5).add(new THREE.Vector3(0, 50, 0));
+    const midPosition = new THREE.Vector3().addVectors(startPosition, endPosition).multiplyScalar(0.5).add(new THREE.Vector3(0, 75, 0));
     const curve = new THREE.CatmullRomCurve3([startPosition, midPosition, endPosition], false, 'catmullrom', 0.5);
 
     gsap.to({ t: 0 }, {

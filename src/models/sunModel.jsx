@@ -38,14 +38,6 @@ export default function SunModel(props) {
           // You can also spread the original material properties if needed:
           material={materials.Material}
         />
-        <EffectComposer>
-          <Bloom
-            intensity={0.15}
-            luminanceThreshold={0.1}
-            luminanceSmoothing={0.3}
-            radius={1}
-          />
-        </EffectComposer>
       </mesh>
     </group>
   );

@@ -3,7 +3,7 @@ import React, { Suspense, useState, useRef, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, OrbitControls } from '@react-three/drei'
 import { motion, AnimatePresence } from 'framer-motion'
-import { EffectComposer, Bloom } from '@react-three/postprocessing'
+import { EffectComposer, Bloom, ToneMapping } from '@react-three/postprocessing'
 import { Perf } from 'r3f-perf' // Performance Monitor
 
 //eslint-disable-next-line
@@ -24,6 +24,7 @@ import About from './pages/about'
 import Contact from './pages/contact'
 import Projects from './pages/projects'
 import Resume from './pages/resume'
+import { set } from 'animejs'
 
 
 
@@ -37,6 +38,7 @@ function App() {
   const [contact, setContact] = useState(false)
   const [projects, setProjects] = useState(false)
   const [resume, setResume] = useState(false)
+  const [quality, setQuality] = useState("High")
   const [cx, setCX] = useState(0);
   const [cy, setCY] = useState(0);
   const [cz, setCZ] = useState(0);
@@ -201,6 +203,12 @@ function App() {
 
   return (
     <div className="App">
+      <motion.button
+        className='qualityToggle'
+        onClick={() => { setQuality(quality === "High" ? "Low" : "High") }}
+      >
+        <span className='qbuttontext'>{quality} Quality</span>
+      </motion.button>
       <AnimatePresence>
         <motion.div
           className='loading'
@@ -454,7 +462,34 @@ function App() {
           {/* {Array.from({ length: numStars }, (_, index) => (
             <Stars key={`star-${cx[index]}-${cy[index]}-${cz[index]}`} r={r} position={[cx[index], cz[index], cy[index]]} scale={r[index]} />
           ))} */}
-
+          {quality == "High" && (
+            <EffectComposer>
+              <Bloom
+                intensity={0.75}
+                luminanceThreshold={0.5}
+                luminanceSmoothing={0.3}
+                exposure={1.5}
+                radius={1}
+              />
+              <ToneMapping
+                adaptive={true}
+                averageLuminance={0.5}
+                middleGrey={0.25}
+                maxLuminance={16.0}
+                adaptationRate={1.0}
+              ></ToneMapping>
+            </EffectComposer>
+          ) || (
+              <EffectComposer>
+                <Bloom
+                  intensity={0.1}
+                  luminanceThreshold={0.2}
+                  luminanceSmoothing={0.1}
+                  exposure={1}
+                  radius={0.5}
+                />
+              </EffectComposer>
+            )}
           <Environment preset="sunset" />
         </Suspense>
       </Canvas>

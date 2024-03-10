@@ -5,18 +5,14 @@ import '../styles/dropdown.css'
 const containerVariants = {
     hidden: {
         opacity: 0,
-        display: "none",
+        // display: "none",
         zIndex: 1,
-        transition: {
-            duration: 2,
-            when: "afterChildren",
-        }
     },
     shown: {
         opacity: 1,
         transition: {
             duration: 0.25,
-            staggerChildren: 0.25,
+            staggerChildren: 0.15,
             when: "beforeChildren",
         }
     }
