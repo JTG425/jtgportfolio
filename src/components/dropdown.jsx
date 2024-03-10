@@ -175,14 +175,15 @@ export default function Dropdown(props) {
             <motion.div
                 className="dropdown-container"
                 key="dropdown-container-key"
-                initial={{ opacity: 1 }}
             >
                 <motion.button
                     className="dropdown-button"
                     key="dropdown-button-key"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    initial={{ opacity: 1 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2, duration: 2 }}
                     onClick={() => {
                         setToggle(!toggle);
                     }}

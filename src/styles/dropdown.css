@@ -91,5 +91,27 @@
 
     .dropdown-button {
         z-index: 6;
+        width: 25vw;
+    }
+
+    .dropdown-item {
+        width: 90vw;
+        height: 15vh;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .dropdown-container {
+        display: flex;
+    }
+
+    .dropdown-button {
+        z-index: 6;
+        width: 50vw;
+    }
+
+    .dropdown-item {
+        width: 90vw;
+        height: 15vh;
     }
 }

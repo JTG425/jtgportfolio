@@ -160,7 +160,7 @@ export default function Rocket(props) {
     } else {
       const directionToDestination = getDirectionToDestination(rocketPosition, destinationPosition);
       const rocketQuaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), directionToDestination);
-      rocketRef.current.quaternion.slerp(rocketQuaternion, 0.15 * delta);
+      rocketRef.current.quaternion.slerp(rocketQuaternion, 0.5 * delta);
     }
   });
 

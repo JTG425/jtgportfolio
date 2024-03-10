@@ -10,9 +10,6 @@
     /* Firefox */
     border-radius: 4px;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.2) 12%, rgba(255, 255, 255, 0.1) 77%);
-    background-blend-mode: overlay;
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
     object-fit: contain;
 }
 

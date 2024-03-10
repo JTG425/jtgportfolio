@@ -38,7 +38,7 @@ function App() {
   const [contact, setContact] = useState(false)
   const [projects, setProjects] = useState(false)
   const [resume, setResume] = useState(false)
-  const [quality, setQuality] = useState("High")
+  const [quality, setQuality] = useState("Low")
   const [cx, setCX] = useState(0);
   const [cy, setCY] = useState(0);
   const [cz, setCZ] = useState(0);
@@ -77,7 +77,6 @@ function App() {
     },
     fadeout: {
       opacity: 0,
-      zIndex: -1,
       transition: {
         duration: 3,
       }
@@ -116,20 +115,6 @@ function App() {
 
   }
 
-  const draw = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: (i) => {
-      const delay = 1;
-      return {
-        pathLength: 1,
-        opacity: 1,
-        transition: {
-          pathLength: { delay, type: "spring", duration: 1.5, bounce: 0 },
-          opacity: { delay, duration: 0.01 }
-        }
-      };
-    }
-  };
 
   const numStars = 500;
 
@@ -138,7 +123,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setExpanded(true);
-    }, 3000);
+    }, 2000);
   }, [expanded]);
 
   useEffect(() => {
@@ -148,7 +133,7 @@ function App() {
     setR(Array.from({ length: numStars }, () => Math.random() * 0.1));
     setTimeout(() => {
       setTransition(true);
-    }, 3000);
+    }, 1000);
     //eslint-disable-next-line
   }, []);
 
@@ -205,60 +190,29 @@ function App() {
     <div className="App">
       <motion.button
         className='qualityToggle'
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => { setQuality(quality === "High" ? "Low" : "High") }}
       >
         <span className='qbuttontext'>{quality} Quality</span>
       </motion.button>
-      <AnimatePresence>
-        <motion.div
-          className='loading'
-          initial={{ opacity: 1 }}
-          animate={transition ? "fadeout" : "fadein"}
-          variants={loadVariants}
-        >
-          <motion.svg
-            width="100"
-            height="100"
-            viewBox="0 0 200 200"
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.circle
-              cx="100"
-              cy="100"
-              r="80"
-              variants={draw}
-              custom={1}
-            >
-            </motion.circle>
-          </motion.svg>
-          <p className='loading-text'>Loading</p>
-        </motion.div>
-      </AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        key="dropdown-component"
-        animate={transition ? "fadein" : "fadeout"}
-        variants={loadVariants}
-        transition={{ duration: 1 }}
-      >
-        <Dropdown
-          home={home}
-          about={about}
-          contact={contact}
-          projects={projects}
-          resume={resume}
-          setHome={setHome}
-          setAbout={setAbout}
-          setContact={setContact}
-          setProjects={setProjects}
-          setResume={setResume}
-          currentPage={currentPage}
-          expanded={expanded}
-          setExpanded={setExpanded}
-          handleButtonClick={handleButtonClick}
-        />
-      </motion.div>
+
+      <Dropdown
+        home={home}
+        about={about}
+        contact={contact}
+        projects={projects}
+        resume={resume}
+        setHome={setHome}
+        setAbout={setAbout}
+        setContact={setContact}
+        setProjects={setProjects}
+        setResume={setResume}
+        currentPage={currentPage}
+        expanded={expanded}
+        setExpanded={setExpanded}
+        handleButtonClick={handleButtonClick}
+      />
       <motion.div
         className='pagebackground'
         initial={{ opacity: 1 }}
@@ -428,71 +382,78 @@ function App() {
           </AnimatePresence>
         </motion.div>
       </motion.div>
-      <Canvas className='canvas'>
-        <Suspense fallback={null}>
-          <OrbitControls
-            enableZoom={true}
-            minDistance={20}
-            maxDistance={1000}
-          />
-          <Perf />
-          <Rocket
-            position={[0, 0, 100]}
-            scale={0.5}
-            resume={resume}
-            about={about}
-            contact={contact}
-            projects={projects}
-            home={home}
-            homeRef={homePlanetRef}
-            aboutRef={aboutPlanetRef}
-            contactRef={contactPlanetRef}
-            projectsRef={projectsPlanetRef}
-            resumeRef={resumePlanetRef}
-          />
-          {/* Sun, Reusing About */}
-          <SunModel position={[0, 0, 0]} scale={3} />
+      <motion.div
+        className='scene'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 3 }}
+      >
+        <Canvas className='canvas'>
+          <Suspense fallback={null}>
+            <OrbitControls
+              enableZoom={true}
+              minDistance={20}
+              maxDistance={1000}
+            />
+            {/* <Perf /> */}
+            <Rocket
+              position={[0, 0, 100]}
+              scale={0.5}
+              resume={resume}
+              about={about}
+              contact={contact}
+              projects={projects}
+              home={home}
+              homeRef={homePlanetRef}
+              aboutRef={aboutPlanetRef}
+              contactRef={contactPlanetRef}
+              projectsRef={projectsPlanetRef}
+              resumeRef={resumePlanetRef}
+            />
+            {/* Sun, Reusing About */}
+            <SunModel position={[0, 0, 0]} scale={3} />
 
 
-          <HomeModel position={[0, -10.35, 100]} ref={homePlanetRef} orbitRadius={100} initialAngle={270} enableOrbit={enableOrbit} />
-          <AboutModel position={[-175, -10.35, -100]} ref={aboutPlanetRef} orbitRadius={175} initialAngle={180} enableOrbit={enableOrbit} />
-          <ContactModel position={[0, -10.35, -250]} ref={contactPlanetRef} orbitRadius={250} initialAngle={90} enableOrbit={enableOrbit} />
-          <ProjectsModel position={[325, -10.35, 0]} ref={projectsPlanetRef} orbitRadius={325} initialAngle={0} enableOrbit={enableOrbit} />
-          <ResumeModel position={[100, -10.35, 400]} ref={resumePlanetRef} orbitRadius={400} initialAngle={270} enableOrbit={enableOrbit} />
-          {/* {Array.from({ length: numStars }, (_, index) => (
+            <HomeModel position={[0, -10.35, 100]} ref={homePlanetRef} orbitRadius={100} initialAngle={270} enableOrbit={enableOrbit} />
+            <AboutModel position={[-175, -10.35, -100]} ref={aboutPlanetRef} orbitRadius={175} initialAngle={180} enableOrbit={enableOrbit} />
+            <ContactModel position={[0, -10.35, -250]} ref={contactPlanetRef} orbitRadius={250} initialAngle={90} enableOrbit={enableOrbit} />
+            <ProjectsModel position={[325, -10.35, 0]} ref={projectsPlanetRef} orbitRadius={325} initialAngle={0} enableOrbit={enableOrbit} />
+            <ResumeModel position={[100, -10.35, 400]} ref={resumePlanetRef} orbitRadius={400} initialAngle={270} enableOrbit={enableOrbit} />
+            {/* {Array.from({ length: numStars }, (_, index) => (
             <Stars key={`star-${cx[index]}-${cy[index]}-${cz[index]}`} r={r} position={[cx[index], cz[index], cy[index]]} scale={r[index]} />
           ))} */}
-          {quality == "High" && (
-            <EffectComposer>
-              <Bloom
-                intensity={0.75}
-                luminanceThreshold={0.5}
-                luminanceSmoothing={0.3}
-                exposure={1.5}
-                radius={1}
-              />
-              <ToneMapping
-                adaptive={true}
-                averageLuminance={0.5}
-                middleGrey={0.25}
-                maxLuminance={16.0}
-                adaptationRate={1.0}
-              ></ToneMapping>
-            </EffectComposer>
-          ) || (
+            {quality == "High" && (
               <EffectComposer>
                 <Bloom
-                  intensity={0.1}
-                  luminanceThreshold={0.2}
-                  luminanceSmoothing={0.1}
-                  exposure={1}
-                  radius={0.5}
+                  intensity={0.75}
+                  luminanceThreshold={0.5}
+                  luminanceSmoothing={0.3}
+                  exposure={1.5}
+                  radius={1}
                 />
+                <ToneMapping
+                  adaptive={true}
+                  averageLuminance={0.5}
+                  middleGrey={0.25}
+                  maxLuminance={16.0}
+                  adaptationRate={1.0}
+                ></ToneMapping>
               </EffectComposer>
-            )}
-          <Environment preset="sunset" />
-        </Suspense>
-      </Canvas>
+            ) || (
+                <EffectComposer>
+                  <Bloom
+                    intensity={0.1}
+                    luminanceThreshold={0.2}
+                    luminanceSmoothing={0.1}
+                    exposure={1}
+                    radius={0.5}
+                  />
+                </EffectComposer>
+              )}
+            <Environment preset="sunset" />
+          </Suspense>
+        </Canvas>
+      </motion.div>
     </div >
   )
 }
