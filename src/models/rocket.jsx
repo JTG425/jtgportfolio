@@ -48,9 +48,9 @@ export default function Rocket(props) {
   const planetCameraPositions = {
     home: new THREE.Vector3(40, 40, 40),
     about: new THREE.Vector3(40, 40, 40),
-    contact: new THREE.Vector3(40, 40, -220),
+    contact: new THREE.Vector3(40, 40, 40),
     projects: new THREE.Vector3(40, 40, 40),
-    resume: new THREE.Vector3(30, 40, -60)
+    resume: new THREE.Vector3(30, 40, 40)
   };
 
   const navigateTo = (destination) => {
@@ -145,8 +145,8 @@ export default function Rocket(props) {
     const radius = 40;
     const cameraX = rocketPosition.x + radius;
     const cameraZ = rocketPosition.z + radius;
-    const x = cameraX * Math.cos(time * 0.05);
-    const z = cameraZ * Math.sin(time * 0.05);
+    const x = cameraX * Math.cos(time * 0.02);
+    const z = cameraZ * Math.sin(time * 0.02);
     state.camera.position.set(x, 10, z);
     state.camera.lookAt(rocketPosition);
 

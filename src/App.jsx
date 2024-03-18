@@ -28,6 +28,8 @@ import { set } from 'animejs'
 
 
 
+
+
 function App() {
   //eslint-disable-next-line
   const [launch, setLaunch] = useState(false)
@@ -395,7 +397,7 @@ function App() {
               minDistance={20}
               maxDistance={1000}
             />
-            {/* <Perf /> */}
+            <Perf className="perf" deepAnalyze={true} />
             <Rocket
               position={[0, 0, 100]}
               scale={0.5}
@@ -414,15 +416,15 @@ function App() {
             <SunModel position={[0, 0, 0]} scale={3} />
 
 
-            <HomeModel position={[0, -10.35, 100]} ref={homePlanetRef} orbitRadius={100} initialAngle={270} enableOrbit={enableOrbit} />
-            <AboutModel position={[-175, -10.35, -100]} ref={aboutPlanetRef} orbitRadius={175} initialAngle={180} enableOrbit={enableOrbit} />
-            <ContactModel position={[0, -10.35, -250]} ref={contactPlanetRef} orbitRadius={250} initialAngle={90} enableOrbit={enableOrbit} />
-            <ProjectsModel position={[325, -10.35, 0]} ref={projectsPlanetRef} orbitRadius={325} initialAngle={0} enableOrbit={enableOrbit} />
-            <ResumeModel position={[100, -10.35, 400]} ref={resumePlanetRef} orbitRadius={400} initialAngle={270} enableOrbit={enableOrbit} />
+            <HomeModel position={[0, -10.35, 100]} orbitRadius={100} initialAngle={270} enableOrbit={enableOrbit} />
+            <AboutModel position={[-175, -10.35, -100]} orbitRadius={175} initialAngle={180} enableOrbit={enableOrbit} />
+            <ContactModel position={[0, -10.35, -250]} orbitRadius={250} initialAngle={90} enableOrbit={enableOrbit} />
+            <ProjectsModel position={[325, -10.35, 0]} orbitRadius={325} initialAngle={0} enableOrbit={enableOrbit} />
+            <ResumeModel position={[100, -10.35, 400]} orbitRadius={400} initialAngle={270} enableOrbit={enableOrbit} />
             {/* {Array.from({ length: numStars }, (_, index) => (
             <Stars key={`star-${cx[index]}-${cy[index]}-${cz[index]}`} r={r} position={[cx[index], cz[index], cy[index]]} scale={r[index]} />
           ))} */}
-            {quality == "High" && (
+            {quality === "High" && (
               <EffectComposer>
                 <Bloom
                   intensity={0.75}
@@ -442,11 +444,11 @@ function App() {
             ) || (
                 <EffectComposer>
                   <Bloom
-                    intensity={0.1}
-                    luminanceThreshold={0.2}
-                    luminanceSmoothing={0.1}
-                    exposure={1}
-                    radius={0.5}
+                    intensity={0}
+                    luminanceThreshold={0}
+                    luminanceSmoothing={0}
+                    exposure={0}
+                    radius={0}
                   />
                 </EffectComposer>
               )}

@@ -8,15 +8,9 @@ Model: https://www.cgtrader.com/3d-models/space/planet/planets-1
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useFrame } from '@react-three/fiber';
 
 export default function HomeModel(props) {
   const homeRef = useRef();
-
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime();
-    homeRef.current.rotation.y -= 0.0001;
-  });
   const { nodes, materials } = useGLTF("models/homePlanet.glb");
   return (
     <group {...props} dispose={null} ref={homeRef}>
