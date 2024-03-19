@@ -4,7 +4,6 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, OrbitControls } from '@react-three/drei'
 import { motion, AnimatePresence } from 'framer-motion'
 import { EffectComposer, Bloom, ToneMapping } from '@react-three/postprocessing'
-import { Perf } from 'r3f-perf' // Performance Monitor
 
 //eslint-disable-next-line
 import { motion as m } from 'framer-motion-3d' //3d Motion
@@ -397,7 +396,6 @@ function App() {
               minDistance={20}
               maxDistance={1000}
             />
-            <Perf className="perf" deepAnalyze={true} />
             <Rocket
               position={[0, 0, 100]}
               scale={0.5}
@@ -421,9 +419,6 @@ function App() {
             <ContactModel position={[0, -10.35, -250]} orbitRadius={250} initialAngle={90} enableOrbit={enableOrbit} />
             <ProjectsModel position={[325, -10.35, 0]} orbitRadius={325} initialAngle={0} enableOrbit={enableOrbit} />
             <ResumeModel position={[100, -10.35, 400]} orbitRadius={400} initialAngle={270} enableOrbit={enableOrbit} />
-            {/* {Array.from({ length: numStars }, (_, index) => (
-            <Stars key={`star-${cx[index]}-${cy[index]}-${cz[index]}`} r={r} position={[cx[index], cz[index], cy[index]]} scale={r[index]} />
-          ))} */}
             {quality === "High" && (
               <EffectComposer>
                 <Bloom
