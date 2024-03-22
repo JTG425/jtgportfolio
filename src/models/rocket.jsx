@@ -70,11 +70,6 @@ export default function Rocket(props) {
     return direction;
   }
 
-  useEffect(() => {
-    if (currentPlanet !== destination) {
-      navigateTo(destination);
-    }
-  }, [destination]);
 
   useEffect(() => {
     let newDestination = '';
@@ -86,6 +81,7 @@ export default function Rocket(props) {
 
     if (newDestination && newDestination !== currentPlanet) {
       setDestination(newDestination);
+      navigateTo(newDestination);
     }
   }, [home, about, contact, projects, resume]);
 
@@ -97,12 +93,18 @@ export default function Rocket(props) {
     const landed = 1;
     setLanded(false);
 
-    const midPosition = new THREE.Vector3().addVectors(startPosition, endPosition).multiplyScalar(0.5).add(new THREE.Vector3(0, 75, 0));
-    const curve = new THREE.CatmullRomCurve3([startPosition, midPosition, endPosition], false, 'catmullrom', 0.5);
+    const midPosition = new THREE.Vector3().addVectors(startPosition, endPosition).multiplyScalar(0.5).add(new THREE.Vector3(0, 100, 0));
+    const hCMid = new THREE.Vector3().addVectors(startPosition, endPosition).multiplyScalar(0.5).add(new THREE.Vector3(0, 200, 0));
+
+    var curve = new THREE.CatmullRomCurve3([startPosition, midPosition, endPosition], false, 'centripetal', 0.5);
+
+    if (startPosition === planetPositions.home && endPosition === planetPositions.contact || startPosition === planetPositions.contact && endPosition === planetPositions.home) {
+      curve = new THREE.CatmullRomCurve3([startPosition, hCMid, endPosition], false, 'centripetal', 0.5);
+    }
 
     gsap.to({ t: 0 }, {
       t: 1,
-      duration: 5,
+      duration: 6,
       onUpdate: function () {
         const position = curve.getPointAt(this.targets()[0].t);
         rocketRef.current.position.copy(position);

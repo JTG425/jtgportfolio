@@ -30,14 +30,12 @@ function About() {
   const images = [
     "https://i.imgur.com/7nSCuwh.jpg", // Portrait
     "https://i.imgur.com/LypqAyD.jpg", // Maria Bennet and I
-    "https://i.imgur.com/T9U2pn8.jpg?1", //
-    "https://i.imgur.com/LypqAyD.jpg", // Maria Bennet and I
+    "https://i.imgur.com/T9U2pn8.jpg?1", // ICCA 2022
   ]
   const text = [
-    "My Name is Joshua Golonka, I was born and raised in Montpelier VT with my 4 siblings and two dogs, Calvin and Hobbes :)",
-    "I'm currently obtaining my Bachelors Degree in Electrical And Computer Engineering from THE Ohio State University (Go Bucks)",
-    "When I started college, I was convinced to join one of my schools Co-ed A Capella groups, The Ohio State of Mind, and I've been singing with them ever since! The group has been a huge part of my college experience and has introduced me to new and exciting experiences and people. Among these experience was the opportunity to compete in the Anual ICCA, which is the International Championship of Collegiate A Capella. My group has consistantly made it to the Midwest Seminfals and we are the current two time Semifinal Champions, which gave us the opportunity to compete in NYC against the top 10 a cappella groups in the US and Europe.",
-    "lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur quas cumque quasi hic, fuga saepe voluptatum architecto! Autem, id ipsa! Ad, eos ipsum nemo eaque voluptas modi sit ducimus eveniet."
+    "My Name is Joshua Golonka, I was born and raised in Montpelier VT with my 4 siblings and two dogs, Calvin and Hobbes :). Throughout my life, I have had an affinity towards technology... whether it was taking apart the family VCR to fix it (I made it worse) or building my own computer in high school, I knew that I wanted to pursue a career in technology.",
+    "I'm currently obtaining my Bachelors Degree in Electrical And Computer Engineering from THE Ohio State University (Go Bucks). Throughout my 5 years in college, I have fallen in love with Programming, specifically Front End Development, as I feel my creativity and problem solving skills excel within this field.",
+    " In My Free time, I love to hang out with my friends, go to the gym, and listen to really sad music. When I started college, I was convinced to join one of my schools Co-ed A Capella groups, The Ohio State of Mind, and I've been singing with them ever since! The group has been a huge part of my college experience and has introduced me to new and exciting experiences and people. Among these experience was the opportunity to compete Anually in the Internation Competition of Collegiate A Cappella (ICCA). My group has consistently performaned well and have had the amazing opportunity to win the Midwest Semifinal Three Years in a row (2022, 2023, and 2024), earning us a ticket to compete in ICCA finals in NYC against the other top 10 groups in the US and UK out of around 600 other groups.",
   ]
 
   return (
@@ -51,9 +49,8 @@ function About() {
       >
         <>
         </>
-        {/* <div className='socials'>
-          <SocialIcon target="_blank" href="www.instagram.com/joshuagolonka25" url="www.instagram.com" bgColor="none" />
-        </div> */}
+        <div className='socials'>
+        </div>
         {images.map((image, index) => {
           let classNames, imageClassName
           if (index % 2 === 0) {
