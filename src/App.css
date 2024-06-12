@@ -1,0 +1,118 @@
+:root {
+  --primary: rgb(2, 81, 132);
+  --primary-content: rgb(136, 207, 253);
+  --primary-dark: rgb(1, 50, 82);
+  --primary-light: rgb(3, 112, 182);
+
+  --secondary: rgb(118, 2, 132);
+  --secondary-content: rgb(241, 136, 253);
+  --secondary-dark: rgb(73, 1, 82);
+  --secondary-light: rgb(163, 3, 182);
+
+  --background: rgb(22, 26, 29);
+  --foreground: rgb(33, 39, 44);
+  --border: rgb(54, 66, 73);
+
+  --copy: rgb(251, 251, 252);
+  --copy-light: rgb(211, 218, 222);
+  --copy-lighter: rgb(152, 169, 179);
+
+  --success: rgb(2, 132, 2);
+  --warning: rgb(132, 132, 2);
+  --error: rgb(132, 2, 2);
+  --success-content: rgb(136, 253, 136);
+  --warning-content: rgb(253, 253, 136);
+  --error-content: rgb(253, 136, 136);
+
+  --border-radius: 0.375rem;
+  --box-shadow: 0 0px 10px 1px rgb(2, 81, 132, 0.5);
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+button,
+input,
+select,
+a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--background);
+}
+
+.App img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.text-block {
+  width: fit-content;
+  height: fit-content;
+  background: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.text-block h1 {
+  color: var(--copy);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.text-block p {
+  color: var(--copy-light);
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+
+.link-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  width: 175px;
+  height: fit-content;
+  background: var(--primary);
+  color: var(--primary-content);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+  margin-top: 25px;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 400;
+}
