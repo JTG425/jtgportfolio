@@ -33,6 +33,19 @@ a {
   background: var(--background);
 }
 
+.App h1 {
+  color: var(--copy);
+}
+
+.App h2 {
+  color: var(--copy-light);
+}
+
+.App p {
+  color: var(--copy-lighter);
+
+}
+
 .temp {
   display: none;
 }
@@ -50,7 +63,7 @@ a {
   gap: 25px;
 }
 
-.App img {
+.intro img {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -58,6 +71,18 @@ a {
   margin-bottom: 0px;
   cursor: pointer;
 }
+
+.page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 1rem;
+}
+
+
 
 
 

@@ -1,11 +1,10 @@
-import '../styles/about.css'
+import "../styles/about.css";
 
 function About() {
-
   return (
-      <div className="about-me">
-        
-      </div>
+    <>
+      <h2>About Me</h2>
+    </>
   );
 }
 
