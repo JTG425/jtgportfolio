@@ -47,6 +47,12 @@
   }
 }
 
+html {
+  background: var(--background);
+  background-color: var(--background);
+  border: none;
+}
+
 
 body {
   margin: 0;
@@ -56,4 +62,6 @@ body {
   justify-content: flex-start;
   overflow-x: hidden;
   overflow-y: hidden;
+  background: var(--background);
+  border: none;
 }
