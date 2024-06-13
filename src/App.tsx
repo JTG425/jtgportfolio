@@ -2,6 +2,8 @@ import me from "./assets/me.png";
 import './App.css'
 import { motion } from 'framer-motion'
 import { FaLinkedin } from "react-icons/fa";
+import NavBar from "./components/navbar";
+import { useState } from 'react';
 
 function App() {
   const background = "rgb(33, 39, 44)";
@@ -9,6 +11,7 @@ function App() {
   const buttonBorder ='rgb(54, 66, 73)'
   const text = 'rgb(251, 251, 252)'
   // 0 0px 10px 1px rgb(2, 81, 132, 0.5)
+  const [page, setPage] = useState("Home");
 
   const shadowVariants = {
     notHovered: {
@@ -42,10 +45,17 @@ function App() {
     },
   }
 
+  const handlePageChange = (page) => {
+    setPage(page);
+    console.log(page);
+  }
+
+
 
   return (
     <>
       <div className="App">
+        <NavBar setPage={handlePageChange} />
         <motion.img 
           className="me" 
           src={me} 
@@ -69,21 +79,6 @@ function App() {
         <p>This Portfolio is under construction, </p>
         <p>In the Meantime, Check out my LinkedIn!</p>
         </motion.span>
-        <a
-          href="https://www.linkedin.com/in/joshua-golonka-7a71b230a"
-          target="_blank"
-        >
-          <motion.button
-            className="link-button"
-            initial="notHovered"
-            whileHover="hovered"
-            whileTap="pressed"
-            variants={shadowVariants}
-            >
-            <FaLinkedin className="linkedin-icon" />
-              LinkedIn
-          </motion.button>
-        </a>
       </div>
     </>
   );
