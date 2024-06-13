@@ -2,7 +2,7 @@ import me from "./assets/me.png";
 import "./App.css";
 import { motion } from "framer-motion";
 import { FaLinkedin } from "react-icons/fa";
-// import NavBar from "./components/navbar";
+import NavBar from "./components/navbar";
 import { useState, useEffect } from "react";
 import { FaReact } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io5";
@@ -14,11 +14,14 @@ import { SiAwslambda } from "react-icons/si";
 import { SiAwsamplify } from "react-icons/si";
 import { SiFramer } from "react-icons/si";
 import { FaPython } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
+
 
 function App() {
   const [hoverShadow, setHoverShadow] = useState("");
+  const [showNav, setShowNav] = useState(false);
   // 0 0px 10px 1px rgb(2, 81, 132, 0.5)
-  // const [page, setPage] = useState("Home");
+  const [page, setPage] = useState("Home");
 
   const skillComponents = [
     <FaReact  />,
@@ -45,10 +48,20 @@ function App() {
     }
   };
 
-  // const handlePageChange = (page) => {
-  //   setPage(page);
-  //   console.log(page);
-  // };
+  const navVariants = {
+    open: {
+      x: "-40%",
+    },
+    closed: {
+      x: "-110%",
+    },
+  };
+
+  const handlePageChange = (page) => {
+    setPage(page);
+    setShowNav(false);
+    console.log(page);
+  };
 
   useEffect(() => {
     const rootStyle = getComputedStyle(document.documentElement);
@@ -58,6 +71,27 @@ function App() {
   return (
     <>
       <div className="App">
+        <p className="temp">{page}</p>
+        <motion.button 
+          className="burger-menu-container"
+          initial="notHovered"
+          whileHover="hovered"
+          whileTap={{ scale: 0.96 }}
+          variants={boxShadowVariants}
+          onClick={() => setShowNav(!showNav)}
+          transition={{ duration: 0.25 }}
+          >
+        <GiHamburgerMenu className="burger"/>
+        </motion.button>
+        <motion.div
+          className="nav-container"
+          initial="closed"
+          animate={showNav ? "open" : "closed"}
+          variants={navVariants}
+          >
+          <NavBar setPage={handlePageChange} hoverShadow={hoverShadow} />
+          </motion.div>
+
         <span className="intro">
           <motion.img
             className="me"
@@ -65,6 +99,7 @@ function App() {
             alt="me"
             initial="notHovered"
             whileHover="hovered"
+            whileTap={{ scale: 0.96 }}
             variants={boxShadowVariants}
           />
           <span className="text-block">
@@ -83,6 +118,7 @@ function App() {
                 className="link-button"
                 initial="notHovered"
                 whileHover="hovered"
+                whileTap={{ scale: 0.96 }}
                 variants={boxShadowVariants}
                 >
                 <FaLinkedin />
@@ -97,6 +133,7 @@ function App() {
                 className="skill"
                 initial="notHovered"
                 whileHover="hovered"
+                whileTap={{ scale: 0.96 }}
                 variants={boxShadowVariants}
                 >
                 {skill}

@@ -1,21 +1,31 @@
 .navbar {
     display: flex;
-    flex-direction: row;
+    width: 60%;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .nav-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--foreground);
     color: var(--copy);
     border: 2px solid var(--border);
     border-radius: var(--border-radius);
     padding: 0.5rem 0.5rem;
     font-size: 14px;
-    width: 95px;
+    width: 90%;
+    height: fit-content;
+    padding: 1.5rem 1.5rem;
     text-decoration: none;
     cursor: pointer;
     flex-grow: 1;
+    font-size: 24px;
+    font-weight: 400;
 }
 
 

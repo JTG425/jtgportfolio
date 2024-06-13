@@ -19,6 +19,7 @@ a {
 }
 
 .App {
+  position: relative;
   width: 100vw;
   min-height: 100vh;
   height: fit-content;
@@ -30,6 +31,10 @@ a {
   overflow-x: hidden;
   overflow-y: scroll;
   background: var(--background);
+}
+
+.temp {
+  display: none;
 }
 
 
@@ -49,7 +54,7 @@ a {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  margin-top: 0px;
+  margin-top: 25px;
   margin-bottom: 0px;
   cursor: pointer;
 }
@@ -67,7 +72,7 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   cursor: pointer;
   max-width: var(--max-width);
 }
@@ -117,9 +122,9 @@ a {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   gap: 15px;
-  font-size: 24px;
+  font-size: 18px;
   background: var(--foreground);
   border: 1px solid var(--border);
   color: var(--copy);
@@ -141,4 +146,49 @@ a {
   border: 2px solid var(--border);
   color: var(--copy);
   cursor: pointer;
+}
+
+.burger-menu-container {
+  position: fixed;
+  display: flex;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  top: 15px;
+  left: 15px;
+  color: var(--copy-light);
+  font-size: 32px;
+  cursor: pointer;
+  background: var(--foreground);
+  border-radius: var(--border-radius);
+  border: 2px solid var(--border);
+}
+
+.nav-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--foreground);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  border-right: 2px solid var(--border);
+  border-top: none;
+  border-bottom: none;
+  gap: 10px;
+  padding-top: 100px;
+}
+
+.burger {
+  margin: 0;
+  padding: 0;
 }
