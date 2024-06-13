@@ -3,15 +3,16 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 25px;
+    gap: 10px;
 }
 
 .nav-link {
     color: var(--copy);
     border: 2px solid var(--border);
     border-radius: var(--border-radius);
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+    font-size: 14px;
+    width: 95px;
     text-decoration: none;
     cursor: pointer;
     flex-grow: 1;

@@ -1,84 +1,111 @@
 import me from "./assets/me.png";
-import './App.css'
-import { motion } from 'framer-motion'
+import "./App.css";
+import { motion } from "framer-motion";
 import { FaLinkedin } from "react-icons/fa";
 import NavBar from "./components/navbar";
-import { useState } from 'react';
+import { useState, useEffect } from "react";
+import { FaReact } from "react-icons/fa";
+import { IoLogoJavascript } from "react-icons/io5";
+import { SiTypescript } from "react-icons/si";
+import { FaHtml5 } from "react-icons/fa";
+import { IoLogoCss3 } from "react-icons/io5";
+import { FaAws } from "react-icons/fa";
+import { SiAwslambda } from "react-icons/si";
+import { SiAwsamplify } from "react-icons/si";
+import { SiFramer } from "react-icons/si";
+import { FaPython } from "react-icons/fa";
 
 function App() {
-  const background = "rgb(33, 39, 44)";
-  const primary = 'rgb(2, 81, 132)';
-  const buttonBorder ='rgb(54, 66, 73)'
-  const text = 'rgb(251, 251, 252)'
+  const [text, setText] = useState("");
+  const [hoverShadow, setHoverShadow] = useState("");
   // 0 0px 10px 1px rgb(2, 81, 132, 0.5)
   const [page, setPage] = useState("Home");
 
-  const shadowVariants = {
-    notHovered: {
-      background: background,
-      color: text,
-      border: `2px solid ${buttonBorder}`,
-      boxShadow: "none",
-      transition: {
-        duration: 0.2,
-        ease: "easeInOut",
-      },
-    },
+  const skillComponents = [
+    <FaReact  />,
+    <IoLogoJavascript  />,
+    <SiTypescript  />,
+    <FaHtml5  />,
+    <IoLogoCss3  />,
+    <FaAws  />,
+    <SiAwslambda  />,
+    <SiAwsamplify  />,
+    <SiFramer  />,
+    <FaPython  />,
+  ];
+
+  const boxShadowVariants = {
     hovered: {
-      background: background,
-      color: text,
-      border: `2px solid ${primary}`,
-      boxShadow: "0 0px 10px 1px rgba(2, 81, 132, 0.5)",
+      boxShadow: hoverShadow,
       transition: {
-        duration: 0.2,
-        ease: "easeInOut",
-      },
+        duration: 0.25,
+      }
     },
-    pressed: {
-      background: background,
-      color: primary,
-      border: `2px solid ${buttonBorder}`,
-      transition: {
-        duration: 0.2,
-        ease: "easeInOut",
-      },
-    },
-  }
+    notHovered: {
+      boxShadow: "0px 0px 0px 0px rgb(0, 0, 0, 0)"
+    }
+  };
 
-  const handlePageChange = (page) => {
-    setPage(page);
-    console.log(page);
-  }
+  // const handlePageChange = (page) => {
+  //   setPage(page);
+  //   console.log(page);
+  // };
 
-
+  useEffect(() => {
+    const rootStyle = getComputedStyle(document.documentElement);
+    setText(rootStyle.getPropertyValue("--copy").trim());
+    setHoverShadow(rootStyle.getPropertyValue("--box-shadow").trim());
+  }, []);
 
   return (
     <>
       <div className="App">
-        <NavBar setPage={handlePageChange} />
-        <motion.img 
-          className="me" 
-          src={me} 
-          alt="me" 
-          initial="notHovered"
-          whileHover="hovered"
-          whileTap="pressed"
-          variants={shadowVariants}
+        <span className="intro">
+          <motion.img
+            className="me"
+            src={me}
+            alt="me"
+            initial="notHovered"
+            whileHover="hovered"
+            variants={boxShadowVariants}
           />
-        <motion.span 
-        className="text-block"
-        initial="notHovered"
-        whileHover="hovered"
-        whileTap="pressed"
-        variants={shadowVariants}
-        >
-          <h1>
-            Hi, I'm <span>Joshua</span>
-          </h1>
+          <span className="text-block">
+            <h1>
+              Hi, I'm <span>Joshua</span>
+            </h1>
 
-        <p>This Portfolio is under construction, </p>
-        <p>In the Meantime, Check out my LinkedIn!</p>
-        </motion.span>
+            <p>This Portfolio is under construction, </p>
+            <p>In the Meantime, Check out my LinkedIn!</p>
+            <a
+              href="https://www.linkedin.com/in/joshua-golonka-7a71b230a"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <motion.button 
+                className="link-button"
+                initial="notHovered"
+                whileHover="hovered"
+                variants={boxShadowVariants}
+                >
+                <FaLinkedin />
+                LinkedIn
+              </motion.button>
+            </a>
+          </span>
+          <div className="skills">
+            {skillComponents.map((skill, index) => (
+              <motion.div 
+                key={`skill-${index}`} 
+                className="skill"
+                initial="notHovered"
+                whileHover="hovered"
+                variants={boxShadowVariants}
+                >
+                {skill}
+              </motion.div>
+            ))}
+          </div>
+        </span>
       </div>
     </>
   );
