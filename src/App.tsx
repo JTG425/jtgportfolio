@@ -2,7 +2,7 @@ import me from "./assets/me.png";
 import "./App.css";
 import { motion } from "framer-motion";
 import { FaLinkedin } from "react-icons/fa";
-import NavBar from "./components/navbar";
+// import NavBar from "./components/navbar";
 import { useState, useEffect } from "react";
 import { FaReact } from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io5";
@@ -16,10 +16,9 @@ import { SiFramer } from "react-icons/si";
 import { FaPython } from "react-icons/fa";
 
 function App() {
-  const [text, setText] = useState("");
   const [hoverShadow, setHoverShadow] = useState("");
   // 0 0px 10px 1px rgb(2, 81, 132, 0.5)
-  const [page, setPage] = useState("Home");
+  // const [page, setPage] = useState("Home");
 
   const skillComponents = [
     <FaReact  />,
@@ -53,7 +52,6 @@ function App() {
 
   useEffect(() => {
     const rootStyle = getComputedStyle(document.documentElement);
-    setText(rootStyle.getPropertyValue("--copy").trim());
     setHoverShadow(rootStyle.getPropertyValue("--box-shadow").trim());
   }, []);
 
