@@ -61,7 +61,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
   background: var(--background);
   border: none;
 }
