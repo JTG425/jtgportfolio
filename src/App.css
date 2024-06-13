@@ -30,7 +30,6 @@ a {
   overflow-x: hidden;
   overflow-y: scroll;
   background: var(--background);
-  padding: 1rem;
 }
 
 
