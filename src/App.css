@@ -41,9 +41,16 @@ a {
   color: var(--copy-light);
 }
 
+.App h3 {
+  color: var(--copy-light);
+}
+
+.App h4 {
+  color: var(--copy-light);
+}
+
 .App p {
   color: var(--copy-lighter);
-
 }
 
 .temp {
@@ -187,9 +194,9 @@ a {
   color: var(--copy);
   font-size: 32px;
   cursor: pointer;
-  background: var(--foreground);
+  background: none;
   border-radius: var(--border-radius);
-  border: 2px solid var(--border);
+  border: none;
 }
 
 .nav-container {

@@ -19,7 +19,7 @@ function App() {
   const pageComponents = {
     "Home": <Home hoverShadow={hoverShadow} />,
     "About Me": <About />,
-    "My Projects": <Projects />,
+    "My Projects": <Projects hoverShadow={hoverShadow} />,
     "My Resume": <Resume />,
     "Contact Me": <Contact />,
   };
@@ -39,9 +39,20 @@ function App() {
   const navVariants = {
     open: {
       x: "-40%",
+      transition: {
+        duration: 0.25,
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      },
     },
     closed: {
       x: "-110%",
+      transition: {
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      },
     },
   };
 
@@ -76,7 +87,7 @@ function App() {
           animate={showNav ? "open" : "closed"}
           variants={navVariants}
         >
-          <NavBar setPage={handlePageChange} hoverShadow={hoverShadow} />
+          <NavBar setPage={handlePageChange} hoverShadow={hoverShadow} showNav={showNav} />
         </motion.div>
         <AnimatePresence>
           <motion.div
