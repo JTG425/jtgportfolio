@@ -49,7 +49,7 @@ function FGB(props) {
       y: -110,
       width: "95%",
       height: "fit-content",
-      zIndex: 100,
+      zIndex: 5,
       borderRadius: "0",
     },
   };
