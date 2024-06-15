@@ -33,7 +33,7 @@
 
   --border-radius: 0.375rem;
   --box-shadow: 0 0px 10px 1px rgb(2, 81, 132, 0.5);
-  --max-width: 700px;
+  --max-width: 1000px;
 
   --glass-foreground: rgba(251, 251, 252, 0.5);
   --glass-backdrop-filter: blur(10px);
