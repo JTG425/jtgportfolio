@@ -8,7 +8,7 @@ import { FaAws } from "react-icons/fa";
 import { SiAwslambda } from "react-icons/si";
 import { SiAwsamplify } from "react-icons/si";
 import { FaPython } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { IoClose } from "react-icons/io5";
 
 function FGB(props) {
@@ -25,7 +25,7 @@ function FGB(props) {
     <FaPython />,
   ];
 
-  const boxShadowVariants = {
+  const boxShadowVariants: Variants = {
     hovered: {
       boxShadow: hoverShadow,
       transition: {
@@ -37,29 +37,30 @@ function FGB(props) {
     },
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     closed: {
       y: 0,
-      width: "70%",
+      width: "75%",
       height: "85px",
       zIndex: 2,
       borderRadius: "0.375rem",
+      overflowY: "hidden",
     },
     open: {
-      y: -110,
-      width: "95%",
-      height: "fit-content",
+      y: -20,
+      width: "93%",
+      height: "75vh",
       zIndex: 5,
       borderRadius: "0",
+      overflowY: "scroll",
+      boxShadow: hoverShadow,
     },
   };
 
   return (
     <>
-      <motion.button
+        <motion.button
           className="close-button"
-          initial="notHovered"
-          whileHover="hovered"
           whileTap={{ scale: 0.96 }}
           animate={open ? { opacity: 1, zIndex:101 } : { opacity: 0, zIndex: -1}}
           variants={boxShadowVariants}
@@ -76,6 +77,9 @@ function FGB(props) {
       >
         <h3>FGB Theaters Website Development</h3>
         <h4>December 2023 - May 2024</h4>
+        {open ? ( 
+        <>
+
         <span className="project-stack-container">
           {skillComponents.map((skill, index) => (
             <motion.div
@@ -126,6 +130,7 @@ function FGB(props) {
             to reuse site images/showtimes if the cached version is up to date.
           </p>
         </span>
+        </> ) : null}
       </motion.div>
     </>
   );

@@ -10,6 +10,7 @@ import Contact from "./pages/contact";
 import Projects from "./pages/projects";
 import Resume from "./pages/resume";
 
+
 function App() {
   const [hoverShadow, setHoverShadow] = useState("");
   const [showNav, setShowNav] = useState(false);
@@ -21,7 +22,7 @@ function App() {
     "About Me": <About />,
     "My Projects": <Projects hoverShadow={hoverShadow} />,
     "My Resume": <Resume />,
-    "Contact Me": <Contact />,
+    "Contact Me": <Contact hoverShadow={hoverShadow} />,
   };
 
   const boxShadowVariants = {

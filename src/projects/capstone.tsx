@@ -2,7 +2,7 @@ import "../styles/projects.css";
 import { FaRaspberryPi } from "react-icons/fa";
 import { FaPython } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 
@@ -10,7 +10,7 @@ function Capstone(props) {
   const hoverShadow = props.hoverShadow;
   const skillComponents = [<FaPython />, <FaRaspberryPi />];
   const [open, setOpen] = useState(false);
-  const boxShadowVariants = {
+  const boxShadowVariants: Variants = {
     hovered: {
       boxShadow: hoverShadow,
       transition: {
@@ -22,20 +22,23 @@ function Capstone(props) {
     },
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     closed: {
       y: 100,
-      width: "70%",
+      width: "75%",
       height: "85px",
       zIndex: 1,
       borderRadius: "0.375rem",
+      overflowY: "hidden",
     },
     open: {
-      y: -110,
-      width: "95%",
-      height: "fit-content",
+      y: -20,
+      width: "93%",
+      height: "75vh",
       zIndex: 5,
       borderRadius: "0",
+      boxShadow: hoverShadow,
+      overflowY: "scroll",
     },
   };
 
@@ -43,8 +46,6 @@ function Capstone(props) {
     <>
       <motion.button
         className="close-button"
-        initial="notHovered"
-        whileHover="hovered"
         whileTap={{ scale: 0.96 }}
         animate={
           open ? { opacity: 1, zIndex: 101 } : { opacity: 0, zIndex: -1 }
@@ -63,6 +64,8 @@ function Capstone(props) {
       >
         <h3>ECE Senior Capstone Design Project</h3>
         <h4>September 2023 - April 2024</h4>
+        {open ? (
+          <>
         <span className="project-stack-container">
           {skillComponents.map((skill, index) => (
             <motion.div
@@ -137,6 +140,8 @@ function Capstone(props) {
             with any warnings generated throughout the process.
           </p>
         </span>
+        </>
+        ) : null}
       </motion.div>
     </>
   );

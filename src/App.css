@@ -191,7 +191,7 @@ a {
   padding: 0.15rem;
   top: 10px;
   left: 15px;
-  color: var(--copy);
+  color: var(--copy-light);
   font-size: 38px;
   cursor: pointer;
   background: none;
@@ -225,5 +225,5 @@ a {
 .burger {
   margin: 0;
   padding: 0;
-  color: var(--copy);
+  color: var(--copy-light);
 }
