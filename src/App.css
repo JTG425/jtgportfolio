@@ -146,6 +146,7 @@ a {
 }
 
 .skills {
+  position: relative;
   width: 80%;
   height: fit-content;
   display: flex;
@@ -165,6 +166,7 @@ a {
 }
 
 .skill {
+  position: relative;
   width: fit-content;
   height: fit-content;
   display: flex;
