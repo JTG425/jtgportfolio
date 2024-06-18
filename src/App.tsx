@@ -13,18 +13,11 @@ import Resume from "./pages/resume";
 
 function App() {
   const [hoverShadow, setHoverShadow] = useState("");
+  const [shadow, setShadow] = useState("");
   const [showNav, setShowNav] = useState(false);
   // 0 0px 10px 1px rgb(2, 81, 132, 0.5)
   const [page, setPage] = useState("Home");
-
-  const pageComponents = {
-    "Home": <Home hoverShadow={hoverShadow} />,
-    "About Me": <About />,
-    "My Projects": <Projects hoverShadow={hoverShadow} />,
-    "My Resume": <Resume />,
-    "Contact Me": <Contact hoverShadow={hoverShadow} />,
-  };
-
+  
   const boxShadowVariants = {
     hovered: {
       boxShadow: hoverShadow,
@@ -33,9 +26,20 @@ function App() {
       },
     },
     notHovered: {
-      boxShadow: "0px 0px 0px 0px rgb(0, 0, 0, 0)",
+      boxShadow: shadow,
     },
   };
+
+
+  const pageComponents = {
+    "Home": <Home hoverShadow={hoverShadow} shadow={shadow} />,
+    "About Me": <About />,
+    "My Projects": <Projects hoverShadow={hoverShadow} shadow={shadow} />,
+    "My Resume": <Resume shadow={shadow} />,
+    "Contact Me": <Contact hoverShadow={hoverShadow} shadow={shadow} />,
+  };
+
+
 
   const navVariants = {
     open: {
@@ -65,6 +69,7 @@ function App() {
   useEffect(() => {
     const rootStyle = getComputedStyle(document.documentElement);
     setHoverShadow(rootStyle.getPropertyValue("--box-shadow").trim());
+    setShadow(rootStyle.getPropertyValue("--shadow").trim());
   }, []);
 
   return (

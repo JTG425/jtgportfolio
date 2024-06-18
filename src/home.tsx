@@ -1,13 +1,14 @@
 import me from "./assets/me.png";
 import "./App.css";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { FaLinkedin } from "react-icons/fa";
 import SkillPool from "./components/skillpool";
 
 function Home(props) {
   const hoverShadow = props.hoverShadow;
+  const shadow = props.shadow;
 
-  const boxShadowVariants = {
+  const boxShadowVariants: Variants = {
     hovered: {
       boxShadow: hoverShadow,
       transition: {
@@ -15,10 +16,9 @@ function Home(props) {
       },
     },
     notHovered: {
-      boxShadow: "0px 0px 0px 0px rgb(0, 0, 0, 0)",
+      boxShadow: shadow,
     },
   };
-
 
 
   return (

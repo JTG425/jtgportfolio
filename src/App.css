@@ -97,7 +97,7 @@ a {
   width: 80%;
   height: fit-content;
   background: var(--foreground);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
@@ -107,6 +107,7 @@ a {
   padding: 1rem 0.5rem;
   cursor: pointer;
   max-width: var(--max-width);
+  
 }
 
 .text-block h1 {
@@ -141,8 +142,8 @@ a {
   font-size: 24px;
   font-weight: 400;
   background: var(--foreground);
-  border: 2px solid var(--border);
-  color: var(--copy)
+  color: var(--copy);
+  box-shadow: var(--shadow);
 }
 
 .skills {
@@ -159,7 +160,7 @@ a {
   gap: 15px;
   font-size: 18px;
   background: var(--foreground);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   color: var(--copy);
   border-radius: var(--border-radius);
   max-width: var(--max-width);
@@ -177,9 +178,9 @@ a {
   padding: 0.5rem;
   border-radius: var(--border-radius);
   background: var(--foreground);
-  border: 2px solid var(--border);
   color: var(--copy);
   cursor: pointer;
+  box-shadow: var(--shadow);
 }
 
 .burger-menu-container {
@@ -196,9 +197,10 @@ a {
   color: var(--copy-light);
   font-size: 38px;
   cursor: pointer;
-  background: none;
+  background: var(--foreground);
   border-radius: var(--border-radius);
   border: none;
+  box-shadow: var(--shadow);
 
 }
 

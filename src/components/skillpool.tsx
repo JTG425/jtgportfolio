@@ -13,54 +13,8 @@ import { motion, Variants } from "framer-motion";
 // import { IoClose } from "react-icons/io5";
 
 function SkillPool(props) {
-  const hoverShadow = props.hoverShadow;
+  const boxShadowVariants: Variants = props.boxShadowVariants;
 
-
-  const skillPoolVariants: Variants = {
-    hovered: {
-      boxShadow: hoverShadow,
-      transition: {
-        duration: 0.25,
-      },
-    },
-    notHovered: {
-      boxShadow: "0px 0px 0px 0px rgb(0, 0, 0, 0)",
-    },
-    normal: {
-      width: "80%",
-      position: "relative",
-      display: "flex",
-      height: "fit-content",
-    },
-    pool: {
-      y: -260,
-      width: "100%",
-      height: "300px",
-    },
-  };
-
-  const iconVariants: Variants = {
-    initial: {
-      borderRadius: "0.375rem",
-      x: 0,
-      y: 0,
-    },
-    pool: {
-      borderRadius: "50%",
-      transition: {
-        duration: 0.5,
-      },
-    },
-    hovered: {
-      boxShadow: hoverShadow,
-      transition: {
-        duration: 0.25,
-      },
-    },
-    notHovered: {
-      boxShadow: "0px 0px 0px 0px rgb(0, 0, 0, 0)",
-    },
-  };
 
   const skillComponents = [
     <FaReact />,
@@ -80,16 +34,16 @@ function SkillPool(props) {
     <>
       <motion.div
         className="skills"
-        variants={skillPoolVariants}
+        variants={boxShadowVariants}
       >
         {skillComponents.map((skill, index) => (
           <motion.div
             key={`skill-${index}`}
             className="skill"
-            initial="initial"
+            initial="notHovered"
             whileHover="hovered"
             whileTap={{ scale: 0.96 }}
-            variants={iconVariants}
+            variants={boxShadowVariants}
           >
             {skill}
           </motion.div>
