@@ -97,7 +97,7 @@ a {
   width: 80%;
   height: fit-content;
   background: var(--foreground);
-  border: 2px solid var(--border);
+  border: none;
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
@@ -107,7 +107,7 @@ a {
   padding: 1rem 0.5rem;
   cursor: pointer;
   max-width: var(--max-width);
-  
+  box-shadow: var(--shadow);
 }
 
 .text-block h1 {
@@ -160,7 +160,8 @@ a {
   gap: 15px;
   font-size: 18px;
   background: var(--foreground);
-  border: 2px solid var(--border);
+  border: none;
+  box-shadow: var(--shadow);
   color: var(--copy);
   border-radius: var(--border-radius);
   max-width: var(--max-width);
@@ -192,8 +193,8 @@ a {
   width: fit-content;
   height: fit-content;
   padding: 0.15rem;
-  top: 10px;
-  left: 15px;
+  top: 20px;
+  left: 20px;
   color: var(--copy-light);
   font-size: 38px;
   cursor: pointer;

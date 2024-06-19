@@ -1,9 +1,12 @@
 import "../styles/contact.css";
 import { useForm, ValidationError } from "@formspree/react";
 import { motion } from "framer-motion";
+import { FaRegPaperPlane } from "react-icons/fa";
+
 
 function Contact(props) {
   const hoverShadow = props.hoverShadow;
+  const shadow = props.shadow;
   const [state, handleSubmit] = useForm("xeqyelkj");
 
   const boxShadowVariants = {
@@ -14,7 +17,7 @@ function Contact(props) {
       },
     },
     notHovered: {
-      boxShadow: "0px 0px 0px 0px rgb(0, 0, 0, 0)",
+      boxShadow: shadow,
     },
   };
 
@@ -70,6 +73,7 @@ function Contact(props) {
               whileHover="hovered"
               variants={boxShadowVariants}
             >
+              <FaRegPaperPlane />
               Submit
             </motion.button>
           </form>

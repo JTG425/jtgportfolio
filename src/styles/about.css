@@ -9,7 +9,6 @@
     gap: 50px;
     padding: 1rem;
     max-width: var(--max-width);
-
 }
 
 .about-card-container {
@@ -22,9 +21,10 @@
     padding: 1rem;
     background: var(--foreground);
     border-radius: var(--border-radius);
-    border: 2px solid var(--border);
+    border: none;
     color: var(--copy);
     max-width: var(--max-width);
+    box-shadow: var(--shadow);
     gap: 25px;
 }
 

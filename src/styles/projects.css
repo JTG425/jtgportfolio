@@ -25,7 +25,8 @@
     overflow-x: hidden;
     cursor: pointer;
     overflow-y: scroll;
-    border: 2px solid var(--border);
+    border: none;
+    box-shadow: var(--shadow);
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 }
