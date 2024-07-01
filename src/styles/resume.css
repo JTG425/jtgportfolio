@@ -13,139 +13,31 @@
 
 .resume {
     width: 90%;
-    background: var(--foreground);
+    color: var(--copy);
     height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 15px;
-    padding: 1rem;
+    padding: 0.5rem;
     border: none;
     border-radius: 10px;
 }
 
-.resume h2 {
-  margin: 0;
-  font-size: 24px; 
-  color: var(--copy-light);
-
-}
-
-.resume h3 {
-  margin: 0;
-  font-size: 18px;
-  color: var(--copy-light);
-}
-
-
-.resume p {
-  margin: 0;
-  font-size: 12px;
-  color: var(--copy-lighter);
-}
-
-.resume ul {
-  margin: 0;
-  font-size: 12px;
-  color: var(--copy-lighter);
-}
-
-.in-line {
+.resume img {
   width: 100%;
+  height: auto;
   display: flex;
-  flex-direction: row;
-  align-items: center; 
-  justify-content: space-between;
-}
-
-
-
-.resume-text {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 15px;
-}
-
-.resume-header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-.resume-header-name {
-    font-weight: 700;
-    color: var(--copy);
-}
-
-.resume-header-contact {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-
-
-.resume a {
-  margin: 0;
-  font-size: 12px;
-  text-decoration: underline;
-  color: var(--copy-light)
-}
-
-.resume-education {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-
-.resume-summary {
-  text-align: justify;
-  width: 100%;
-  text-justify: inter-word;
-}
-
-.resume-technical {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: justify;
-  text-justify: inter-word;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  background: var(--foreground);
+  background-color: var(--foreground);
 
 }
 
-.resume-projects {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: justify;
-  text-justify: inter-word;
-}
 
-.resume-interests {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-.resume-experience {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: justify;
-  text-justify: inter-word;
-}
 
 @media (max-width: 600px) {
   .resume h2 {
