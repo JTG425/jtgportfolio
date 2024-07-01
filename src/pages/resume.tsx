@@ -45,11 +45,11 @@ const MyResume = (props) => (
           </p>
           <p>Columbus, OH</p>
         </span>
-        <p>
+        <>
           <ul>
             <li>Dean's List: Spring 2020, Fall 2022</li>
           </ul>
-        </p>
+        </>
       </div>
       <div className="resume-summary">
         <h3>Professional Summary</h3>
@@ -65,7 +65,7 @@ const MyResume = (props) => (
       </div>
       <div className="resume-technical">
         <h3>Technical Qualifications</h3>
-        <p>
+        <>
           <ul>
             <li>
               <b>Programming languages:</b> HTML, CSS, JavaScript, React, Node,
@@ -84,11 +84,11 @@ const MyResume = (props) => (
               Parallel Computing, Capstone Design I, II.
             </li>
           </ul>
-        </p>
+        </>
       </div>
       <div className="resume-projects">
         <h3>Software Engineering Projects</h3>
-        <p>
+        <>
           <ul>
             <li>
               <span className="in-line">
@@ -175,11 +175,11 @@ const MyResume = (props) => (
               </ul>
             </li>
           </ul>
-        </p>
+        </>
       </div>
       <div className="resume-experience">
         <h3>Professional Experience</h3>
-        <p>
+        <>
           <span className="in-line">
             <p>
               <b>
@@ -209,8 +209,8 @@ const MyResume = (props) => (
               </p>
             </li>
           </ul>
-        </p>
-        <p>
+        </>
+        <>
           <span className="in-line">
             <p>
               <b>
@@ -229,11 +229,11 @@ const MyResume = (props) => (
               </p>
             </li>
           </ul>
-        </p>
+        </>
       </div>
       <div className="resume-interests">
         <h3>Activities and Interests</h3>
-        <p>
+        <>
           <ul>
             <li>
               <span className="in-line">
@@ -255,7 +255,7 @@ const MyResume = (props) => (
               </ul>
             </li>
           </ul>
-        </p>
+        </>
       </div>
     </div>
   </div>

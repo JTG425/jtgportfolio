@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 function NavBar(props) {
   const setPage = props.setPage
   const showNav = props.showNav
-  const pages = ["Home", "About Me", "My Projects", "My Resume", "Contact Me"]
+  const pages = ["Home", "My Projects", "My Resume", "Contact Me"]
   const pageIcons = [<FaHome />, <FaQuestionCircle />, <GrProjects />, <HiNewspaper />, <MdEmail />]
 
   const toggleNav = () => {
