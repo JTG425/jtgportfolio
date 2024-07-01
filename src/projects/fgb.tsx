@@ -59,7 +59,9 @@ function FGB(props) {
 
   return (
     <>
+    {open ? (
         <motion.button
+          key="fgb-close-button"
           className="close-button"
           whileTap={{ scale: 0.96 }}
           animate={open ? { opacity: 1, zIndex:101 } : { opacity: 0, zIndex: -1}}
@@ -68,6 +70,7 @@ function FGB(props) {
         >
           <IoClose />
         </motion.button>
+      ) : null}
       <motion.div
         className="project"
         initial="closed"

@@ -44,6 +44,18 @@ function Capstone(props) {
 
   return (
     <>
+        {open ? (
+        <motion.button
+          key="cap-close-button"
+          className="close-button"
+          whileTap={{ scale: 0.96 }}
+          animate={open ? { opacity: 1, zIndex:101 } : { opacity: 0, zIndex: -1}}
+          variants={boxShadowVariants}
+          onClick={() => setOpen(false)}
+        >
+          <IoClose />
+        </motion.button>
+      ) : null}
       <motion.button
         className="close-button"
         whileTap={{ scale: 0.96 }}

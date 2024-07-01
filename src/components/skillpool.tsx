@@ -10,7 +10,6 @@ import { SiAwsamplify } from "react-icons/si";
 import { SiFramer } from "react-icons/si";
 import { FaPython } from "react-icons/fa";
 import { motion, Variants } from "framer-motion";
-// import { IoClose } from "react-icons/io5";
 
 function SkillPool(props) {
   const boxShadowVariants: Variants = props.boxShadowVariants;
