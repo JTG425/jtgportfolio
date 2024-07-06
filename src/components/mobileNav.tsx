@@ -1,38 +1,33 @@
-import '../styles/navbar.css'
-import {motion, AnimatePresence } from 'framer-motion'
+import '../styles/mobilenavbar.css'
+import { AnimatePresence } from 'framer-motion'
 import { FaHome } from "react-icons/fa";
 import { FaQuestionCircle } from "react-icons/fa";
 import { GrProjects } from "react-icons/gr";
 import { HiNewspaper } from "react-icons/hi2";
 import { MdEmail } from "react-icons/md";
 
-function NavBar(props) {
+function MobileNavBar(props) {
   const setPage = props.setPage
-  const showNav = props.showNav
   const pages = ["Home", "My Projects", "My Resume", "Contact Me"]
   const pageIcons = [<FaHome />, <FaQuestionCircle />, <GrProjects />, <HiNewspaper />, <MdEmail />]
-
-
     
 
   return (
-      <div className="navbar">
-        <AnimatePresence mode='popLayout'>
+      <div className="mobile-navbar">
+        <AnimatePresence>
           {pages.map((page, index) => (
-            <motion.button
-              key={`nav-button-${index}`}
-              className="nav-link"
-              initial={{ opacity: 0 }}
-              animate={showNav ? { opacity: 1 } : { opacity: 0 }}
+            <button
+              key={index}
+              className="mobile-nav-link"
               onClick={() => setPage(page)}
             >
               {pageIcons[index]}
               {page}
-            </motion.button>
+            </button>
           ))}
         </AnimatePresence>
       </div>
   );
 }
 
-export default NavBar;
+export default MobileNavBar;

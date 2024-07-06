@@ -9,12 +9,17 @@ import Home from "./home";
 import Contact from "./pages/contact";
 import Projects from "./pages/projects";
 import Resume from "./pages/resume";
+import { LuSun } from "react-icons/lu";
+import { LuMoon } from "react-icons/lu";
+
+
 
 
 function App() {
   const [hoverShadow, setHoverShadow] = useState("");
   const [shadow, setShadow] = useState("");
   const [showNav, setShowNav] = useState(false);
+  const [theme, setTheme] = useState('light');
   // 0 0px 10px 1px rgb(2, 81, 132, 0.5)
   const [page, setPage] = useState("Home");
   
@@ -43,7 +48,7 @@ function App() {
 
   const navVariants = {
     open: {
-      x: "-40%",
+      x: "40%",
       transition: {
         duration: 0.25,
         type: "spring",
@@ -52,7 +57,29 @@ function App() {
       },
     },
     closed: {
-      x: "-110%",
+      x: "100%",
+      transition: {
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      },
+    },
+  };
+
+  const backgroundVariants = {
+    open: {
+      opacity: [0,0,1],
+      x: "0%",
+      transition: {
+        duration: 0.05,
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      },
+    },
+    closed: {
+      opacity: 0,
+      x: "100%",
       transition: {
         type: "spring",
         stiffness: 260,
@@ -72,12 +99,26 @@ function App() {
     setShadow(rootStyle.getPropertyValue("--shadow").trim());
   }, []);
 
+
+
   return (
     <>
       <div className="App">
         <p className="temp">{page}</p>
+        <div className="menu-buttons">
         <motion.button
-          className="burger-menu-container"
+          className="menu-button"
+          initial="notHovered"
+          whileHover="hovered"
+          whileTap={{ scale: 0.96 }}
+          variants={boxShadowVariants}
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          transition={{ duration: 0.25 }}
+        >
+          {theme === "light" ? <LuSun className="theme-icon" /> : <LuMoon className="theme-icon" />}
+        </motion.button>
+        <motion.button
+          className="menu-button"
           initial="notHovered"
           whileHover="hovered"
           whileTap={{ scale: 0.96 }}
@@ -87,6 +128,7 @@ function App() {
         >
           <GiHamburgerMenu className="burger" />
         </motion.button>
+        </div>
         <motion.div
           className="nav-container"
           initial="closed"
@@ -95,14 +137,27 @@ function App() {
         >
           <NavBar setPage={handlePageChange} hoverShadow={hoverShadow} showNav={showNav} />
         </motion.div>
+        <motion.div
+        className="blurred-background"
+        initial="closed"
+        animate={showNav ? "open" : "closed"}
+        variants={backgroundVariants}
+        >
+        </motion.div>
         <AnimatePresence mode="popLayout">
           <motion.div
           key={page}
             className="page-container"
-            initial={{ opacity: 0, x: 500}}
-            animate={{ opacity: 1, x: 0}}
-            transition={{ duration: 0.25 }}
-            exit={{ opacity: 0, x: 500}}
+            initial={{ opacity: 0, y: 100}}
+            animate={{ opacity: 1, y: 0}}
+            transition={{ 
+              duration: 0.15,
+              type: "spring",
+              stiffness: 260,
+              damping: 20,
+
+            }}
+            exit={{ opacity: 0, y: 100}}
           >
             {pageComponents[page]}
           </motion.div>

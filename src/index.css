@@ -11,35 +11,41 @@
   --primary-content: rgb(136, 207, 253);
   --primary-dark: rgb(1, 50, 82);
   --primary-light: rgb(3, 112, 182);
-
   --secondary: rgb(118, 2, 132);
   --secondary-content: rgb(241, 136, 253);
   --secondary-dark: rgb(73, 1, 82);
   --secondary-light: rgb(163, 3, 182);
-
   --background: rgb(237, 240, 242);
   --foreground: rgb(251, 251, 252);
   --border: rgb(218, 224, 228);
   --copy: rgb(33, 39, 44);
   --copy-light: rgb(87, 105, 117);
   --copy-lighter: rgb(123, 144, 157);
-
   --success: rgb(2, 132, 2);
   --warning: rgb(132, 132, 2);
   --error: rgb(132, 2, 2);
   --success-content: rgb(136, 253, 136);
   --warning-content: rgb(253, 253, 136);
   --error-content: rgb(253, 136, 136);
-
   --border-radius: 0.375rem;
   --box-shadow: 0 0px 10px 1px rgb(2, 81, 132, 0.5);
   --shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   --max-width: 1000px;
-
   --glass-foreground: rgba(251, 251, 252, 0.5);
   --glass-backdrop-filter: blur(10px);
   --glass-webkit-backdrop-filter: blur(10px);
+}
 
+.light {
+  --background: rgb(237, 240, 242);
+  --foreground: rgb(251, 251, 252);
+  --border: rgb(218, 224, 228);
+  --copy: rgb(33, 39, 44);
+  --copy-light: rgb(87, 105, 117);
+  --copy-lighter: rgb(123, 144, 157);
+  --box-shadow: 0 0px 10px 1px rgb(2, 81, 132, 0.5);
+  --shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  --glass-foreground: rgba(251, 251, 252, 0.5);
 }
 
 @media (prefers-color-scheme: dark) {

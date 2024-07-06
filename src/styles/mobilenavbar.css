@@ -1,0 +1,32 @@
+.navbar {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--foreground);
+    color: var(--copy-light);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.5rem 0.5rem;
+    font-size: 14px;
+    width: 90%;
+    height: fit-content;
+    padding: 1.5rem 1.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    flex-grow: 1;
+    font-size: 24px;
+    font-weight: 400;
+    box-shadow: var(--shadow);
+}
+
+

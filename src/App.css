@@ -184,25 +184,39 @@ a {
   box-shadow: var(--shadow);
 }
 
-.burger-menu-container {
+.menu-buttons {
   position: fixed;
   display: flex;
+  flex-direction: row;
   z-index: 20;
   justify-content: center;
   align-items: center;
   width: fit-content;
+  gap: 20px;
   height: fit-content;
-  padding: 0.15rem;
+  padding: 0;
   top: 20px;
-  left: 20px;
+  right: 20px;
   color: var(--copy-light);
-  font-size: 38px;
+  font-size: 30px;
   cursor: pointer;
-  background: var(--foreground);
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
   border-radius: var(--border-radius);
   border: none;
   box-shadow: var(--shadow);
-
+  cursor: pointer;
+  color: var(--copy);
+  background: var(--foreground);
+  box-shadow: var(--box-shadow);
 }
 
 .nav-container {
@@ -211,12 +225,12 @@ a {
   flex-direction: column;
   z-index: 15;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: flex-start;
   width: 100%;
   max-width: 500px;
   height: 100%;
   top: 0;
-  left: 0;
+  right: 0;
   background: var(--foreground);
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
@@ -225,6 +239,18 @@ a {
   border-bottom: none;
   gap: 10px;
   padding-top: 100px;
+  box-shadow: var(--shadow);
+}
+.blurred-background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--glass-foreground);
+  backdrop-filter: var(--glass-backdrop-filter);
+  -webkit-backdrop-filter: var(--glass-webkit-backdrop-filter);
+  z-index: 10;
 }
 
 .burger {
