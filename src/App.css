@@ -267,3 +267,9 @@ a {
   color: var(--copy-light);
   font-size: 24px;
 }
+
+@media (max-width: 500px) {
+  .page-container {
+    margin-top: 40px;
+  }
+}

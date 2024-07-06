@@ -57,7 +57,7 @@ function App() {
       },
     },
     closed: {
-      x: "100%",
+      x: "105%",
       transition: {
         type: "spring",
         stiffness: 260,
