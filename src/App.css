@@ -216,7 +216,7 @@ a {
   cursor: pointer;
   color: var(--copy);
   background: var(--foreground);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--shadow);
 }
 
 .nav-container {
@@ -257,4 +257,13 @@ a {
   margin: 0;
   padding: 0;
   color: var(--copy-light);
+  font-size: 24px;
+}
+
+
+.theme-icon {
+  margin: 0;
+  padding: 0;
+  color: var(--copy-light);
+  font-size: 24px;
 }
