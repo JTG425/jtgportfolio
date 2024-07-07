@@ -40,7 +40,7 @@ function FGB(props) {
   const containerVariants: Variants = {
     closed: {
       y: 0,
-      width: "75%",
+      width: "90%",
       height: "85px",
       zIndex: 2,
       borderRadius: "0.375rem",
@@ -51,9 +51,10 @@ function FGB(props) {
       width: "93%",
       height: "75vh",
       zIndex: 5,
-      borderRadius: "0",
+      borderRadius: "0.375rem",
       overflowY: "scroll",
       boxShadow: hoverShadow,
+      paddingBottom: "1rem",
     },
   };
 

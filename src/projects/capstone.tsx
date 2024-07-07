@@ -25,7 +25,7 @@ function Capstone(props) {
   const containerVariants: Variants = {
     closed: {
       y: 100,
-      width: "75%",
+      width: "90%",
       height: "85px",
       zIndex: 1,
       borderRadius: "0.375rem",
@@ -36,7 +36,7 @@ function Capstone(props) {
       width: "93%",
       height: "75vh",
       zIndex: 5,
-      borderRadius: "0",
+      borderRadius: "0.375rem",
       boxShadow: hoverShadow,
       overflowY: "scroll",
     },
