@@ -71,15 +71,12 @@ function App() {
       opacity: [0,0,1],
       x: "0%",
       transition: {
-        duration: 0.05,
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
+        duration: 0.25,
       },
     },
     closed: {
       opacity: 0,
-      x: "100%",
+      x: "-100%",
       transition: {
         type: "spring",
         stiffness: 260,
