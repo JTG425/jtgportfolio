@@ -5,7 +5,7 @@ import NavBar from "./components/navbar";
 import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Home from "./home";
-// import About from "./pages/about";
+import About from "./pages/about";
 import Contact from "./pages/contact";
 import Projects from "./pages/projects";
 import Resume from "./pages/resume";
@@ -38,7 +38,7 @@ function App() {
 
   const pageComponents = {
     "Home": <Home hoverShadow={hoverShadow} shadow={shadow} />,
-    // "About Me": <About />,
+    "About Me": <About />,
     "My Projects": <Projects hoverShadow={hoverShadow} shadow={shadow} />,
     "My Resume": <Resume shadow={shadow} />,
     "Contact Me": <Contact hoverShadow={hoverShadow} shadow={shadow} />,
@@ -138,6 +138,7 @@ function App() {
         className="blurred-background"
         initial="closed"
         animate={showNav ? "open" : "closed"}
+        onClick={() => setShowNav(!showNav)}
         variants={backgroundVariants}
         >
         </motion.div>

@@ -34,7 +34,7 @@
   border-radius: var(--border-radius);
   background: var(--foreground);
   background-color: var(--foreground);
-
+  cursor: pointer;
 }
 
 
