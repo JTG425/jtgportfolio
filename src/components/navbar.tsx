@@ -19,6 +19,26 @@ function NavBar(props) {
     <MdEmail />,
   ];
 
+  const navVariants = {
+    open: {
+      x: "40%",
+      transition: {
+        duration: 0.25,
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      },
+    },
+    closed: {
+      x: "200%",
+      transition: {
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      },
+    },
+  };
+
   const navButtonVariants = {
     closed: {
       opacity: 0,
@@ -39,18 +59,23 @@ function NavBar(props) {
 
 
   return (
-    <>
+    <motion.div
+      className="nav-container"
+      initial="closed"
+      animate={showNav ? "open" : "closed"}
+      variants={navVariants}
+    >
       <Wave fill='rgba(2,81,132,0.75)'
         paused={false}
         style={{ 
           display: 'flex',
-          position: 'absolute',
-          top: '20%',
-          right: '-40%',
+          position: 'fixed',
+          top: '0',
+          right: '-100%',
           transform: 'rotate(270deg)',
           zIndex: '-1',
-          width: '150vh',
-          height: '60vh',
+          width: '175vh',
+          height: '100vw',
         }}
         options={{
           height: 20,
@@ -64,12 +89,12 @@ function NavBar(props) {
         style={{ 
           display: 'flex',
           position: 'absolute',
-          top: '20%',
-          right: '-40%',
+          top: '0',
+          right: '-100%',
           transform: 'rotate(270deg)',
           zIndex: '-1',
-          width: '150vh',
-          height: '60vh',
+          width: '175vh',
+          height: '100vw',
         }}
         options={{
           height: 10,
@@ -98,7 +123,7 @@ function NavBar(props) {
             ))}
         </AnimatePresence>
       </div>
-    </>
+    </motion.div>
   );
 }
 

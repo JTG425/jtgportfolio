@@ -47,25 +47,6 @@ function App() {
 
 
 
-  const navVariants = {
-    open: {
-      x: "40%",
-      transition: {
-        duration: 0.25,
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
-      },
-    },
-    closed: {
-      x: "105%",
-      transition: {
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
-      },
-    },
-  };
 
   const backgroundVariants = {
     open: {
@@ -120,14 +101,11 @@ function App() {
           <GiHamburgerMenu className="burger" />
         </motion.button>
         </div>
-        <motion.div
+        <div
           className="nav-container"
-          initial="closed"
-          animate={showNav ? "open" : "closed"}
-          variants={navVariants}
         >
           <NavBar setPage={handlePageChange} hoverShadow={hovered} showNav={showNav} />
-        </motion.div>
+        </div>
         <motion.div
         className="blurred-background"
         initial="closed"

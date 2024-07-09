@@ -219,29 +219,7 @@ a {
   box-shadow: var(--shadow);
 }
 
-.nav-container {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  z-index: 15;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  max-width: 500px;
-  height: 100%;
-  top: 0;
-  right: 0;
-  /* background: var(--foreground); */
-  background: none;
-  border-top-right-radius: var(--border-radius);
-  /* border-bottom-right-radius: var(--border-radius);
-  border-right: 2px solid var(--border); */
-  border-top: none;
-  border-bottom: none;
-  gap: 10px;
-  padding-top: 100px;
-  /* box-shadow: var(--shadow); */
-}
+
 .blurred-background {
   position: fixed;
   top: 0;

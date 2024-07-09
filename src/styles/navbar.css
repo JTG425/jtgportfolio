@@ -7,6 +7,26 @@
     gap: 20px;
 }
 
+.nav-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    z-index: 15;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 500px;
+    max-width: 500px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: none;
+    border-top-right-radius: var(--border-radius);
+    border-top: none;
+    border-bottom: none;
+    gap: 10px;
+    padding-top: 100px;
+  }
+
 .nav-link {
     align-self: flex-end;
     margin-right: 20px;
