@@ -2,7 +2,7 @@ import "./App.css";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import NavBar from "./components/navbar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Home from "./home";
 import About from "./pages/about";
@@ -16,32 +16,33 @@ import { LuMoon } from "react-icons/lu";
 
 
 function App() {
-  const [hoverShadow, setHoverShadow] = useState("");
-  const [shadow, setShadow] = useState("");
   const [showNav, setShowNav] = useState(false);
   const [theme, setTheme] = useState('light');
   // 0 0px 10px 1px rgb(2, 81, 132, 0.5)
   const [page, setPage] = useState("Home");
+
+  const notHovered = "0 0px 5px 0px rgba(251, 251, 251, 0.75)"
+  const hovered = "0 0px 5px 0px rgba(3, 112, 182, 0.75)";
   
   const boxShadowVariants = {
     hovered: {
-      boxShadow: hoverShadow,
+      boxShadow: hovered,
       transition: {
         duration: 0.25,
       },
     },
     notHovered: {
-      boxShadow: shadow,
+      boxShadow: notHovered,
     },
   };
 
 
   const pageComponents = {
-    "Home": <Home hoverShadow={hoverShadow} shadow={shadow} />,
+    "Home": <Home hoverShadow={hovered} shadow={notHovered} />,
     "About Me": <About />,
-    "My Projects": <Projects hoverShadow={hoverShadow} shadow={shadow} />,
-    "My Resume": <Resume shadow={shadow} />,
-    "Contact Me": <Contact hoverShadow={hoverShadow} shadow={shadow} />,
+    "My Projects": <Projects hoverShadow={hovered} shadow={notHovered} />,
+    "My Resume": <Resume shadow={notHovered} />,
+    "Contact Me": <Contact hoverShadow={hovered} shadow={notHovered} />,
   };
 
 
@@ -90,13 +91,6 @@ function App() {
     setShowNav(false);
   };
 
-  useEffect(() => {
-    const rootStyle = getComputedStyle(document.documentElement);
-    setHoverShadow(rootStyle.getPropertyValue("--box-shadow").trim());
-    setShadow(rootStyle.getPropertyValue("--shadow").trim());
-  }, []);
-
-
 
   return (
     <>
@@ -132,7 +126,7 @@ function App() {
           animate={showNav ? "open" : "closed"}
           variants={navVariants}
         >
-          <NavBar setPage={handlePageChange} hoverShadow={hoverShadow} showNav={showNav} />
+          <NavBar setPage={handlePageChange} hoverShadow={hovered} showNav={showNav} />
         </motion.div>
         <motion.div
         className="blurred-background"

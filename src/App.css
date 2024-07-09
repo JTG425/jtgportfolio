@@ -231,15 +231,16 @@ a {
   height: 100%;
   top: 0;
   right: 0;
-  background: var(--foreground);
+  /* background: var(--foreground); */
+  background: none;
   border-top-right-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
-  border-right: 2px solid var(--border);
+  /* border-bottom-right-radius: var(--border-radius);
+  border-right: 2px solid var(--border); */
   border-top: none;
   border-bottom: none;
   gap: 10px;
   padding-top: 100px;
-  box-shadow: var(--shadow);
+  /* box-shadow: var(--shadow); */
 }
 .blurred-background {
   position: fixed;

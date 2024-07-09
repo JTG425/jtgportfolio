@@ -11,6 +11,8 @@
 	},
 	"dependencies": {
 		"@formspree/react": "^2.5.1",
+		"@lottiefiles/dotlottie-react": "^0.7.2",
+		"@lottiefiles/dotlottie-web": "^0.28.0",
 		"animejs": "^3.2.2",
 		"eslint-plugin-react-compiler": "^0.0.0-experimental-0998c1e-20240625",
 		"framer-motion": "^11.2.10",
@@ -18,7 +20,8 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-icons": "^5.2.1",
-		"react-pdf": "^9.0.0"
+		"react-pdf": "^9.0.0",
+		"react-wavify": "^1.11.0"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.66",

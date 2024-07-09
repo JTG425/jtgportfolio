@@ -8,25 +8,27 @@
 }
 
 .nav-link {
+    align-self: flex-end;
+    margin-right: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     background: var(--foreground);
-    color: var(--copy-light);
-    border: none;
+    color: var(--copy);
+    border: 1px solid var(--border);
     border-radius: var(--border-radius);
     padding: 0.5rem 0.5rem;
     font-size: 14px;
-    width: 90%;
+    width: 75%;
     height: fit-content;
     padding: 1.5rem 1.5rem;
     text-decoration: none;
     cursor: pointer;
     flex-grow: 1;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
-    box-shadow: var(--shadow);
 }
+
 
 
