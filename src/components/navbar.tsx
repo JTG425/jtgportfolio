@@ -69,13 +69,12 @@ function NavBar(props) {
         paused={false}
         style={{ 
           display: 'flex',
-          position: 'fixed',
-          top: '0',
-          right: '-100%',
+          justifySelf: 'center',
+          alignSelf: 'center',
           transform: 'rotate(270deg)',
           zIndex: '-1',
-          width: '175vh',
-          height: '100vw',
+          width: '150vh',
+          height: '600px',
         }}
         options={{
           height: 20,
@@ -88,13 +87,13 @@ function NavBar(props) {
         paused={false}
         style={{ 
           display: 'flex',
-          position: 'absolute',
-          top: '0',
-          right: '-100%',
           transform: 'rotate(270deg)',
           zIndex: '-1',
-          width: '175vh',
-          height: '100vw',
+          width: '150vh',
+          height: '600px',
+          justifySelf: 'center',
+          alignSelf: 'center',
+          marginTop: '-500px',
         }}
         options={{
           height: 10,
