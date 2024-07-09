@@ -35,9 +35,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background: var(--foreground);
+    background: var(--primary-dark);
+    box-shadow: var(--shadow);
     color: var(--copy);
-    border: 1px solid var(--border);
+    border: none;
     border-radius: var(--border-radius);
     padding: 0.5rem 0.5rem;
     font-size: 14px;

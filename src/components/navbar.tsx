@@ -73,7 +73,7 @@ function NavBar(props) {
           alignSelf: 'center',
           transform: 'rotate(270deg)',
           zIndex: '-1',
-          width: '150vh',
+          width: '1500px',
           height: '600px',
         }}
         options={{
@@ -89,11 +89,11 @@ function NavBar(props) {
           display: 'flex',
           transform: 'rotate(270deg)',
           zIndex: '-1',
-          width: '150vh',
+          width: '1500px',
           height: '600px',
           justifySelf: 'center',
           alignSelf: 'center',
-          marginTop: '-500px',
+          marginTop: '-510px',
         }}
         options={{
           height: 10,

@@ -101,11 +101,7 @@ function App() {
           <GiHamburgerMenu className="burger" />
         </motion.button>
         </div>
-        <div
-          className="nav-container"
-        >
           <NavBar setPage={handlePageChange} hoverShadow={hovered} showNav={showNav} />
-        </div>
         <motion.div
         className="blurred-background"
         initial="closed"
