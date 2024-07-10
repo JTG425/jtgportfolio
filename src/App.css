@@ -70,14 +70,7 @@ a {
   gap: 25px;
 }
 
-.intro img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-top: 25px;
-  margin-bottom: 0px;
-  cursor: pointer;
-}
+
 
 .page-container {
   width: 90%;
@@ -94,6 +87,7 @@ a {
 
 
 .text-block {
+  margin-top: 275px;
   width: 80%;
   height: fit-content;
   background: var(--foreground);
@@ -245,6 +239,72 @@ a {
   padding: 0;
   color: var(--copy-light);
   font-size: 24px;
+}
+
+.blob-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: fit-content;
+  z-index: 0;
+}
+
+.blob-position img {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  margin-top: 25px;
+  margin-bottom: 0px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.blobs {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+}
+
+.blob1 {
+  position: absolute;
+  top: -25px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.blob2 {
+  position: absolute;
+  top: -12.5px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.blob3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.blob4 {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
 }
 
 @media (max-width: 500px) {

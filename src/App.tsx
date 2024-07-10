@@ -9,15 +9,15 @@ import About from "./pages/about";
 import Contact from "./pages/contact";
 import Projects from "./pages/projects";
 import Resume from "./pages/resume";
-import { LuSun } from "react-icons/lu";
-import { LuMoon } from "react-icons/lu";
+// import { LuSun } from "react-icons/lu";
+// import { LuMoon } from "react-icons/lu";
 
 
 
 
 function App() {
   const [showNav, setShowNav] = useState(false);
-  const [theme, setTheme] = useState('light');
+  // const [theme, setTheme] = useState('light');
   // 0 0px 10px 1px rgb(2, 81, 132, 0.5)
   const [page, setPage] = useState("Home");
 
@@ -34,6 +34,12 @@ function App() {
     notHovered: {
       boxShadow: notHovered,
     },
+    open: {
+      background: "rgba(1, 50, 82, 0.75)"
+    },
+    closed: {
+      background: "rgb(33, 39, 44)"
+    }
   };
 
 
@@ -78,22 +84,24 @@ function App() {
       <div className="App">
         <p className="temp">{page}</p>
         <div className="menu-buttons">
-        <motion.button
+        {/* <motion.button
           className="menu-button"
           initial="notHovered"
           whileHover="hovered"
           whileTap={{ scale: 0.96 }}
+          animate={showNav ? "open" : "closed"}
           variants={boxShadowVariants}
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           transition={{ duration: 0.25 }}
         >
           {theme === "light" ? <LuSun className="theme-icon" /> : <LuMoon className="theme-icon" />}
-        </motion.button>
+        </motion.button> */}
         <motion.button
           className="menu-button"
           initial="notHovered"
           whileHover="hovered"
           whileTap={{ scale: 0.96 }}
+          animate={showNav ? "open" : "closed"}
           variants={boxShadowVariants}
           onClick={() => setShowNav(!showNav)}
           transition={{ duration: 0.25 }}
