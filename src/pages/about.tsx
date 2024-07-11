@@ -3,12 +3,10 @@ import about1 from "../assets/aboutimages/1.png";
 // import about2 from "../assets/aboutimages/2.png";
 // import about3 from "../assets/aboutimages/3.png";
 import {motion} from "framer-motion";
-import { memo } from "react";
-
 
 // import about4 from "../assets/aboutimages/4.png";
 
-const About = memo(function About() {
+ function About() {
   const images = [about1];
   const text = [
     "Hello, I'm Joshua Golonka, a recent " + 
@@ -36,6 +34,6 @@ const About = memo(function About() {
       </div>
     </>
   );
-});
+}
 
 export default About;
