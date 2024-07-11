@@ -11,12 +11,6 @@ function Capstone(props) {
   const skillComponents = [<FaPython />, <FaRaspberryPi />];
   const [open, setOpen] = useState(false);
   const boxShadowVariants: Variants = {
-    hovered: {
-      boxShadow: hoverShadow,
-      transition: {
-        duration: 0.25,
-      },
-    },
     notHovered: {
       boxShadow: "0px 0px 0px 0px rgb(0, 0, 0, 0)",
     },
@@ -39,6 +33,12 @@ function Capstone(props) {
       borderRadius: "0.375rem",
       boxShadow: hoverShadow,
       overflowY: "scroll",
+    },
+    hovered: {
+      boxShadow: hoverShadow,
+      transition: {
+        duration: 0.25,
+      },
     },
   };
 
@@ -70,6 +70,7 @@ function Capstone(props) {
       <motion.div
         className="project"
         initial="closed"
+        whileHover="hovered"
         animate={open ? "open" : "closed"}
         onClick={() => setOpen(true)}
         variants={containerVariants}

@@ -11,6 +11,21 @@
     max-width: var(--max-width);
 }
 
+.contact-header-text {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+}
+
+
+.contact-header-text p {
+    margin: 0;
+}
+
 .contact-form {
     width: 90%;
     height: fit-content;

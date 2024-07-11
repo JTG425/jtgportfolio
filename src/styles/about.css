@@ -24,8 +24,8 @@
     border: none;
     color: var(--copy);
     max-width: var(--max-width);
-    box-shadow: var(--shadow);
     gap: 25px;
+    box-shadow: var(--shadow);
 }
 
 .about-card-container:nth-child(even) {
@@ -35,4 +35,15 @@
 .about-card-container img {
     width: 200px;
     height: auto;
+}
+
+@media (max-width: 600px) {
+    .about-card-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .about-card-container img {
+        width: 100%;
+    }
 }

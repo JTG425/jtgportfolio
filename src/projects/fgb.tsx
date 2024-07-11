@@ -26,12 +26,6 @@ function FGB(props) {
   ];
 
   const boxShadowVariants: Variants = {
-    hovered: {
-      boxShadow: hoverShadow,
-      transition: {
-        duration: 0.25,
-      },
-    },
     notHovered: {
       boxShadow: "0px 0px 0px 0px rgb(0, 0, 0, 0)",
     },
@@ -56,6 +50,12 @@ function FGB(props) {
       boxShadow: hoverShadow,
       paddingBottom: "1rem",
     },
+    hovered: {
+      boxShadow: hoverShadow,
+      transition: {
+        duration: 0.25,
+      },
+    },
   };
 
   return (
@@ -75,6 +75,8 @@ function FGB(props) {
       <motion.div
         className="project"
         initial="closed"
+        whileHover="hovered"
+        whileTap={{ scale: 0.96 }}
         animate={open ? "open" : "closed"}
         onClick={() => setOpen(true)}
         variants={containerVariants}
@@ -83,7 +85,6 @@ function FGB(props) {
         <h4>December 2023 - May 2024</h4>
         {open ? ( 
         <>
-
         <span className="project-stack-container">
           {skillComponents.map((skill, index) => (
             <motion.div

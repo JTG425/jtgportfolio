@@ -36,7 +36,10 @@ function Contact(props) {
 
   return (
     <>
+    <span className="contact-header-text">
       <h2>Contact Me</h2>
+      <p>Any Questions? Ideas? Send me a message below!</p>
+    </span>
       <div className="contact-container">
         <div className="contact-form">
           <form onSubmit={handleSubmit}>
